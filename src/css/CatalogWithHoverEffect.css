@@ -1,0 +1,47 @@
+.catalogs-about {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  padding: 25px;
+  height: 20rem;
+  position: relative;
+  overflow: hidden;
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+  z-index: 0;
+  transition: border 0.3s ease;
+  background: none;
+  backdrop-filter: none;
+}
+
+.catalogs-about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 180deg at var(--mouse-x) var(--mouse-y),
+    rgba(0, 200, 255, 0.8),
+    transparent 25%,
+    rgba(0, 200, 255, 0.8),
+    transparent 50%,
+    rgba(0, 200, 255, 0.8),
+    transparent 75%,
+    rgba(0, 200, 255, 0.8)
+  );
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 2px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.catalogs-about:hover::before {
+  opacity: 1;
+}

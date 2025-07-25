@@ -1,0 +1,172 @@
+.project-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 5rem;
+}
+
+.tag-project {
+    display: flex;
+    position: relative;
+    align-items: center;
+    font-size: 0.8rem;
+    background: linear-gradient(to bottom, hsl(248, 18%, 13%), hsl(248, 18%, 23%)); /* hsl(248, 18%, 4%) */
+    border: 1px solid hsla(0, 0%, 100%, 0.15);
+    border-radius: 50px;
+    padding: 5px 10px;
+    opacity: 0.7;
+    gap: 0.5rem;
+}
+
+.title-project {
+    display: flex;
+    position: relative;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.description-project {
+    display: flex;
+    position: relative;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+    opacity: 0.7;
+    width: 70%;
+}
+
+/* --  Moment of the estilization catalogs of project  -- */
+.container-catalogs-project {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* repeat(auto-fill, minmax(200px, 1fr)) */
+    gap: 1.5rem;
+}
+
+/* Card do projeto */
+.catalogs-project {
+    background: hsl(248, 18%, 4%);
+    border: 1px solid hsl(0, 0%, 10%);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Imagem do projeto */
+.img-project {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid hsl(210, 12%, 25%);
+}
+
+/* Conteúdo do card */
+.catalogs-project > *:not(.img-project) {
+    padding: 0 1rem;
+}
+
+.title-catalog-project {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: hsl(0, 0%, 95%);
+    margin: 1rem 0 0.5rem;
+}
+
+.description-catalog-project {
+    color: hsl(0, 0%, 75%);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* Estilo das Tags */
+.tags-catalog-project {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.tag-item {
+    display: inline-block;
+    background: hsl(0, 0%, 5%);
+    border: 1px solid hsla(0, 0%, 100%, 0.15);
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid hsl(210, 12%, 30%);
+    opacity: 0.6;
+    cursor: default;
+    transition: all 0.2s ease;
+}
+
+.tag-item:hover {
+    background: hsl(0, 0%, 23%);
+    transform: scale(1.05);
+}
+
+/* Efeito de brilho sutil nos cards */
+.catalogs-project::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        hsl(143, 80%, 60%), 
+        transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.catalogs-project:hover::after {
+    opacity: 0.6;
+}
+
+.check-my-github {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    background: hsla(0, 0%, 5%, 0.1);
+    border: 1px solid hsla(0, 0%, 100%, 0.15);
+    box-shadow: 0px 0px 20px 5px hsla(0, 0%, 5%, 0.3);
+    border-radius: 50px;
+    padding: 15px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transform: translateX(0px);
+    gap: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.check-my-github:hover {
+    background: hsla(0, 0%, 10%, 0.4);
+    border: 1px solid hsla(0, 0%, 100%, 0.3);
+}
+
+.check-my-github:hover .icon-arrow-project-btn {
+    transform: translateX(5px);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container-catalogs-project {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .catalogs-project {
+        max-width: 100%;
+    }
+}
