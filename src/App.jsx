@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -10,10 +10,9 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulando carregamento (você pode adaptar para imagens, APIs etc.)
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); // 2 segundos
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -21,7 +20,7 @@ function App() {
   if (loading) return <Loader />;
 
   return (
-    <BrowserRouter>
+    <Router>
       <Navbar />
       <main className="main-content">
         <Routes>
@@ -30,7 +29,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-    </BrowserRouter>
+    </Router>
   );
 }
 

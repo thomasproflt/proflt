@@ -22,34 +22,34 @@ const About = () => {
       id: 1,
       icon: faLink,
       tag: "Learn more about me",
-      title: "What's in it for you?",
-      description: "Gain all the skills you need to kick-start your profissional path through mentoring by industry professionals.",
+      title: "What You Will Find Here",
+      description: "Some things I can help you with in your projects",
     }
   ];
 
   const about = [
     {
       id: 1,
-      title: "Hands-on learning",
-      description: "Each course will take you through the entire process of completing and testing a project.",
+      title: "Mentoring and Practical Experience",
+      description: "I believe the best learning comes from practice. Every project I develop is designed to solve real problems and improve the user experience. I've also had the opportunity to receive mentorship and feedback from experienced professionals in the field.",
       number: "01",
     },
     {
       id: 2,
-      title: "Mentorship by our experts",
-      description: "Take advantage of your mentor's expertise and gain industry-relevant feedback.",
+      title: "Hands-on Learning",
+      description: "Each project is a new journey: from conception to final testing. I've learned to deal with errors, think of creative solutions, and apply best practices in software development.",
       number: "02",
     },
     {
       id: 3,
-      title: "Widely applicable skills",
-      description: "The Academy is designed to give you a solid foundation and boost your professional growth.",
+      title: "Valuable Knowledge",
+      description: "My focus is on acquiring skills that really matter to the market: front-end development with React.js, back-end with Node.js, database, deployment, responsiveness, performance, and much more.",
       number: "03",
     },
     {
       id: 4,
-      title: "Street cred",
-      description: "Upon completion you will receive a certificate verifying your new skills!",
+      title: "Certifications and Recognition",
+      description: "Throughout my journey, I've earned certifications that attest to my commitment and continuous development. They reflect my hard work and the quality of my work.",
       number: "04",
     }
   ];

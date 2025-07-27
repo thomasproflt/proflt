@@ -106,9 +106,9 @@
 }
 
 .subtitle-hero {
-  text-align: center;
   font-size: 1.1rem;
-  opacity: 0.9;
+  text-align: center;
+  opacity: 0.7;
   margin: 0;
   width: 35%;
 }
@@ -165,60 +165,4 @@
 .btn-book-a-call:hover {
   background: hsla(0, 0%, 5%, 0.1);
   border: 1px solid hsla(0, 0%, 100%, 0.3);
-}
-
-.copyright-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 5rem;
-  background: hsl(0, 0%, 3%);
-  color: white;
-}
-
-.outside-links {
-  flex-direction: column;
-}
-
-.img-copyright {
-  display: flex;
-  width: 20%;
-  height: auto;
-}
-
-.copyright-subtitle {
-  opacity: 0.7;
-}
-
-.links-copyright {
-  display: flex;
-  position: relative;
-}
-
-.ul-copyright-1 {
-  list-style: none;
-}
-
-.li-copyright-1 {
-  display: flex;
-}
-
-.li-copyright-1:hover {
-  opacity: 0.7;
-}
-
-.ul-copyright-2 {
-  list-style: none;
-}
-
-.li-copyright-2 {
-  display: flex;
-}
-
-.li-copyright-2:hover {
-  opacity: 0.7;
-}
-
-a {
-  color: hsl(0, 0%, 100%);
-  text-decoration: none;
 }
