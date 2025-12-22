@@ -47,7 +47,7 @@ const AppContent = () => {
             </Routes>
 
             {/* Componente Cookie fixo em todas as páginas */}
-            <Cookie />
+            {/*<Cookie />*/}
         </>
     );
 };

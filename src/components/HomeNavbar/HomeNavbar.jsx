@@ -3,23 +3,14 @@ import { useAuth } from '../../contexts/AuthContext';
 
 const HomeLogo = ({ className = "fill-current" }) => {
     return (
-        <svg
-            width="32"
-            height="32"
-            viewBox="0 0 588 588"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className={className}
-        >
-            <g clipPath="url(#clip0_1001_2)">
-                <path
-                    d="M282.971 62.2441C282.971 73.7931 280.97 85.2551 277.058 96.1211L229.724 227.584H588V360.416H515.327C460.099 360.416 415.327 405.188 415.327 460.416V588H255.586V507.395C255.586 493.968 258.29 480.679 263.536 468.319L320.243 334.735V332.964H0V227.584H39.9639C95.1923 227.584 139.964 182.812 139.964 127.584V0H282.971V62.2441Z"
-                    fill="currentColor"
-                />
+        <svg width="32" height="32" viewBox="0 0 270 263" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+            <g clipPath="url(#clip0_1_4)">
+                <path d="M22 53L0 1H134C161.614 1 184 23.3858 184 51V53L75 263L38 216L124 53H22Z" fill="black" />
+                <path d="M191.095 32.9763L183 53H251.5L269.5 -3L230.842 2.1544C213.014 4.53152 197.836 16.3011 191.095 32.9763Z" fill="black" />
             </g>
             <defs>
-                <clipPath id="clip0_1001_2">
-                    <rect width="588" height="588" fill="white" />
+                <clipPath id="clip0_1_4">
+                    <rect width="270" height="263" fill="white" />
                 </clipPath>
             </defs>
         </svg>
