@@ -1,0 +1,485 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import LoginModal from '../Login/Login';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import DropdownMenuResources from '../DropdownMenuResources/DropdownMenuResources';
+
+const Logo = ({ className = "fill-current" }) => {
+    return (
+        <svg
+            width="32"
+            height="32"
+            viewBox="0 0 588 588"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+        >
+            <g clipPath="url(#clip0_1001_2)">
+                <path
+                    d="M282.971 62.2441C282.971 73.7931 280.97 85.2551 277.058 96.1211L229.724 227.584H588V360.416H515.327C460.099 360.416 415.327 405.188 415.327 460.416V588H255.586V507.395C255.586 493.968 258.29 480.679 263.536 468.319L320.243 334.735V332.964H0V227.584H39.9639C95.1923 227.584 139.964 182.812 139.964 127.584V0H282.971V62.2441Z"
+                    fill="currentColor"
+                />
+            </g>
+            <defs>
+                <clipPath id="clip0_1001_2">
+                    <rect width="588" height="588" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+    );
+};
+
+const Navbar = () => {
+    const { user, logout } = useAuth();
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [openDropdown, setOpenDropdown] = useState(null); // 'products', 'resources', or null
+    const navbarRef = useRef(null);
+
+    const navItems = [
+        {
+            label: 'Products',
+            hasDropdown: true,
+            dropdownKey: 'products'
+        },
+        {
+            label: 'Resources',
+            resourcesDropdown: true,
+            dropdownKey: 'resources'
+        },
+    ];
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY === 0) {
+                setIsScrolled(false);
+            } else {
+                setIsScrolled(true);
+            }
+
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                setIsNavbarVisible(false);
+            } else if (currentScrollY < lastScrollY) {
+                setIsNavbarVisible(true);
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
+    const handleDropdownToggle = (dropdownKey) => {
+        setOpenDropdown(openDropdown === dropdownKey ? null : dropdownKey);
+    };
+
+    const navbarClasses = `fixed top-0 left-0 right-0 z-50 flex items-center transition-all duration-300 ease-in-out ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'
+        } ${isScrolled
+            ? 'bg-black'
+            : 'bg-transparent'
+        } px-4 lg:px-6 py-4 text-white text-sm`;
+
+    return (
+        <>
+            <nav
+                ref={navbarRef}
+                className={navbarClasses}
+                style={{
+                    width: '100vw',
+                    margin: 0,
+                }}
+            >
+                <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
+                    <a href="/" className="flex items-center gap-2 z-10">
+                        <Logo className="text-white w-7 h-7" />
+                    </a>
+
+                    {/*<div className="hidden md:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
+                        {navItems.map((item) => (
+                            item.hasDropdown ? (
+                                <DropdownMenu key={item.label} />
+                            ) : item.resourcesDropdown ? (
+                                <DropdownMenuResources key={item.label} />
+                            ) : (
+                                <a
+                                    key={item.label}
+                                    href={item.href}
+                                    className="relative overflow-hidden h-6 group text-white hover:text-white transition-colors"
+                                >
+                                    <span className="block group-hover:-translate-y-full text-white transition-transform duration-300">
+                                        {item.label}
+                                    </span>
+                                    <span className="block absolute top-full left-0 group-hover:translate-y-[-100%] text-white transition-transform duration-300">
+                                        {item.label}
+                                    </span>
+                                </a>
+                            )
+                        ))}
+                    </div>*/}
+
+                    {/* Desktop Auth Buttons */}
+                    <div className="hidden md:flex items-center gap-4">
+                        {user ? (
+                            <div className="flex items-center gap-3">
+                                <span className="text-gray-300">Olá, {user.name}</span>
+                                <button
+                                    onClick={logout}
+                                    className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-full text-sm font-medium transition"
+                                >
+                                    Sair
+                                </button>
+                            </div>
+                        ) : (
+                            <>
+                                <button
+                                    onClick={() => setIsLoginModalOpen(true)}
+                                    className="bg-white hover:bg-gray-200 text-black px-6 py-2 text-sm font-medium cursor-pointer transition-all duration-300"
+                                >
+                                    Começar Agora
+                                </button>
+                            </>
+                        )}
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        onClick={() => {
+                            setIsMobileMenuOpen(!isMobileMenuOpen);
+                            setOpenDropdown(null); // Reset dropdown state when closing mobile menu
+                        }}
+                        className="md:hidden text-gray-300 z-50"
+                    >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            {isMobileMenuOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            )}
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Mobile Menu */}
+                {isMobileMenuOpen && (
+                    <div className="fixed md:hidden top-0 left-0 right-0 bottom-0 bg-black p-6 pt-24 flex flex-col items-center gap-4 z-40 w-screen h-screen">
+                        <div className="w-full max-w-sm flex flex-col items-center gap-4">
+                            {/* Mobile Dropdown Items */}
+                            {/*{navItems.map((item) => (
+                                <div key={item.label} className="w-full">
+                                    <button
+                                        onClick={() => handleDropdownToggle(item.dropdownKey)}
+                                        className="flex items-center justify-between w-full text-white hover:text-blue-400 transition-colors py-3 text-lg font-medium"
+                                    >
+                                        <span>{item.label}</span>
+                                        <svg
+                                            className={`w-5 h-5 transform transition-transform ${openDropdown === item.dropdownKey ? 'rotate-180' : ''}`}
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+
+                                    {openDropdown === item.dropdownKey && (
+                                        <div className="w-full pl-4 mt-2 mb-4">
+                                            {item.dropdownKey === 'products' ? (
+                                                <MobileProductsDropdown onClose={() => setOpenDropdown(null)} />
+                                            ) : (
+                                                <MobileResourcesDropdown onClose={() => setOpenDropdown(null)} />
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}*/}
+
+                            <div className="w-full my-4 pt-6 flex flex-col gap-4"> {/**border-t border-slate-700  */}
+                                {user ? (
+                                    <>
+                                        <div className="text-center text-gray-300 mb-2 text-lg">Olá, {user.name}</div>
+                                        <button
+                                            onClick={() => {
+                                                logout();
+                                                setIsMobileMenuOpen(false);
+                                            }}
+                                            className="bg-red-500 hover:bg-red-600 px-4 py-3 rounded-full text-base font-medium transition w-full"
+                                        >
+                                            Sair
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        {/*<button
+                                            onClick={() => {
+                                                setIsLoginModalOpen(true);
+                                                setIsMobileMenuOpen(false);
+                                            }}
+                                            className="text-white text-base font-medium transition w-full py-3"
+                                        >
+                                            LOG IN
+                                        </button>*/}
+                                        <button
+                                            onClick={() => {
+                                                setIsLoginModalOpen(true);
+                                                setIsMobileMenuOpen(false);
+                                            }}
+                                            className='flex items-center justify-center w-full bg-white text-black px-5 py-5 cursor-pointer relative overflow-hidden group transition-all duration-300 mx-auto'
+                                        >
+                                            <span className="relative text-[14px] z-10 transition-colors duration-300 delay-100 group-hover:text-white group-active:text-white active:delay-0">
+                                                Começar Agora
+                                            </span>
+                                            <span className="absolute inset-y-0 left-0 w-0 bg-[hsl(0,0%,12%)] transition-all duration-500 ease-out group-hover:w-full group-active:w-full"></span>
+                                            <span className="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-0 group-active:opacity-30 active:opacity-30 bg-black"></span>
+                                        </button>
+                                    </>
+                                )}
+                            </div>
+
+                            <button
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="mt-4 text-gray-400 hover:text-white transition-colors py-2"
+                            >
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </nav>
+
+            {/* Login Modal */}
+            <LoginModal
+                isOpen={isLoginModalOpen}
+                onClose={() => setIsLoginModalOpen(false)}
+            />
+        </>
+    );
+};
+
+// Mobile Components
+const MobileProductsDropdown = ({ onClose }) => {
+    const menuSections = [
+        {
+            title: "WEBSITE",
+            items: [
+                { label: "Websites" },
+                { label: "Website Templates" },
+                { label: "AI Website Builder" },
+                { label: "Design Intelligence" },
+                { label: "Portfolios" },
+                { label: "Blogs" },
+                { label: "Analytics" },
+                { label: "Enterprise" },
+                { label: "Commerce" }
+            ]
+        },
+        {
+            title: "ECOMMERCE",
+            items: [
+                { label: "Ecommerce Templates" },
+                { label: "Online Stores" },
+                { label: "Services" },
+                { label: "Invoicing" },
+                { label: "Scheduling" },
+                { label: "Content & Memberships" },
+                { label: "Donations" },
+                { label: "Financial Solutions" }
+            ]
+        },
+        {
+            title: "MARKETING",
+            items: [
+                { label: "Marketing Tools" },
+                { label: "Email Campaigns" },
+                { label: "SEO Tools" },
+                { label: "Free Tools" }
+            ]
+        },
+        {
+            title: "BUSINESS TOOLS",
+            items: [
+                { label: "Domain Search" },
+                { label: "Domain Transfer" },
+                { label: "Business Email" }
+            ]
+        }
+    ];
+
+    const professionalSection = {
+        title: "For Professionals",
+        items: [
+            {
+                title: "Squarespace for Pros",
+                description: "Powerful enough for pros, easy enough for clients",
+            },
+            {
+                title: "Circle",
+                description: "The partner program for freelancers and agencies",
+            }
+        ]
+    };
+
+    return (
+        <div className="space-y-4 overflow-y-auto max-h-[60vh] pr-2">
+            {menuSections.map((section, index) => (
+                <div key={index} className="space-y-2">
+                    <h3 className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                        {section.title}
+                    </h3>
+                    <ul className="space-y-1 ml-2">
+                        {section.items.map((item, itemIndex) => (
+                            <li key={itemIndex}>
+                                <a
+                                    href="#"
+                                    className="flex items-center text-white/80 hover:text-white transition-colors duration-200 py-1.5 text-sm"
+                                    onClick={onClose}
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+
+            <div className="pt-4 border-t border-white/20">
+                <h3 className="text-xs font-medium text-white/60 uppercase tracking-wider mb-3">
+                    {professionalSection.title}
+                </h3>
+                <div className="space-y-3">
+                    {professionalSection.items.map((item, index) => (
+                        <div key={index} className="bg-white/5 rounded-lg p-3">
+                            <h4 className="text-sm font-medium text-white mb-1">
+                                {item.title}
+                            </h4>
+                            <p className="text-xs text-white/60">
+                                {item.description}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="pt-4">
+                <a
+                    href="#"
+                    className="inline-flex items-center text-white hover:text-gray-300 transition-colors duration-300 text-sm font-medium"
+                    onClick={onClose}
+                >
+                    View All Features
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    );
+};
+
+const MobileResourcesDropdown = ({ onClose }) => {
+    const supportItems = [
+        {
+            title: "Help Center",
+            description: "Find answers to all your questions"
+        },
+        {
+            title: "Forum",
+            description: "Connect with our community"
+        },
+        {
+            title: "Webinars",
+            description: "Join live sessions with experts"
+        },
+        {
+            title: "Blog",
+            description: "Updated articles and tutorials"
+        },
+        {
+            title: "Hire an Expert",
+            description: "Get a specialist for your project"
+        }
+    ];
+
+    const inspiredItems = [
+        {
+            title: "Design Trends 2024",
+            description: "Explore the latest design trends for this year"
+        },
+        {
+            title: "Success Stories",
+            description: "Case studies of clients who transformed their business"
+        },
+        {
+            title: "Creative Solutions",
+            description: "Innovations that are revolutionizing the market"
+        }
+    ];
+
+    return (
+        <div className="space-y-6 overflow-y-auto max-h-[60vh] pr-2">
+            {/* Support Section */}
+            <div className="space-y-4">
+                <h3 className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                    24/7 Support
+                </h3>
+                <div className="space-y-3 ml-2">
+                    {supportItems.map((item, index) => (
+                        <div key={index} className="group/item p-3 rounded-lg transition-colors duration-200">
+                            <h4 className="text-sm font-medium text-white mb-1">
+                                {item.title}
+                            </h4>
+                            <p className="text-xs text-white/60 leading-tight">
+                                {item.description}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Inspired Section */}
+            <div className="space-y-4 pt-4 border-t border-white/20">
+                <h3 className="text-xs font-medium text-white/60 uppercase tracking-wider">
+                    GET INSPIRED
+                </h3>
+                <div className="space-y-3 ml-2">
+                    {inspiredItems.map((item, index) => (
+                        <div key={index} className="bg-white/5 rounded-lg p-3">
+                            <h4 className="text-sm font-medium text-white mb-1">
+                                {item.title}
+                            </h4>
+                            <p className="text-xs text-white/60">
+                                {item.description}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+                <p className="text-sm text-white/60 ml-2">
+                    Discover inspiring content updated weekly to keep your creativity flowing.
+                </p>
+            </div>
+
+            <div className="pt-4">
+                <a
+                    href="#"
+                    className="inline-flex items-center text-white hover:text-gray-300 transition-colors duration-300 text-sm font-medium"
+                    onClick={onClose}
+                >
+                    View All Resources
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    );
+};
+
+export default Navbar;

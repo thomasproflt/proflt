@@ -1,34 +1,97 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '../firebase';
-import { onAuthStateChanged } from 'firebase/auth';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
-const AuthContext = createContext();
+const AuthContext = createContext({});
 
-export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+export const useAuth = () => useContext(AuthContext);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    return unsubscribe;
-  }, []);
+    useEffect(() => {
+        // Verificar se usuário está logado ao carregar
+        const token = localStorage.getItem('token');
+        if (token) {
+            fetchUserData(token);
+        } else {
+            setLoading(false);
+        }
+    }, []);
 
-  const value = {
-    currentUser,
-    loading
-  };
+    const fetchUserData = async (token) => {
+        try {
+            const response = await fetch('http://localhost:5000/api/auth/me', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (response.ok) {
+                const userData = await response.json();
+                setUser(userData);
+            }
+        } catch (error) {
+            console.error('Erro ao buscar dados do usuário:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
-}
+    const login = async (email, password) => {
+        try {
+            const response = await fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+                setUser(data.user);
+                return { success: true };
+            } else {
+                const error = await response.json();
+                return { success: false, message: error.message };
+            }
+        } catch (error) {
+            return { success: false, message: 'Erro de conexão' };
+        }
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setUser(null);
+    };
+
+    const register = async (name, email, password) => {
+        try {
+            const response = await fetch('http://localhost:5000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+                setUser(data.user);
+                return { success: true };
+            } else {
+                const error = await response.json();
+                return { success: false, message: error.message };
+            }
+        } catch (error) {
+            return { success: false, message: 'Erro de conexão' };
+        }
+    };
+
+    return (
+        <AuthContext.Provider value={{ user, loading, login, logout, register }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
