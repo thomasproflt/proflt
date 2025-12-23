@@ -184,3 +184,26 @@ html {
 .nav-item-dropdown:hover::after {
     transform: scaleX(1);
 }
+
+/* Em seu arquivo CSS global ou Tailwind config */
+@keyframes modalEnter {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes modalExit {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
