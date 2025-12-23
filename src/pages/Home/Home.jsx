@@ -65,8 +65,8 @@ const Home = () => {
             detailedDescription: 'Uma aplicação web completa que utiliza inteligência artificial para gerar frames e animações customizadas. O sistema inclui editor integrado, exportação em múltiplos formatos e API para integração.',
             tags: ['React', 'Node.js', 'Python', 'TailwindCSS', 'Framer Motion'],
             features: ['Editor visual integrado', 'Exportação múltipla', 'API REST', 'Dashboard analytics'],
-            linkDemo: 'https://frames-ia.demo.com',
-            linkGithub: 'https://github.com/seuusuario/frames-ia'
+            linkDemo: 'https://frames-ai-repo.vercel.app/',
+            linkGithub: 'https://github.com/thomasproflt/frames-ai-repo'
         },
         {
             id: 2,
@@ -75,10 +75,10 @@ const Home = () => {
             title: 'Harmony Hub',
             description: 'Hub de colaboração para times criativos.',
             detailedDescription: 'Plataforma de colaboração em tempo real para equipes criativas, com ferramentas de compartilhamento, revisão e gestão de projetos.',
-            tags: ['React', 'TypeScript', 'Socket.io', 'MongoDB', 'Express'],
+            tags: ['React', 'TypeScript', 'Supabase', 'Tailwind'],
             features: ['Colaboração em tempo real', 'Gestão de projetos', 'Compartilhamento seguro', 'Chat integrado'],
-            linkDemo: 'https://harmony-hub.demo.com',
-            linkGithub: 'https://github.com/seuusuario/harmony-hub'
+            linkDemo: 'https://harmony-hub-gamma.vercel.app/',
+            linkGithub: 'https://github.com/thomasproflt/harmony-hub'
         },
         {
             id: 3,
@@ -588,7 +588,7 @@ const Home = () => {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {templatesData.slice(0, 3).map((template, index) => (
+                            {templatesData.slice(0, 2).map((template, index) => (
                                 <div
                                     key={template.id}
                                     className="group block transition-transform duration-300 cursor-pointer"
