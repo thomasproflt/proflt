@@ -213,6 +213,14 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
         return baseClasses;
     };
 
+    const redirectToWhatsApp = () => {
+        const phoneNumber = '5566996399303'; // Código do país + seu número
+        const message = encodeURIComponent("Olá, eu gostei de seus projetos gostaria de saber mais informações!");
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+        window.open(whatsappUrl, '_blank');
+    };
+
     // Classes para os elementos baseados na seção
     const getElementClasses = () => {
         // Se estiver em transição para templates ou em seção clara
@@ -307,14 +315,14 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
                         ))}
                     </div>
 
-                    {/* Botão GET STARTED com BG */}
+                    {/* Botão COMEÇAR AGORA com BG */}
                     <div className="hidden md:block">
                         <button
-                            onClick={() => {/* Adicionar ação para Get Started */ }}
+                            onClick={redirectToWhatsApp}
                             className={`flex items-center justify-center ${elementClasses.buttonBgClass} px-6 py-2.5 cursor-pointer relative overflow-hidden group text-sm font-medium transition-all duration-300 hover:shadow-lg`}
                         >
                             <span className={`relative z-10 transition-colors duration-300 ${elementClasses.buttonHoverTextClass}`}>
-                                GET STARTED
+                                COMEÇAR AGORA
                             </span>
                             <span className={`absolute inset-0 ${elementClasses.buttonHoverBg} transform -translate-x-full transition-transform duration-500 ease-out group-hover:translate-x-0 group-active:translate-x-0`}></span>
                         </button>
@@ -389,15 +397,15 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
                                     ))}
                                 </div>
 
-                                {/* Botão GET STARTED no mobile */}
+                                {/* Botão COMEÇAR AGORA no mobile */}
                                 <div className={`mt-8 pt-8`}>
                                     <div className="block md:hidden">
                                         <button
-                                            onClick={() => {/* Adicionar ação para Get Started */ }}
+                                            onClick={redirectToWhatsApp}
                                             className={`flex items-center justify-center w-full ${elementClasses.buttonBgClass} px-6 py-2.5 cursor-pointer relative overflow-hidden group text-sm font-medium transition-all duration-300 hover:shadow-lg`}
                                         >
                                             <span className={`relative z-10 transition-colors duration-300 ${elementClasses.buttonHoverTextClass}`}>
-                                                GET STARTED
+                                                COMEÇAR AGORA
                                             </span>
                                         </button>
                                     </div>

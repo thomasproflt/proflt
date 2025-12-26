@@ -73,6 +73,16 @@ const Navbar = () => {
         setOpenDropdown(openDropdown === dropdownKey ? null : dropdownKey);
     };
 
+    const redirectToWhatsApp = () => {
+        // Seu número com 2 noves (66996399303)
+        const phoneNumber = '5566996399303'; // Adicione o código do país (55 para Brasil)
+        const message = encodeURIComponent("Olá, eu gostei de seus projetos gostaria de saber mais informações!");
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+        // Redireciona para o WhatsApp
+        window.open(whatsappUrl, '_blank');
+    };
+
     const navbarClasses = `fixed top-0 left-0 right-0 z-50 flex items-center transition-all duration-300 ease-in-out ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'
         } ${isScrolled
             ? 'bg-black'
@@ -94,29 +104,6 @@ const Navbar = () => {
                         <Logo className="text-white w-7 h-7" />
                     </a>
 
-                    {/*<div className="hidden md:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
-                        {navItems.map((item) => (
-                            item.hasDropdown ? (
-                                <DropdownMenu key={item.label} />
-                            ) : item.resourcesDropdown ? (
-                                <DropdownMenuResources key={item.label} />
-                            ) : (
-                                <a
-                                    key={item.label}
-                                    href={item.href}
-                                    className="relative overflow-hidden h-6 group text-white hover:text-white transition-colors"
-                                >
-                                    <span className="block group-hover:-translate-y-full text-white transition-transform duration-300">
-                                        {item.label}
-                                    </span>
-                                    <span className="block absolute top-full left-0 group-hover:translate-y-[-100%] text-white transition-transform duration-300">
-                                        {item.label}
-                                    </span>
-                                </a>
-                            )
-                        ))}
-                    </div>*/}
-
                     {/* Desktop Auth Buttons */}
                     <div className="hidden md:flex items-center gap-4">
                         {user ? (
@@ -132,10 +119,10 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <button
-                                    onClick={() => setIsLoginModalOpen(true)}
+                                    onClick={redirectToWhatsApp}
                                     className="bg-white hover:bg-gray-200 text-black px-6 py-2 text-sm font-medium cursor-pointer transition-all duration-300"
                                 >
-                                    Começar Agora
+                                    COMEÇAR AGORA
                                 </button>
                             </>
                         )}
@@ -163,36 +150,6 @@ const Navbar = () => {
                 {isMobileMenuOpen && (
                     <div className="fixed md:hidden top-0 left-0 right-0 bottom-0 bg-black p-6 pt-24 flex flex-col items-center gap-4 z-40 w-screen h-screen">
                         <div className="w-full max-w-sm flex flex-col items-center gap-4">
-                            {/* Mobile Dropdown Items */}
-                            {/*{navItems.map((item) => (
-                                <div key={item.label} className="w-full">
-                                    <button
-                                        onClick={() => handleDropdownToggle(item.dropdownKey)}
-                                        className="flex items-center justify-between w-full text-white hover:text-blue-400 transition-colors py-3 text-lg font-medium"
-                                    >
-                                        <span>{item.label}</span>
-                                        <svg
-                                            className={`w-5 h-5 transform transition-transform ${openDropdown === item.dropdownKey ? 'rotate-180' : ''}`}
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </button>
-
-                                    {openDropdown === item.dropdownKey && (
-                                        <div className="w-full pl-4 mt-2 mb-4">
-                                            {item.dropdownKey === 'products' ? (
-                                                <MobileProductsDropdown onClose={() => setOpenDropdown(null)} />
-                                            ) : (
-                                                <MobileResourcesDropdown onClose={() => setOpenDropdown(null)} />
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}*/}
-
                             <div className="w-full my-4 pt-6 flex flex-col gap-4"> {/**border-t border-slate-700  */}
                                 {user ? (
                                     <>
@@ -209,24 +166,15 @@ const Navbar = () => {
                                     </>
                                 ) : (
                                     <>
-                                        {/*<button
-                                            onClick={() => {
-                                                setIsLoginModalOpen(true);
-                                                setIsMobileMenuOpen(false);
-                                            }}
-                                            className="text-white text-base font-medium transition w-full py-3"
-                                        >
-                                            LOG IN
-                                        </button>*/}
                                         <button
                                             onClick={() => {
-                                                setIsLoginModalOpen(true);
+                                                redirectToWhatsApp();
                                                 setIsMobileMenuOpen(false);
                                             }}
                                             className='flex items-center justify-center w-full bg-white text-black px-5 py-5 cursor-pointer relative overflow-hidden group transition-all duration-300 mx-auto'
                                         >
                                             <span className="relative text-[14px] z-10 transition-colors duration-300 delay-100 group-hover:text-white group-active:text-white active:delay-0">
-                                                Começar Agora
+                                                COMEÇAR AGORA
                                             </span>
                                             <span className="absolute inset-y-0 left-0 w-0 bg-[hsl(0,0%,12%)] transition-all duration-500 ease-out group-hover:w-full group-active:w-full"></span>
                                             <span className="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-0 group-active:opacity-30 active:opacity-30 bg-black"></span>

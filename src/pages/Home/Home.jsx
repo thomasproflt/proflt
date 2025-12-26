@@ -2,17 +2,13 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import HomeNavbar from '../../components/HomeNavbar/HomeNavbar';
-import Img from '../../assets/pexels-catiamatos-1061559.jpg';
-import Video from '../../assets/device-desktop-3.mp4';
-import Tailored from '../../assets/tailoring-desktop-3.mp4';
+import Img from '../../assets/fernando-hernandez-CosHjyONRk8-unsplash.jpg';
 import ImgTemplate1 from '../../assets/template-one.png';
 import ImgTemplate2 from '../../assets/template-two.png';
 import ImgTemplate3 from '../../assets/image-asset-3.webp';
-import ImgTemplate4 from '../../assets/image-asset-4.webp';
 import ImgDesignIntelligence1 from '../../assets/solidpixels-iq2RzBMj-Wg-unsplash.jpg';
 import ImgDesignIntelligence2 from '../../assets/azwedo-l-lc-uSx99gjoSoc-unsplash.jpg';
 import ImgDesignIntelligence3 from '../../assets/azwedo-l-lc-6uR0dkm3ya0-unsplash.jpg';
-import ImgDesignIntelligence4 from '../../assets/drafts-desktop-1500w.webp';
 import ImgCreativeTools1 from '../../assets/responsive-desktop-1500w.webp';
 import ImgCreativeTools2 from '../../assets/media-desktop-1500w.webp';
 import ImgCreativeTools3 from '../../assets/styles-desktop-1500w.webp';
@@ -20,8 +16,7 @@ import ImgCreativeTools4 from '../../assets/drafts-desktop-1500w.webp';
 import ImgAccessBuild1 from '../../assets/domains-desktop-1500w.webp';
 import ImgAccessBuild2 from '../../assets/professional-email-desktop-1500w.webp';
 import ImgAccessBuild3 from '../../assets/online-store-desktop-3-1500w.webp';
-import ImgSharp from '../../assets/6853e15c580e7d581e42e819_yellow-cap-poster.webp';
-import ImgSharp2 from '../../assets/6853e15e5104d359ae231783_furry-poster.webp';
+import TestemonialPhoto1 from '../../assets/carrie-discord-feedb.webp';
 import Footer from '../../components/Footer/Footer';
 import ContactForm from '../../components/ContactForm/ContactForm';
 
@@ -196,6 +191,16 @@ const Home = () => {
             link: '/learning',
             title: 'Webinars',
             description: 'Free online sessions to learn the basics and refine your skills.',
+        },
+    ];
+
+    const testemonial = [
+        {
+            id: 1,
+            img: TestemonialPhoto1,
+            title: 'Carrie',
+            tag: 'Developer',
+            description: 'Delivered exactly what I needed — a clean, responsive data table with filtering, sorting, and pagination. The backend and frontend were both structured well, and the setup instructions were clear. Great communication and fast delivery!',
         },
     ];
 
@@ -516,6 +521,16 @@ const Home = () => {
         }));
     };
 
+    const redirectToWhatsApp = () => {
+        // Seu número com 2 noves (66996399303)
+        const phoneNumber = '5566996399303'; // Adicione o código do país (55 para Brasil)
+        const message = encodeURIComponent("Olá, eu gostei de seus projetos gostaria de saber mais informações!");
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+        // Redireciona para o WhatsApp
+        window.open(whatsappUrl, '_blank');
+    };
+
     return (
         <div className="min-h-screen">
             <Navbar />
@@ -542,6 +557,7 @@ const Home = () => {
                         Especializado em React, animações suaves e aplicações escaláveis com foco em performance e experiência do usuário.
                     </p>
                     <button
+                        onClick={redirectToWhatsApp}
                         className='flex items-center justify-center bg-white text-black px-5 py-5 mb-3 md:mb-3 cursor-pointer relative overflow-hidden group transition-all duration-300 mx-auto'
                     >
                         <span className="relative text-[14px] z-10 transition-colors duration-300 delay-100 group-hover:text-white group-active:text-white active:delay-0">
@@ -621,8 +637,8 @@ const Home = () => {
                             {/* Overlay com gradiente sofisticado */}
                             <div
                                 className={`absolute inset-0 transition-all duration-500 ${modalAnimation === 'enter'
-                                        ? 'opacity-100 backdrop-blur-sm'
-                                        : 'opacity-0 backdrop-blur-none'
+                                    ? 'opacity-100 backdrop-blur-sm'
+                                    : 'opacity-0 backdrop-blur-none'
                                     }`}
                                 style={{
                                     background: 'radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%)'
@@ -633,8 +649,8 @@ const Home = () => {
                             {/* Modal Content - Design Moderno */}
                             <div
                                 className={`relative w-full max-w-5xl max-h-[95vh] md:max-h-[90vh] bg-gradient-to-br from-gray-900 to-black rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden border border-gray-800 transition-all duration-500 transform ${modalAnimation === 'enter'
-                                        ? 'translate-y-0 opacity-100 scale-100'
-                                        : 'translate-y-10 opacity-0 scale-95'
+                                    ? 'translate-y-0 opacity-100 scale-100'
+                                    : 'translate-y-10 opacity-0 scale-95'
                                     }`}
                                 style={{
                                     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255,255,255,0.1)'
@@ -949,6 +965,48 @@ const Home = () => {
                     </div>
                 </section>
 
+                <section
+                    id="tools"
+                    ref={sectionRefs.tools}
+                    className='min-h-screen flex items-start justify-start text-white relative overflow-hidden md:px-10 md:py-10 transition-all duration-1000 ease-in-out'
+                >
+                    <div className="flex flex-row justify-between items-center w-full mt-10 md:mt-0 mb-6 md:mb-0">
+                        <div className="flex flex-col md:mt-20 gap-5 w-full px-4 lg:px-8">
+                            <div className="flex flex-col justify-between items-start lg:items-center gap-6 mb-10">
+                                <h1 className="clarkson-font text-center text-4xl lg:text-5xl lg:w-1/3">
+                                    O que as pessoas dizem
+                                </h1>
+                                <div className="space-y-5 lg:w-2/5 z-10">
+                                    <p className="text-center text-[16px] lg:text-lg text-white/90">
+                                        Descubra a experiência que os usuários estiveram com o meu trabalho.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="">
+                                <div className="grid grid-cols-1 md:grid-cols-4 columns-1 gap-4 md:gap-6 space-y-4 md:space-y-6">
+                                    {testemonial.map((item, index) => (
+                                        <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
+                                                <img src={item.img} alt={item.title} className='w-20 h-auto rounded-full' />
+                                            <div className="flex flex-col">
+                                                <h1 className='text-base md:text-[18px] font-medium text-white drop-shadow-lg mb-0'>
+                                                    {item.title}
+                                                </h1>
+                                                <span className='text-base md:text-[14px] text-amber-200 drop-shadow-lg mb-3'>
+                                                    {item.tag}
+                                                </span>
+                                                <p className='text-base md:text-[14px] text-white drop-shadow-lg mb-3'>
+                                                    {item.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <div className='flex items-center justify-center text-white relative overflow-hidden md:px-10 md:py-10 transition-all duration-1000 ease-in-out pb-0 bg-black'>
                     <div className="w-full max-w-7xl md:max-h-180 mx-auto mt-10 md:mt-0 px-5 md:px-0">
                         <div className="flex flex-col md:mt-20 gap-8 items-center">
@@ -966,9 +1024,9 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <Footer />
-        </div>
+            </div >
+    <Footer />
+        </div >
     );
 };
 
