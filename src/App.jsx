@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { TranslationProvider } from './contexts/TranslationContext'; // ADICIONE ESTE IMPORT
 import Home from './pages/Home/Home';
 import Templates from './pages/templates/templates';
 import Cookie from './components/Cookie/Cookie';
@@ -54,9 +55,11 @@ const AppContent = () => {
 
 const App = () => {
     return (
-        <Router>
-            <AppContent />
-        </Router>
+        <TranslationProvider> {/* ENVOLVA TODO O APP COM O TRANSLATIONPROVIDER */}
+            <Router>
+                <AppContent />
+            </Router>
+        </TranslationProvider>
     );
 };
 

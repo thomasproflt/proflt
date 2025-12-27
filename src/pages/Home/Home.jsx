@@ -19,8 +19,12 @@ import ImgAccessBuild3 from '../../assets/online-store-desktop-3-1500w.webp';
 import TestemonialPhoto1 from '../../assets/carrie-discord-feedb.webp';
 import Footer from '../../components/Footer/Footer';
 import ContactForm from '../../components/ContactForm/ContactForm';
+import { useTranslation } from '../../contexts/TranslationContext';
+import TranslationLoader from '../../components/TranslationLoader/TranslationLoader';
 
 const Home = () => {
+    const { language, translate, isTranslating } = useTranslation();
+    const [translatedTexts, setTranslatedTexts] = useState(null);
     const [activeSection, setActiveSection] = useState('');
     const [showHomeNavbar, setShowHomeNavbar] = useState(false);
     const [isHeroSectionVisible, setIsHeroSectionVisible] = useState(true);
@@ -43,14 +47,47 @@ const Home = () => {
         seo: useRef(null),
     };
 
-    const navItems = [
-        { id: 'templates', label: 'Projetos' },
-        { id: 'design', label: 'Serviços' },
-        { id: 'tools', label: 'Tecnologias' },
-        { id: 'seo', label: 'Sobre Mim' },
-    ];
+    // Textos originais em português
+    const originalTexts = {
+        navItems: [
+            { id: 'templates', label: 'Projetos' },
+            { id: 'design', label: 'Serviços' },
+            { id: 'tools', label: 'Tecnologias' },
+            { id: 'seo', label: 'Sobre Mim' },
+        ],
+        hero: {
+            title: "Crio experiências web modernas<br /> que transformam ideias em produtos reais",
+            description: "Especializado em React, animações suaves e aplicações escaláveis com foco em performance e experiência do usuário.",
+            button: "COMEÇAR AGORA"
+        },
+        projects: {
+            title: "Projetos em Destaque"
+        },
+        services: {
+            title: "Serviços"
+        },
+        technologies: {
+            title: "Stack de Tecnologias",
+            description: "Tecnologias que utilizo para desenvolver interfaces modernas e aplicações web funcionais."
+        },
+        about: {
+            title: "Sobre Mim",
+            description: "Sou desenvolvedor web com foco na criação de interfaces modernas, funcionais e bem estruturadas. Trabalho com tecnologias atuais para desenvolver aplicações rápidas, responsivas e escaláveis, sempre priorizando performance e experiência do usuário."
+        },
+        testimonials: {
+            title: "O que as pessoas dizem",
+            description: "Descubra a experiência que os usuários estiveram com o meu trabalho."
+        },
+        contact: {
+            title: "Contato"
+        }
+    };
 
-    const templatesData = [
+    // Use translated texts or fallback to originals
+    const texts = translatedTexts || originalTexts;
+
+    // Templates data - agora com função de tradução
+    const [templatesData, setTemplatesData] = useState([
         {
             id: 1,
             link: '/template1',
@@ -87,9 +124,10 @@ const Home = () => {
             linkDemo: 'https://klipsan.demo.com',
             linkGithub: 'https://github.com/seuusuario/klipsan'
         },
-    ];
+    ]);
 
-    const designIntelligence = [
+    // Design intelligence data
+    const [designIntelligence, setDesignIntelligence] = useState([
         {
             id: 1,
             img: ImgDesignIntelligence1,
@@ -108,7 +146,7 @@ const Home = () => {
             title: 'Integrações e Funcionalidades Web',
             description: 'Implementação de funcionalidades web que conectam interfaces a serviços, formulários e APIs, garantindo uma aplicação funcional e preparada para crescimento.',
         },
-    ];
+    ]);
 
     const creativeTools = [
         {
@@ -137,63 +175,6 @@ const Home = () => {
         },
     ];
 
-    const seoAnalytics = [
-        {
-            id: 1,
-            title: 'SEO tools',
-            description: 'Expand your reach and show up more in global search engine results with a powerful set of integrated features.',
-        },
-        {
-            id: 2,
-            title: 'Integrations and extensions',
-            description: 'Unite your digital world through integrations with popular social platforms and multi-media accounts.',
-        },
-        {
-            id: 3,
-            title: 'Website analytics',
-            description: 'Access traffic data you need to scale, plus insights into user behavior and engagement to direct your focus.',
-        },
-    ];
-
-    const accessBuild = [
-        {
-            id: 1,
-            link: '/1',
-            img: ImgAccessBuild1,
-            tag: 'DOMAINS',
-            title: 'Find a domain for your website',
-        },
-        {
-            id: 2,
-            link: '/2',
-            img: ImgAccessBuild2,
-            tag: 'PROFESSIONAL EMAIL',
-            title: 'Make it official with Google Workspace',
-        },
-        {
-            id: 3,
-            link: '/3',
-            img: ImgAccessBuild3,
-            tag: 'ONLINE STORES',
-            title: 'Sell anything, everywhere',
-        },
-    ];
-
-    const support247 = [
-        {
-            id: 1,
-            link: '/support',
-            title: 'Help Center',
-            description: 'Get help from our award-winning Customer Support team.',
-        },
-        {
-            id: 2,
-            link: '/learning',
-            title: 'Webinars',
-            description: 'Free online sessions to learn the basics and refine your skills.',
-        },
-    ];
-
     const testemonial = [
         {
             id: 1,
@@ -203,6 +184,109 @@ const Home = () => {
             description: 'Delivered exactly what I needed — a clean, responsive data table with filtering, sorting, and pagination. The backend and frontend were both structured well, and the setup instructions were clear. Great communication and fast delivery!',
         },
     ];
+
+    // Estado para gerenciar múltiplos vídeos
+    const [videosState, setVideosState] = useState({
+        hero: {
+            isPlaying: false,
+            isInView: false,
+            ref: useRef(null),
+            containerRef: useRef(null)
+        },
+        design: {
+            isPlaying: false,
+            isInView: false,
+            ref: useRef(null),
+            containerRef: useRef(null)
+        },
+        footer: {
+            isPlaying: false,
+            isInView: false,
+            ref: useRef(null),
+            containerRef: useRef(null)
+        }
+    });
+
+    // Traduz todos os textos quando o idioma muda
+    useEffect(() => {
+        console.log('🚀 Idioma mudou para:', language);
+
+        const translateAllTexts = async () => {
+            if (language === 'pt') {
+                console.log('✅ Mantendo português');
+                setTranslatedTexts(originalTexts);
+                return;
+            }
+
+            console.log('🌐 Traduzindo para:', language);
+
+            try {
+                const translated = {};
+
+                // Traduz navItems
+                translated.navItems = await Promise.all(
+                    originalTexts.navItems.map(async (item) => {
+                        const translatedLabel = await translate(item.label);
+                        console.log(`📝 "${item.label}" -> "${translatedLabel}"`);
+                        return {
+                            ...item,
+                            label: translatedLabel
+                        };
+                    })
+                );
+
+                // Traduz hero section
+                const translatedTitle = await translate(originalTexts.hero.title);
+                const translatedDesc = await translate(originalTexts.hero.description);
+                const translatedButton = await translate(originalTexts.hero.button);
+
+                console.log(`🎯 Hero: "${originalTexts.hero.title.substring(0, 30)}..." -> "${translatedTitle.substring(0, 30)}..."`);
+
+                translated.hero = {
+                    title: translatedTitle,
+                    description: translatedDesc,
+                    button: translatedButton
+                };
+
+                // Traduz outras seções
+                translated.projects = {
+                    title: await translate(originalTexts.projects.title)
+                };
+
+                translated.services = {
+                    title: await translate(originalTexts.services.title)
+                };
+
+                translated.technologies = {
+                    title: await translate(originalTexts.technologies.title),
+                    description: await translate(originalTexts.technologies.description)
+                };
+
+                translated.about = {
+                    title: await translate(originalTexts.about.title),
+                    description: await translate(originalTexts.about.description)
+                };
+
+                translated.testimonials = {
+                    title: await translate(originalTexts.testimonials.title),
+                    description: await translate(originalTexts.testimonials.description)
+                };
+
+                translated.contact = {
+                    title: await translate(originalTexts.contact.title)
+                };
+
+                console.log('✅ Tradução completa!');
+                setTranslatedTexts(translated);
+
+            } catch (error) {
+                console.error('❌ Erro na tradução:', error);
+                setTranslatedTexts(originalTexts);
+            }
+        };
+
+        translateAllTexts();
+    }, [language, translate]); // Adicione translate na dependência
 
     // Função para abrir o modal
     const openModal = (project) => {
@@ -234,28 +318,6 @@ const Home = () => {
         document.addEventListener('keydown', handleEscKey);
         return () => document.removeEventListener('keydown', handleEscKey);
     }, [modalOpen]);
-
-    // Estado para gerenciar múltiplos vídeos
-    const [videosState, setVideosState] = useState({
-        hero: {
-            isPlaying: false,
-            isInView: false,
-            ref: useRef(null),
-            containerRef: useRef(null)
-        },
-        design: {
-            isPlaying: false,
-            isInView: false,
-            ref: useRef(null),
-            containerRef: useRef(null)
-        },
-        footer: {
-            isPlaying: false,
-            isInView: false,
-            ref: useRef(null),
-            containerRef: useRef(null)
-        }
-    });
 
     // Monitora qual seção está visível
     useEffect(() => {
@@ -531,8 +593,21 @@ const Home = () => {
         window.open(whatsappUrl, '_blank');
     };
 
+    // Mostrar loading enquanto traduz
+    if (isTranslating || !translatedTexts) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-black">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent mx-auto mb-4"></div>
+                    <p className="text-white">Traduzindo conteúdo...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen">
+            <TranslationLoader />
             <Navbar />
             <HomeNavbar
                 onNavigate={handleNavigate}
@@ -547,21 +622,18 @@ const Home = () => {
             >
                 <img src={Img} alt="Background" className='min-h-screen md:max-w-full md:w-full object-cover opacity-70' />
                 <div className="absolute w-full justify-center items-center px-5 md:px-0 top-0 pt-20 md:pt-45 place-items-center">
-                    {/*<h1 className="pasbile-font text-1xl sm:text-2xl text-white text-center mb-8">
-                        Websites
-                    </h1>*/}
-                    <h1 className="text-3xl md:text-5xl text-white text-center mb-8">
-                        Crio experiências web modernas<br /> que transformam ideias em produtos reais
-                    </h1>
+                    <h1 className="text-3xl md:text-5xl text-white text-center mb-8"
+                        dangerouslySetInnerHTML={{ __html: texts.hero.title }}
+                    />
                     <p className="text-1xl md:text-[16px] text-[hsl(0,0%,90%)] w-150 text-center mb-8">
-                        Especializado em React, animações suaves e aplicações escaláveis com foco em performance e experiência do usuário.
+                        {texts.hero.description}
                     </p>
                     <button
                         onClick={redirectToWhatsApp}
                         className='flex items-center justify-center bg-white text-black px-5 py-5 mb-3 md:mb-3 cursor-pointer relative overflow-hidden group transition-all duration-300 mx-auto'
                     >
                         <span className="relative text-[14px] z-10 transition-colors duration-300 delay-100 group-hover:text-white group-active:text-white active:delay-0">
-                            COMEÇAR AGORA
+                            {texts.hero.button}
                         </span>
                         <span className="absolute inset-y-0 left-0 w-0 bg-black transition-all duration-500 ease-out group-hover:w-full group-active:w-full"></span>
                         <span className="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-0 group-active:opacity-30 active:opacity-30 bg-black"></span>
@@ -571,7 +643,7 @@ const Home = () => {
                         ref={contentSectionRef}
                         className="flex relative items-center justify-center w-auto md:w-auto md:mt-30 mb-3 md:mb-0 bg-black/5 backdrop-blur-[120px] px-1 py-1 md:font-medium rounded-full"
                     >
-                        {navItems.map((item) => (
+                        {texts.navItems.map((item) => (
                             <ul key={item.id}>
                                 <button
                                     onClick={() => handleNavigate(item.id)}
@@ -599,7 +671,7 @@ const Home = () => {
                     <div className="flex flex-col w-full max-w-6xl mx-auto gap-8 px-5 md:px-0 mt-10 md:mt-0 mb-20 md:mb-0">
                         <div className="flex relative flex-col md:flex-row justify-between items-center">
                             <h1 className="pasbile-font text-4xl md:text-5xl text-center md:text-left md:w-160 mb-6 md:mb-0">
-                                Projetos em Destaque
+                                {texts.projects.title}
                             </h1>
                         </div>
 
@@ -697,7 +769,7 @@ const Home = () => {
                                                         <div className="flex items-center gap-3 mb-3">
                                                             <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse" />
                                                             <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
-                                                                Projeto em Destaque
+                                                                {language === 'pt' ? 'Projeto em Destaque' : 'Featured Project'}
                                                             </span>
                                                         </div>
                                                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight">
@@ -874,7 +946,7 @@ const Home = () => {
                 >
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="flex flex-col mt-10 md:mt-20 gap-5">
-                            <h1 className="pasbile-font text-center md:text-left text-2xl md:text-4xl md:w-90">Serviços</h1>
+                            <h1 className="pasbile-font text-center md:text-left text-2xl md:text-4xl md:w-90">{texts.services.title}</h1>
                             <div className="grid grid-cols-1 md:grid-cols-3 columns-1 gap-4 md:gap-6 space-y-4">
                                 {designIntelligence.map((item, index) => (
                                     <div key={index} className="relative rounded-2xl overflow-hidden break-inside-avoid mb-4 md:mb-6">
@@ -909,11 +981,11 @@ const Home = () => {
                         <div className="flex flex-col md:mt-20 gap-5 w-full px-4 lg:px-8">
                             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10">
                                 <h1 className="clarkson-font text-center md:text-left text-4xl lg:text-5xl lg:w-1/3">
-                                    Stack de Tecnologias
+                                    {texts.technologies.title}
                                 </h1>
                                 <div className="space-y-5 lg:w-2/5 z-10">
                                     <p className="text-center md:text-left text-[16px] lg:text-lg text-white/90">
-                                        Tecnologias que utilizo para desenvolver interfaces modernas e aplicações web funcionais.
+                                        {texts.technologies.description}
                                     </p>
                                 </div>
                             </div>
@@ -945,7 +1017,7 @@ const Home = () => {
                     </div>
                 </section>
 
-                {/* SEÇÃO SEO & ANALYTICS */}
+                {/* SOBRE MIM */}
                 <section
                     id="seo"
                     ref={sectionRefs.seo}
@@ -955,16 +1027,17 @@ const Home = () => {
                         <div className="flex flex-col md:mt-20 gap-8">
                             <div className="flex flex-col justify-between items-center lg:items-center gap-8">
                                 <h1 className="clarkson-font text-center text-4xl lg:text-5xl lg:w-1/2">
-                                    Sobre Mim
+                                    {texts.about.title}
                                 </h1>
                                 <p className="text-center text-[14px] md:text-[18px] lg:w-1/2">
-                                    Sou desenvolvedor web com foco na criação de interfaces modernas, funcionais e bem estruturadas. Trabalho com tecnologias atuais para desenvolver aplicações rápidas, responsivas e escaláveis, sempre priorizando performance e experiência do usuário.
+                                    {texts.about.description}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </section>
 
+                {/** Testemunhas */}
                 <section
                     id="tools"
                     ref={sectionRefs.tools}
@@ -974,11 +1047,11 @@ const Home = () => {
                         <div className="flex flex-col md:mt-20 gap-5 w-full px-4 lg:px-8">
                             <div className="flex flex-col justify-between items-start lg:items-center gap-6 mb-10">
                                 <h1 className="clarkson-font text-center text-4xl lg:text-5xl lg:w-1/3">
-                                    O que as pessoas dizem
+                                    {texts.testimonials.title}
                                 </h1>
                                 <div className="space-y-5 lg:w-2/5 z-10">
                                     <p className="text-center text-[16px] lg:text-lg text-white/90">
-                                        Descubra a experiência que os usuários estiveram com o meu trabalho.
+                                        {texts.testimonials.description}
                                     </p>
                                 </div>
                             </div>
@@ -987,7 +1060,7 @@ const Home = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-4 columns-1 gap-4 md:gap-6 space-y-4 md:space-y-6">
                                     {testemonial.map((item, index) => (
                                         <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
-                                                <img src={item.img} alt={item.title} className='w-20 h-auto rounded-full' />
+                                            <img src={item.img} alt={item.title} className='w-20 h-auto rounded-full' />
                                             <div className="flex flex-col">
                                                 <h1 className='text-base md:text-[18px] font-medium text-white drop-shadow-lg mb-0'>
                                                     {item.title}
@@ -1012,7 +1085,7 @@ const Home = () => {
                         <div className="flex flex-col md:mt-20 gap-8 items-center">
                             <div className="flex flex-col justify-between items-center lg:items-center gap-8 z-10">
                                 <h1 className="text-center text-4xl lg:text-6xl lg:w-130">
-                                    Contato
+                                    {texts.contact.title}
                                 </h1>
                             </div>
 
@@ -1024,9 +1097,9 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div >
-    <Footer />
-        </div >
+            </div>
+            <Footer />
+        </div>
     );
 };
 
