@@ -41,63 +41,6 @@
   font-family: 'PasbileScript', sans-serif;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #fff;
-  border-radius: 10px;
-  border: 2px solid #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #fff;
-}
-
-/* Scrollbar with arrows (for browsers that support it) */
-::-webkit-scrollbar-button:single-button {
-  background-color: #1a1a1a;
-  display: block;
-  border-style: solid;
-  height: 13px;
-  width: 16px;
-  border-radius: 10px;
-}
-
-/* Up arrow */
-::-webkit-scrollbar-button:single-button:vertical:decrement {
-  border-width: 0 4px 6px 4px;
-  border-color: transparent transparent #fff transparent;
-}
-
-::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-  border-color: transparent transparent #fff transparent;
-}
-
-/* Down arrow */
-::-webkit-scrollbar-button:single-button:vertical:increment {
-  border-width: 6px 4px 0 4px;
-  border-color: #fff transparent transparent transparent;
-}
-
-::-webkit-scrollbar-button:single-button:vertical:increment:hover {
-  border-color: #fff transparent transparent transparent;
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #cccccc #1a1a1a;
-  scrollbar-radius: 10px;
-}
-
 /* Improved body structure */
 body {
   margin: 0;
