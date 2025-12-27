@@ -718,7 +718,7 @@ const Home = () => {
                                             <div className="relative w-full h-full">
                                                 <img
                                                     src={template.img}
-                                                    alt={template.title}
+                                                    alt={`Interface do projeto ${template.title}`}
                                                     className="absolute inset-0 w-full min-h-107 h-full object-cover transition-transform duration-2000 ease-out transform translate-y-0 group-hover:-translate-y-[56%] group-active:-translate-y-[56%]"
                                                 />
                                             </div>
@@ -790,7 +790,7 @@ const Home = () => {
                                                 <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20 z-5" />
                                                 <img
                                                     src={selectedProject.img}
-                                                    alt={selectedProject.title}
+                                                    alt={`Interface do projeto ${selectedProject.title}: ${selectedProject.description}`}
                                                     className="w-full h-full object-cover transform scale-100 hover:scale-105 transition-transform duration-700"
                                                 />
 
@@ -984,7 +984,7 @@ const Home = () => {
                                         <div className="absolute max-w-full w-full max-h-full h-full bg-gradient-to-b from-black to-black/0"></div>
                                         <img
                                             src={item.img}
-                                            alt={item.title}
+                                            alt={`Interface do projeto ${item.title}: ${item.description}`}
                                             className='w-full h-auto object-cover rounded-2xl'
                                         />
 
@@ -1091,7 +1091,7 @@ const Home = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-4 columns-1 gap-4 md:gap-6 space-y-4 md:space-y-6">
                                     {testemonial.map((item, index) => (
                                         <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
-                                            <img src={item.img} alt={item.title} className='w-20 h-auto rounded-full' />
+                                            <img src={item.img} alt={`Interface do projeto ${item.title}: ${item.description}`} className='w-20 h-auto rounded-full' />
                                             <div className="flex flex-col">
                                                 <h1 className='text-base md:text-[18px] font-medium text-white drop-shadow-lg mb-0'>
                                                     {item.title}
