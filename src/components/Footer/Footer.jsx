@@ -28,19 +28,14 @@ const Logo = ({ className = "fill-current" }) => {
 };
 
 const Footer = () => {
-    const { language, setLanguage, isTranslating } = useTranslation(); // ADICIONE ESTE HOOK
+    const { language, setLanguage, isTranslating } = useTranslation();
     const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
+    // Apenas Português e Inglês
     const languages = [
         { code: 'pt', name: 'Português', flag: '🇧🇷' },
         { code: 'en', name: 'English', flag: '🇺🇸' },
-        { code: 'es', name: 'Español', flag: '🇪🇸' },
-        { code: 'fr', name: 'Français', flag: '🇫🇷' },
-        { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-        { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-        { code: 'ja', name: '日本語', flag: '🇯🇵' },
-        { code: 'zh', name: '中文', flag: '🇨🇳' },
     ];
 
     // Fechar dropdown ao clicar fora
@@ -65,20 +60,13 @@ const Footer = () => {
         return languages.find(l => l.code === language) || languages[0];
     };
 
+    // Traduz o texto de copyright automaticamente
+    const copyrightText = language === 'en' ? '© 2025 Thomas, Inc.' : '© 2025 Thomas, Inc.';
+
     return (
         <footer className="relative w-full bg-black text-white pt-0 pb-2 py-5 px-6 lg:px-10 md:py-5">
-            <div className="flex flex-wrap justify-center md:justify-center items-center gap-4 text-sm">
-                <a href="https://github.com/ThomasSantosz" rel='noreferrer' target='_blank' className="text-white/40 hover:text-white transition-colors duration-200 text-xs md:text-[13px] whitespace-nowrap">
-                    GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/thomas-santos-ramos-063683304/" rel='noreferrer' target='_blank' className="text-white/40 hover:text-white transition-colors duration-200 text-xs md:text-[13px] whitespace-nowrap">
-                    LinkedIn
-                </a>
-                <span className="text-white text-xs md:text-[13px] whitespace-nowrap">
-                    © 2025 Thomas, Inc.
-                </span>
-
-                {/* Botão de seleção de idioma ATIVADO */}
+            <div className="flex flex-wrap justify-center md:flex-row md:justify-between items-center gap-4 text-sm">
+                {/* Botão de seleção de idioma */}
                 <div
                     className="relative"
                     ref={dropdownRef}
@@ -91,7 +79,9 @@ const Footer = () => {
                         {isTranslating ? (
                             <>
                                 <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                                <span className="text-sm">Traduzindo...</span>
+                                <span className="text-sm">
+                                    {language === 'en' ? 'Translating...' : 'Traduzindo...'}
+                                </span>
                             </>
                         ) : (
                             <>
@@ -114,7 +104,7 @@ const Footer = () => {
                     </button>
 
                     {isLanguageDropdownOpen && (
-                        <div className="absolute bottom-full left-0 mb-2 bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl min-w-[180px] z-50">
+                        <div className="absolute bottom-full left-0 mb-2 bg-black/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl min-w-[140px] z-50">
                             <div className="py-2">
                                 {languages.map((lang) => (
                                     <button
@@ -136,6 +126,27 @@ const Footer = () => {
                             </div>
                         </div>
                     )}
+                </div>
+                <div className="space-x-10">
+                    <a
+                        href="https://github.com/ThomasSantosz"
+                        rel='noreferrer'
+                        target='_blank'
+                        className="text-white/40 hover:text-white transition-colors duration-200 text-xs md:text-[13px] whitespace-nowrap"
+                    >
+                        GitHub
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/thomas-santos-ramos-063683304/"
+                        rel='noreferrer'
+                        target='_blank'
+                        className="text-white/40 hover:text-white transition-colors duration-200 text-xs md:text-[13px] whitespace-nowrap"
+                    >
+                        LinkedIn
+                    </a>
+                    <span className="text-white text-xs md:text-[13px] whitespace-nowrap">
+                        {copyrightText}
+                    </span>
                 </div>
             </div>
         </footer>

@@ -31,6 +31,7 @@ const Home = () => {
     const [isToolsSectionActive, setIsToolsSectionActive] = useState(false);
     const [isSeoSectionActive, setIsSeoSectionActive] = useState(false);
     const [cardRotations, setCardRotations] = useState({});
+    const [translatedServices, setTranslatedServices] = useState([]);
     const contentSectionRef = useRef(null);
     const heroSectionRef = useRef(null);
     const [lastScrollY, setLastScrollY] = useState(0);
@@ -83,8 +84,32 @@ const Home = () => {
         }
     };
 
+    // Design intelligence data original
+    const originalDesignIntelligence = [
+        {
+            id: 1,
+            img: ImgDesignIntelligence1,
+            title: 'Desenvolvimento Web Moderno',
+            description: 'Criação de interfaces web modernas, responsivas e bem estruturadas, focadas em performance, usabilidade e experiência do usuário.',
+        },
+        {
+            id: 2,
+            img: ImgDesignIntelligence3,
+            title: 'Landing Pages Profissionais',
+            description: 'Desenvolvimento de landing pages focadas em apresentar serviços, fortalecer a marca e gerar contato de forma clara e eficiente.',
+        },
+        {
+            id: 3,
+            img: ImgDesignIntelligence2,
+            title: 'Integrações e Funcionalidades Web',
+            description: 'Implementação de funcionalidades web que conectam interfaces a serviços, formulários e APIs, garantindo uma aplicação funcional e preparada para crescimento.',
+        },
+    ];
+
     // Use translated texts or fallback to originals
     const texts = translatedTexts || originalTexts;
+
+    const servicesToDisplay = translatedServices.length > 0 ? translatedServices : originalDesignIntelligence;
 
     // Templates data - agora com função de tradução
     const [templatesData, setTemplatesData] = useState([
@@ -123,28 +148,6 @@ const Home = () => {
             features: ['Agendamento inteligente', 'Análises detalhadas', 'Multiplataforma', 'Relatórios PDF'],
             linkDemo: 'https://klipsan.demo.com',
             linkGithub: 'https://github.com/seuusuario/klipsan'
-        },
-    ]);
-
-    // Design intelligence data
-    const [designIntelligence, setDesignIntelligence] = useState([
-        {
-            id: 1,
-            img: ImgDesignIntelligence1,
-            title: 'Desenvolvimento Web Moderno',
-            description: 'Criação de interfaces web modernas, responsivas e bem estruturadas, focadas em performance, usabilidade e experiência do usuário.',
-        },
-        {
-            id: 2,
-            img: ImgDesignIntelligence3,
-            title: 'Landing Pages Profissionais',
-            description: 'Desenvolvimento de landing pages focadas em apresentar serviços, fortalecer a marca e gerar contato de forma clara e eficiente.',
-        },
-        {
-            id: 3,
-            img: ImgDesignIntelligence2,
-            title: 'Integrações e Funcionalidades Web',
-            description: 'Implementação de funcionalidades web que conectam interfaces a serviços, formulários e APIs, garantindo uma aplicação funcional e preparada para crescimento.',
         },
     ]);
 
@@ -206,6 +209,34 @@ const Home = () => {
             containerRef: useRef(null)
         }
     });
+
+    // Traduz serviços quando o idioma muda
+    useEffect(() => {
+        const translateServices = async () => {
+            if (language === 'pt') {
+                setTranslatedServices(originalDesignIntelligence);
+                return;
+            }
+
+            try {
+                console.log('🌐 Traduzindo serviços para:', language);
+                const translated = await Promise.all(
+                    originalDesignIntelligence.map(async (service) => ({
+                        ...service,
+                        title: await translate(service.title),
+                        description: await translate(service.description)
+                    }))
+                );
+                setTranslatedServices(translated);
+                console.log('✅ Serviços traduzidos!');
+            } catch (error) {
+                console.error('❌ Erro na tradução dos serviços:', error);
+                setTranslatedServices(originalDesignIntelligence);
+            }
+        };
+
+        translateServices();
+    }, [language, translate]);
 
     // Traduz todos os textos quando o idioma muda
     useEffect(() => {
@@ -286,7 +317,7 @@ const Home = () => {
         };
 
         translateAllTexts();
-    }, [language, translate]); // Adicione translate na dependência
+    }, [language, translate]);
 
     // Função para abrir o modal
     const openModal = (project) => {
@@ -625,7 +656,7 @@ const Home = () => {
                     <h1 className="text-3xl md:text-5xl text-white text-center mb-8"
                         dangerouslySetInnerHTML={{ __html: texts.hero.title }}
                     />
-                    <p className="text-1xl md:text-[16px] text-[hsl(0,0%,90%)] w-150 text-center mb-8">
+                    <p className="text-1xl md:text-[16px] text-[hsl(0,0%,90%)] w-80 md:w-150 text-center mb-8">
                         {texts.hero.description}
                     </p>
                     <button
@@ -948,8 +979,8 @@ const Home = () => {
                         <div className="flex flex-col mt-10 md:mt-20 gap-5">
                             <h1 className="pasbile-font text-center md:text-left text-2xl md:text-4xl md:w-90">{texts.services.title}</h1>
                             <div className="grid grid-cols-1 md:grid-cols-3 columns-1 gap-4 md:gap-6 space-y-4">
-                                {designIntelligence.map((item, index) => (
-                                    <div key={index} className="relative rounded-2xl overflow-hidden break-inside-avoid mb-4 md:mb-6">
+                                {servicesToDisplay.map((item) => (
+                                    <div key={item.id} className="relative rounded-2xl overflow-hidden break-inside-avoid mb-4 md:mb-6">
                                         <div className="absolute max-w-full w-full max-h-full h-full bg-gradient-to-b from-black to-black/0"></div>
                                         <img
                                             src={item.img}

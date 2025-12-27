@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useTranslation } from '../../contexts/TranslationContext'; // Adicionar esta linha
 
 const HomeLogo = ({ className = "fill-current" }) => {
     return (
@@ -19,6 +20,7 @@ const HomeLogo = ({ className = "fill-current" }) => {
 
 const HomeNavbar = ({ onNavigate, sectionRef }) => {
     const { user } = useAuth();
+    const { language, translate } = useTranslation(); // Adicionar hook de tradução
     const [activeItem, setActiveItem] = useState('');
     const [showHomeNavbar, setShowHomeNavbar] = useState(false);
     const [isScrollingDown, setIsScrollingDown] = useState(false);
@@ -27,16 +29,61 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
     const [hasBlackBackground, setHasBlackBackground] = useState(false);
     const [isTransitioningToTemplates, setIsTransitioningToTemplates] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [translatedNavItems, setTranslatedNavItems] = useState([]);
+    const [translatedButtons, setTranslatedButtons] = useState({
+        startNow: 'COMEÇAR AGORA',
+        menu: 'Menu',
+        welcome: 'Bem-vindo de volta',
+        copyright: '© 2024 Aetheris AE. Todos os direitos reservados.'
+    });
+    
     const homeNavbarRef = useRef(null);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isInSection, setIsInSection] = useState(false);
 
-    const navItems = [
+    // Textos originais
+    const originalNavItems = [
         { id: 'templates', label: 'Projetos' },
         { id: 'design', label: 'Serviços' },
         { id: 'tools', label: 'Tecnologias' },
         { id: 'seo', label: 'Sobre Mim' },
     ];
+
+    // Traduz textos quando o idioma muda
+    useEffect(() => {
+        const translateTexts = async () => {
+            if (language === 'pt') {
+                setTranslatedNavItems(originalNavItems);
+                return;
+            }
+
+            try {
+                const translatedItems = await Promise.all(
+                    originalNavItems.map(async (item) => ({
+                        ...item,
+                        label: await translate(item.label)
+                    }))
+                );
+                
+                const translatedBtns = {
+                    startNow: await translate('COMEÇAR AGORA'),
+                    menu: await translate('Menu'),
+                    welcome: await translate('Bem-vindo de volta'),
+                    copyright: await translate('© 2024 Aetheris AE. Todos os direitos reservados.')
+                };
+                
+                setTranslatedNavItems(translatedItems);
+                setTranslatedButtons(translatedBtns);
+            } catch (error) {
+                console.error('Erro na tradução do HomeNavbar:', error);
+                setTranslatedNavItems(originalNavItems);
+            }
+        };
+        
+        translateTexts();
+    }, [language, translate]);
+
+    const navItems = translatedNavItems.length > 0 ? translatedNavItems : originalNavItems;
 
     // Seções que têm fundo preto/escuro
     const darkBackgroundSections = ['hero', 'seo', 'tools'];
@@ -215,7 +262,9 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
 
     const redirectToWhatsApp = () => {
         const phoneNumber = '5566996399303'; // Código do país + seu número
-        const message = encodeURIComponent("Olá, eu gostei de seus projetos gostaria de saber mais informações!");
+        const message = encodeURIComponent(language === 'en' 
+            ? "Hello, I liked your projects and would like more information!" 
+            : "Olá, eu gostei de seus projetos gostaria de saber mais informações!");
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
         window.open(whatsappUrl, '_blank');
@@ -322,7 +371,7 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
                             className={`flex items-center justify-center ${elementClasses.buttonBgClass} px-6 py-2.5 cursor-pointer relative overflow-hidden group text-sm font-medium transition-all duration-300 hover:shadow-lg`}
                         >
                             <span className={`relative z-10 transition-colors duration-300 ${elementClasses.buttonHoverTextClass}`}>
-                                COMEÇAR AGORA
+                                {translatedButtons.startNow}
                             </span>
                             <span className={`absolute inset-0 ${elementClasses.buttonHoverBg} transform -translate-x-full transition-transform duration-500 ease-out group-hover:translate-x-0 group-active:translate-x-0`}></span>
                         </button>
@@ -368,7 +417,7 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
                             <div className={`w-full ${elementClasses.mobileBg} px-6 py-4 flex items-center justify-between border-b ${elementClasses.mobileBorder}`}>
                                 <div className="flex items-center gap-2">
                                     <HomeLogo className={`${elementClasses.mobileText} w-7 h-7`} />
-                                    <span className={`${elementClasses.mobileText} font-medium text-lg`}>Menu</span>
+                                    <span className={`${elementClasses.mobileText} font-medium text-lg`}>{translatedButtons.menu}</span>
                                 </div>
                                 <button
                                     onClick={() => setIsMobileMenuOpen(false)}
@@ -405,7 +454,7 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
                                             className={`flex items-center justify-center w-full ${elementClasses.buttonBgClass} px-6 py-2.5 cursor-pointer relative overflow-hidden group text-sm font-medium transition-all duration-300 hover:shadow-lg`}
                                         >
                                             <span className={`relative z-10 transition-colors duration-300 ${elementClasses.buttonHoverTextClass}`}>
-                                                COMEÇAR AGORA
+                                                {translatedButtons.startNow}
                                             </span>
                                         </button>
                                     </div>
@@ -415,10 +464,10 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
                                 {user && (
                                     <div className={`mt-6 p-4 rounded-lg ${elementClasses.mobileBg}`}>
                                         <p className={`text-sm font-medium ${elementClasses.mobileText} mb-1`}>
-                                            Olá, {user.name}
+                                            {translatedButtons.hello} {user.name}
                                         </p>
                                         <p className={`text-xs ${elementClasses.inactiveTextClass}`}>
-                                            Bem-vindo de volta
+                                            {translatedButtons.welcome}
                                         </p>
                                     </div>
                                 )}
@@ -426,7 +475,7 @@ const HomeNavbar = ({ onNavigate, sectionRef }) => {
                                 {/* Rodapé do menu */}
                                 <div className={`mt-12 pt-6 border-t ${elementClasses.mobileBorder}`}>
                                     <p className={`text-xs text-center ${elementClasses.inactiveTextClass}`}>
-                                        © 2024 Aetheris AE. Todos os direitos reservados.
+                                        {translatedButtons.copyright}
                                     </p>
                                 </div>
                             </div>
