@@ -5,7 +5,7 @@ import HomeNavbar from '../../components/HomeNavbar/HomeNavbar';
 import Img from '../../assets/fernando-hernandez-CosHjyONRk8-unsplash.jpg';
 import ImgTemplate1 from '../../assets/template-one.png';
 import ImgTemplate2 from '../../assets/template-two.png';
-import ImgTemplate3 from '../../assets/image-asset-3.webp';
+import ImgTemplate3 from '../../assets/template-three.png';
 import ImgDesignIntelligence1 from '../../assets/solidpixels-iq2RzBMj-Wg-unsplash.jpg';
 import ImgDesignIntelligence2 from '../../assets/azwedo-l-lc-uSx99gjoSoc-unsplash.jpg';
 import ImgDesignIntelligence3 from '../../assets/azwedo-l-lc-6uR0dkm3ya0-unsplash.jpg';
@@ -143,13 +143,13 @@ const Home = () => {
             id: 3,
             link: '/template3',
             img: ImgTemplate3,
-            title: 'KLIPSAN',
-            description: 'Sistema de gestão de conteúdo para redes sociais.',
-            detailedDescription: 'Ferramenta completa para agendamento, publicação e análise de conteúdo em múltiplas plataformas de redes sociais.',
-            tags: ['Next.js', 'Firebase', 'TailwindCSS', 'Chart.js', 'OAuth'],
-            features: ['Agendamento inteligente', 'Análises detalhadas', 'Multiplataforma', 'Relatórios PDF'],
-            linkDemo: 'https://klipsan.demo.com',
-            linkGithub: 'https://github.com/seuusuario/klipsan'
+            title: 'Advocacia',
+            description: 'Um site para advogados e associados.',
+            detailedDescription: 'Este site contém 6 páginas em específico, contando com sistema de contato.',
+            tags: ['Next.js', 'TypeScript', 'TailwindCSS'],
+            features: ['Advogados', 'Blog', 'Serviços', 'Divulgação'],
+            linkDemo: 'https://veritas-collective.vercel.app/',
+            linkGithub: 'https://github.com/thomasproflt/veritas-collective'
         },
     ]);
 
@@ -716,7 +716,7 @@ const Home = () => {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {templatesData.slice(0, 2).map((template, index) => (
+                            {templatesData.slice(0, 3).map((template, index) => (
                                 <div
                                     key={template.id}
                                     className="group block transition-transform duration-300 cursor-pointer"
