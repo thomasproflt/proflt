@@ -12,7 +12,7 @@ import ImgDesignIntelligence3 from '../../assets/azwedo-l-lc-6uR0dkm3ya0-unsplas
 import ImgCreativeTools1 from '../../assets/responsive-desktop-1500w.webp';
 import ImgCreativeTools2 from '../../assets/media-desktop-1500w.webp';
 import ImgCreativeTools3 from '../../assets/styles-desktop-1500w.webp';
-import ImgCreativeTools4 from '../../assets/drafts-desktop-1500w.webp';
+import ImgCreativeTools4 from '../../assets/drafts-desktop-1500w.webp';""
 import ImgAccessBuild1 from '../../assets/domains-desktop-1500w.webp';
 import ImgAccessBuild2 from '../../assets/professional-email-desktop-1500w.webp';
 import ImgAccessBuild3 from '../../assets/online-store-desktop-3-1500w.webp';
