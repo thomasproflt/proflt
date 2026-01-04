@@ -17,6 +17,7 @@ import ImgAccessBuild1 from '../../assets/domains-desktop-1500w.webp';
 import ImgAccessBuild2 from '../../assets/professional-email-desktop-1500w.webp';
 import ImgAccessBuild3 from '../../assets/online-store-desktop-3-1500w.webp';
 import TestemonialPhoto1 from '../../assets/carrie-discord-feedb.webp';
+import TestemonialPhoto2 from '../../assets/dc.jpg';
 import Footer from '../../components/Footer/Footer';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import { useTranslation } from '../../contexts/TranslationContext';
@@ -121,7 +122,7 @@ const Home = () => {
             title: 'FRAMES IA',
             description: 'Plataforma de IA para criação de frames e animações inteligentes.',
             detailedDescription: 'Uma aplicação web completa que utiliza inteligência artificial para gerar frames e animações customizadas. O sistema inclui editor integrado, exportação em múltiplos formatos e API para integração.',
-            tags: ['React', 'Node.js', 'Python', 'TailwindCSS', 'Framer Motion'],
+            tags: ['React', 'Node.js', 'TailwindCSS', 'Framer Motion'],
             features: ['Editor visual integrado', 'Exportação múltipla', 'API REST', 'Dashboard analytics'],
             linkDemo: 'https://frames-ai-repo.vercel.app/',
             linkGithub: 'https://github.com/thomasproflt/frames-ai-repo'
@@ -187,6 +188,13 @@ const Home = () => {
             tag: 'Developer',
             description: 'Delivered exactly what I needed — a clean, responsive data table with filtering, sorting, and pagination. The backend and frontend were both structured well, and the setup instructions were clear. Great communication and fast delivery!',
         },
+        {
+            id: 2,
+            img: TestemonialPhoto2,
+            title: 'Snag',
+            tag: 'Client',
+            description: 'It took some time and patience but the result is perfect thank you very much I recommend 100%',
+        }
     ];
 
     // Estado para gerenciar múltiplos vídeos
@@ -737,237 +745,90 @@ const Home = () => {
 
                     {/* Modal Component */}
                     {modalOpen && (
-                        <div className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-2 sm:p-4">
-                            {/* Overlay com gradiente sofisticado */}
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+
+                            {/* Overlay simples */}
                             <div
-                                className={`absolute inset-0 transition-all duration-500 ${modalAnimation === 'enter'
-                                    ? 'opacity-100 backdrop-blur-sm'
-                                    : 'opacity-0 backdrop-blur-none'
-                                    }`}
-                                style={{
-                                    background: 'radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.9) 100%)'
-                                }}
+                                className="absolute inset-0 bg-black/70"
                                 onClick={closeModal}
                             />
 
-                            {/* Modal Content - Design Moderno */}
+                            {/* Modal */}
                             <div
-                                className={`relative w-full max-w-5xl max-h-[95vh] md:max-h-[90vh] bg-gradient-to-br from-gray-900 to-black rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden border border-gray-800 transition-all duration-500 transform ${modalAnimation === 'enter'
-                                    ? 'translate-y-0 opacity-100 scale-100'
-                                    : 'translate-y-10 opacity-0 scale-95'
-                                    }`}
-                                style={{
-                                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255,255,255,0.1)'
-                                }}
+                                className={`relative w-full max-w-4xl bg-neutral-900 rounded-xl border border-neutral-800 shadow-lg transition-all duration-200
+      ${modalAnimation === 'enter' ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                             >
-                                {/* Decorative Top Border */}
-                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
 
-                                {/* Close Button Moderno */}
-                                <button
-                                    onClick={closeModal}
-                                    className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-gradient-to-br from-gray-800 to-gray-900 backdrop-blur-lg flex items-center justify-center hover:from-gray-700 hover:to-gray-800 transition-all duration-300 shadow-xl border border-gray-700 hover:border-gray-600 hover:scale-110 group"
-                                    style={{
-                                        boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
-                                    }}
-                                >
-                                    <svg
-                                        className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors duration-300"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
+                                {/* Header */}
+                                <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800">
+                                    <h2 className="text-lg font-semibold text-white">
+                                        {selectedProject?.title}
+                                    </h2>
+
+                                    <button
+                                        onClick={closeModal}
+                                        className="text-neutral-400 hover:text-white transition"
                                     >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
+                                        ✕
+                                    </button>
+                                </div>
 
-                                {/* Scrollable Content */}
-                                <div className="overflow-y-auto max-h-[95vh] md:max-h-[90vh] custom-scrollbar">
-                                    {selectedProject && (
-                                        <>
-                                            {/* Hero Image com Overlay Gradiente */}
-                                            <div className="relative h-56 md:h-72 lg:h-96">
-                                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent z-10" />
-                                                <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20 z-5" />
-                                                <img
-                                                    src={selectedProject.img}
-                                                    alt='image'
-                                                    className="w-full h-full object-cover transform scale-100 hover:scale-105 transition-transform duration-700"
-                                                />
+                                {/* Conteúdo */}
+                                <div className="p-6 overflow-y-auto max-h-[75vh]">
 
-                                                {/* Title Section com efeito glassmorphism */}
-                                                <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-8 lg:p-10">
-                                                    <div className="backdrop-blur-xl bg-gray-900/60 rounded-2xl p-6 border border-gray-700/50 shadow-2xl max-w-3xl">
-                                                        <div className="flex items-center gap-3 mb-3">
-                                                            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse" />
-                                                            <span className="text-sm font-medium text-gray-300 uppercase tracking-wider">
-                                                                {language === 'pt' ? 'Projeto em Destaque' : 'Featured Project'}
-                                                            </span>
-                                                        </div>
-                                                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight">
-                                                            {selectedProject.title}
-                                                        </h2>
-                                                        <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
-                                                            {selectedProject.description}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    {/* Imagem */}
+                                    <img
+                                        src={selectedProject?.img}
+                                        alt="Projeto"
+                                        className="w-full rounded-lg mb-6 object-cover"
+                                    />
 
-                                            {/* Content Container */}
-                                            <div className="relative -mt-10 md:-mt-16 lg:-mt-20 z-30">
-                                                {/* Floating Content Card */}
-                                                <div className="bg-gradient-to-b from-gray-900 to-black rounded-t-3xl p-6 md:p-10 lg:p-12">
-                                                    {/* Stats Bar */}
-                                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 p-6 bg-gray-800/30 rounded-2xl backdrop-blur-sm border border-gray-700/50">
-                                                        <div className="text-center">
-                                                            <div className="text-2xl md:text-3xl font-bold text-white mb-1">
-                                                                {selectedProject.tags.length}
-                                                            </div>
-                                                            <div className="text-sm text-gray-400">Tecnologias</div>
-                                                        </div>
-                                                        <div className="text-center">
-                                                            <div className="text-2xl md:text-3xl font-bold text-white mb-1">
-                                                                {selectedProject.features.length}
-                                                            </div>
-                                                            <div className="text-sm text-gray-400">Funcionalidades</div>
-                                                        </div>
-                                                        <div className="text-center">
-                                                            <div className="text-2xl md:text-3xl font-bold text-white mb-1">
-                                                                {selectedProject.linkDemo ? 'Online' : 'Em breve'}
-                                                            </div>
-                                                            <div className="text-sm text-gray-400">Status</div>
-                                                        </div>
-                                                        <div className="text-center">
-                                                            <div className="text-2xl md:text-3xl font-bold text-white mb-1">
-                                                                Fullstack
-                                                            </div>
-                                                            <div className="text-sm text-gray-400">Tipo</div>
-                                                        </div>
-                                                    </div>
+                                    {/* Descrição */}
+                                    <p className="text-neutral-300 leading-relaxed mb-6">
+                                        {selectedProject?.detailedDescription}
+                                    </p>
 
-                                                    {/* Tags Section Moderna */}
-                                                    <div className="mb-10">
-                                                        <div className="flex items-center gap-3 mb-6">
-                                                            <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full" />
-                                                            <h3 className="text-2xl font-bold text-white">Stack Tecnológico</h3>
-                                                        </div>
-                                                        <div className="flex flex-wrap gap-3">
-                                                            {selectedProject.tags.map((tag, index) => (
-                                                                <span
-                                                                    key={index}
-                                                                    className="px-4 py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 text-gray-200 text-sm font-medium rounded-xl border border-gray-700 hover:border-blue-500/50 hover:from-gray-700 hover:to-gray-800 transition-all duration-300 cursor-default group"
-                                                                    style={{
-                                                                        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.3)'
-                                                                    }}
-                                                                >
-                                                                    <div className="flex items-center gap-2">
-                                                                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 group-hover:animate-pulse" />
-                                                                        {tag}
-                                                                    </div>
-                                                                </span>
-                                                            ))}
-                                                        </div>
-                                                    </div>
+                                    {/* Tags */}
+                                    <div className="flex flex-wrap gap-2 mb-6">
+                                        {selectedProject?.tags.map((tag, index) => (
+                                            <span
+                                                key={index}
+                                                className="px-3 py-1 text-sm bg-neutral-800 text-neutral-300 rounded-md"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
 
-                                                    {/* Description Section */}
-                                                    <div className="mb-10">
-                                                        <div className="flex items-center gap-3 mb-6">
-                                                            <div className="w-2 h-8 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full" />
-                                                            <h3 className="text-2xl font-bold text-white">Sobre o Projeto</h3>
-                                                        </div>
-                                                        <div className="bg-gray-800/30 rounded-2xl p-6 md:p-8 border border-gray-700/50 backdrop-blur-sm">
-                                                            <p className="text-gray-300 leading-relaxed text-lg">
-                                                                {selectedProject.detailedDescription}
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                    {/* Ações */}
+                                    <div className="flex gap-4">
+                                        {selectedProject?.linkDemo && (
+                                            <a
+                                                href={selectedProject.linkDemo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex-1 text-center py-3 rounded-lg bg-white text-black font-medium hover:bg-neutral-200 transition"
+                                            >
+                                                Ver Demo
+                                            </a>
+                                        )}
 
-                                                    {/* Features Grid Moderna */}
-                                                    <div className="mb-10">
-                                                        <div className="flex items-center gap-3 mb-6">
-                                                            <div className="w-2 h-8 bg-gradient-to-b from-yellow-500 to-orange-500 rounded-full" />
-                                                            <h3 className="text-2xl font-bold text-white">Funcionalidades Principais</h3>
-                                                        </div>
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                            {selectedProject.features.map((feature, index) => (
-                                                                <div
-                                                                    key={index}
-                                                                    className="group bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-5 border border-gray-700/50 hover:border-blue-500/30 transition-all duration-300 hover:scale-[1.02] cursor-default"
-                                                                    style={{
-                                                                        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.2)'
-                                                                    }}
-                                                                >
-                                                                    <div className="flex items-start gap-4">
-                                                                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-blue-500/30 group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300">
-                                                                            <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                                                                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                                                            </svg>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="text-white font-medium text-lg">{feature}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Links Section Moderna */}
-                                                    <div className="pt-8 border-t border-gray-800">
-                                                        <div className="flex flex-col sm:flex-row gap-4">
-                                                            {selectedProject.linkDemo && (
-                                                                <a
-                                                                    href={selectedProject.linkDemo}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    className="group flex-1 flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-                                                                    style={{
-                                                                        boxShadow: '0 8px 20px rgba(59, 130, 246, 0.3)'
-                                                                    }}
-                                                                >
-                                                                    <svg className="w-6 h-6 mr-3 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                                    </svg>
-                                                                    Acessar Demo
-                                                                </a>
-                                                            )}
-                                                            {selectedProject.linkGithub && (
-                                                                <a
-                                                                    href={selectedProject.linkGithub}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    className="group flex-1 flex items-center justify-center px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 text-gray-200 rounded-xl hover:from-gray-700 hover:to-gray-800 hover:text-white transition-all duration-300 font-semibold text-lg border border-gray-700 hover:border-gray-600 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-                                                                >
-                                                                    <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                                                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                                                    </svg>
-                                                                    Código Fonte
-                                                                </a>
-                                                            )}
-                                                        </div>
-
-                                                        {/* View Project Button */}
-                                                        <div className="mt-6 text-center">
-                                                            <button
-                                                                onClick={closeModal}
-                                                                className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300 text-sm font-medium"
-                                                            >
-                                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                                                </svg>
-                                                                Voltar para projetos
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </>
-                                    )}
+                                        {selectedProject?.linkGithub && (
+                                            <a
+                                                href={selectedProject.linkGithub}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex-1 text-center py-3 rounded-lg border border-neutral-700 text-neutral-300 hover:text-white hover:border-neutral-500 transition"
+                                            >
+                                                GitHub
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     )}
+
                 </section>
 
                 {/* SEÇÃO DESIGN INTELLIGENCE */}
@@ -1092,7 +953,9 @@ const Home = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-4 columns-1 gap-4 md:gap-6 space-y-4 md:space-y-6">
                                     {testemonial.map((item, index) => (
                                         <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
-                                            <img src={item.img} alt='image' className='w-20 h-auto rounded-full' />
+                                            <div className="w-20 h-20 overflow-hidden rounded-full mb-5">
+                                                <img src={item.img} alt='image' className='w-full h-auto rounded-full select-none pointer-events-none' />
+                                            </div>
                                             <div className="flex flex-col">
                                                 <h1 className='text-base md:text-[18px] font-medium text-white drop-shadow-lg mb-0'>
                                                     {item.title}

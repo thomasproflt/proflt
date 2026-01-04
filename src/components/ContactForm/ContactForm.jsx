@@ -97,7 +97,7 @@ const ContactForm = () => {
             onSubmit={sendEmail}
             className="relative flex flex-col w-full max-w-lg mx-auto p-8 bg-black/50 backdrop-blur-sm border border-white/20 rounded-2xl space-y-6"
         >
-            <h2 className="text-2xl font-bold text-white text-center">{translatedTexts.title}</h2>
+            {/*<h2 className="text-2xl font-bold text-white text-center">{translatedTexts.title}</h2>*/}
 
             <div className="space-y-2">
                 <label htmlFor="name" className="block text-sm font-medium text-white/80">
@@ -108,7 +108,7 @@ const ContactForm = () => {
                     id="name"
                     name="name"
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border-b border-white/20 text-white placeholder-white/40 outline-none transition-all"
                     placeholder={translatedTexts.placeholders.name}
                 />
             </div>
@@ -122,7 +122,7 @@ const ContactForm = () => {
                     id="email"
                     name="email"
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border-b border-white/20 text-white placeholder-white/40 outline-none transition-all"
                     placeholder={translatedTexts.placeholders.email}
                 />
             </div>
@@ -136,7 +136,7 @@ const ContactForm = () => {
                     name="message"
                     rows="4"
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 border-b border-white/20 text-white placeholder-white/40 outline-none transition-all resize-none"
                     placeholder={translatedTexts.placeholders.message}
                 ></textarea>
             </div>
@@ -144,7 +144,7 @@ const ContactForm = () => {
             <button
                 type="submit"
                 disabled={isSending}
-                className="w-full py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 active:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                className="w-full py-3 bg-white text-black font-semibold hover:bg-gray-200 active:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all duration-300"
             >
                 {isSending ? translatedTexts.sending : translatedTexts.button}
             </button>
