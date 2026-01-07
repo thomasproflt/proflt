@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import HomeNavbar from '../../components/HomeNavbar/HomeNavbar';
@@ -12,10 +13,7 @@ import ImgDesignIntelligence3 from '../../assets/azwedo-l-lc-6uR0dkm3ya0-unsplas
 import ImgCreativeTools1 from '../../assets/responsive-desktop-1500w.webp';
 import ImgCreativeTools2 from '../../assets/media-desktop-1500w.webp';
 import ImgCreativeTools3 from '../../assets/styles-desktop-1500w.webp';
-import ImgCreativeTools4 from '../../assets/drafts-desktop-1500w.webp';""
-import ImgAccessBuild1 from '../../assets/domains-desktop-1500w.webp';
-import ImgAccessBuild2 from '../../assets/professional-email-desktop-1500w.webp';
-import ImgAccessBuild3 from '../../assets/online-store-desktop-3-1500w.webp';
+import ImgCreativeTools4 from '../../assets/drafts-desktop-1500w.webp';
 import TestemonialPhoto1 from '../../assets/carrie-discord-feedb.webp';
 import TestemonialPhoto2 from '../../assets/dc.jpg';
 import Footer from '../../components/Footer/Footer';
@@ -23,6 +21,33 @@ import ContactForm from '../../components/ContactForm/ContactForm';
 import { useTranslation } from '../../contexts/TranslationContext';
 import TranslationLoader from '../../components/TranslationLoader/TranslationLoader';
 import OptimizedImage, { OptimizedBackground, OptimizedImageCard } from '../../components/OptimizedImage/OptimizedImage';
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
+const fadeLeft = {
+    hidden: { opacity: 0, x: -60 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
+
+const fadeRight = {
+    hidden: { opacity: 0, x: 60 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.6, ease: "easeOut" }
+    }
+};
 
 const Home = () => {
     const { language, translate, isTranslating } = useTranslation();
@@ -655,19 +680,26 @@ const Home = () => {
                 sectionRef={contentSectionRef}
             />
 
-            <section
-                id='hero'
-                ref={heroSectionRef}
-                className="items-center justify-center relative"
+            <motion.section
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
             >
                 <img src={Img} alt="Background" className='min-h-screen md:max-w-full md:w-full object-cover opacity-70' />
                 <div className="absolute w-full justify-center items-center px-5 md:px-0 top-0 pt-20 md:pt-45 place-items-center">
-                    <h1 className="text-3xl md:text-5xl text-white text-center mb-8"
+                    <motion.h1
+                        className="text-3xl md:text-5xl text-white text-center mb-8"
+                        initial={{ y: 40 }}
+                        animate={{ y: 0 }}
+                        transition={{ type: "spring", stiffness: 120 }}
                         dangerouslySetInnerHTML={{ __html: texts.hero.title }}
                     />
+
                     <p className="text-1xl md:text-[16px] text-[hsl(0,0%,90%)] w-80 md:w-150 text-center mb-8">
                         {texts.hero.description}
                     </p>
+
                     <button
                         onClick={redirectToWhatsApp}
                         className='flex items-center justify-center bg-white text-black px-5 py-5 mb-3 md:mb-3 cursor-pointer relative overflow-hidden group transition-all duration-300 mx-auto'
@@ -698,7 +730,7 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* Seções de conteúdo */}
             <div className="space-y-0">
@@ -710,16 +742,28 @@ const Home = () => {
                 >
                     <div className="flex flex-col w-full max-w-6xl mx-auto gap-8 px-5 md:px-0 mt-10 md:mt-0 mb-20 md:mb-0">
                         <div className="flex relative flex-col md:flex-row justify-between items-center">
-                            <h1 className="pasbile-font text-4xl md:text-5xl text-center md:text-left md:w-160 mb-6 md:mb-0">
+                            <motion.h1
+                                className="pasbile-font text-4xl md:text-5xl text-center md:text-left md:w-160"
+                                variants={fadeUp}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                            >
                                 {texts.projects.title}
-                            </h1>
+                            </motion.h1>
+
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {templatesData.slice(0, 3).map((template, index) => (
-                                <div
+                                <motion.div
                                     key={template.id}
-                                    className="group block transition-transform duration-300 cursor-pointer"
+                                    className="group block cursor-pointer"
+                                    variants={fadeUp}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    transition={{ delay: index * 0.15 }}
                                     onClick={() => openModal(template)}
                                 >
                                     <div className="flex flex-col gap-4 group-hover:shadow-2xl group-active:shadow-2xl border border-gray-300 mb-1 md:mb-1 rounded-lg break-inside-avoid transition-all duration-300 hover:border-gray-400">
@@ -738,7 +782,7 @@ const Home = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
                     </div>
@@ -842,7 +886,14 @@ const Home = () => {
                             <h1 className="pasbile-font text-center md:text-left text-2xl md:text-4xl md:w-90">{texts.services.title}</h1>
                             <div className="grid grid-cols-1 md:grid-cols-3 columns-1 gap-4 md:gap-6 space-y-4">
                                 {servicesToDisplay.map((item) => (
-                                    <div key={item.id} className="relative rounded-2xl overflow-hidden break-inside-avoid mb-4 md:mb-6">
+                                    <motion.div
+                                        key={item.id}
+                                        className="relative rounded-2xl overflow-hidden"
+                                        variants={fadeLeft}
+                                        initial="hidden"
+                                        whileInView="visible"
+                                        viewport={{ once: true, amount: 0.3 }}
+                                    >
                                         <div className="absolute max-w-full w-full max-h-full h-full bg-gradient-to-b from-black to-black/0"></div>
                                         <img
                                             src={item.img}
@@ -854,7 +905,7 @@ const Home = () => {
                                             <h1 className='text-base md:text-[18px] lg:text-lg font-medium text-white drop-shadow-lg'>{item.title}</h1>
                                             <p className='text-sm md:text-[15px] lg:text-base text-white/90 drop-shadow mt-1'>{item.description}</p>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </div>
@@ -886,7 +937,15 @@ const Home = () => {
                             <div className="md:mt-30">
                                 <div className="grid grid-cols-1 md:grid-cols-4 columns-1 gap-4 md:gap-6 space-y-4 md:space-y-6">
                                     {creativeTools.map((item, index) => (
-                                        <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
+                                        <motion.div
+                                            key={index}
+                                            className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                                            variants={fadeRight}
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            viewport={{ once: true }}
+                                            transition={{ delay: index * 0.1 }}
+                                        >
                                             <div className="flex flex-col">
                                                 <h1 className='text-base md:text-[18px] lg:text-lg font-medium text-white drop-shadow-lg mb-3'>
                                                     {item.title}
@@ -902,7 +961,7 @@ const Home = () => {
                                                     ))}
                                                 </div>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     ))}
                                 </div>
                             </div>
@@ -952,7 +1011,15 @@ const Home = () => {
                             <div className="">
                                 <div className="grid grid-cols-1 md:grid-cols-4 columns-1 gap-4 md:gap-6 space-y-4 md:space-y-6">
                                     {testemonial.map((item, index) => (
-                                        <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 group">
+                                        <motion.div
+                                            key={index}
+                                            className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                                            variants={fadeUp}
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            viewport={{ once: true }}
+                                            transition={{ delay: index * 0.15 }}
+                                        >
                                             <div className="w-20 h-20 overflow-hidden rounded-full mb-5">
                                                 <img src={item.img} alt='image' className='w-full h-auto rounded-full select-none pointer-events-none' />
                                             </div>
@@ -967,7 +1034,7 @@ const Home = () => {
                                                     {item.description}
                                                 </p>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     ))}
                                 </div>
                             </div>

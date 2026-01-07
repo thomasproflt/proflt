@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 /* Importação da fonte ClarksonScript */
-@font-face {
+/*@font-face {
   font-family: 'ClarksonScript';
   src: url('/Parsley-Regular-BF69072e47c9f78.ttf') format('opentype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap; /* Melhora a performance de carregamento */
+  font-display: swap;
 }
 
 @font-face {
@@ -14,11 +14,11 @@
   src: url('/MoresaCallote-lxa85.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap; /* Melhora a performance de carregamento */
-}
+  font-display: swap;
+}*/
 
 :root {
-  font-family: "Roboto", sans-serif;
+  font-family: "Mulish", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -34,11 +34,13 @@
 
 /* Classe personalizada para aplicar a fonte ClarksonScript */
 .clarkson-font {
-  font-family: 'ClarksonScript', cursive, sans-serif;
+  //font-family: 'ClarksonScript', cursive, sans-serif;
+  font-family: "Lora", serif;
 }
 
 .pasbile-font {
-  font-family: 'PasbileScript', sans-serif;
+  //font-family: 'PasbileScript', sans-serif;
+  font-family: "Lora", serif;
 }
 
 /* Improved body structure */
