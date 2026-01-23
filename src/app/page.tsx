@@ -167,10 +167,10 @@ export default function Home() {
       >
         <div className="flex flex-col space-y-100">
           {contentHome.map((item) => (
-            <div key={item.id} className="mb-[40rem]">
+            <div key={item.id} className="mb-[10rem] md:mb-[40rem] lg:mb-[40rem]">
               <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                 <div className="flex flex-col">
-                  <span className="flex items-center gap-2 text-[16px] font-light text-zinc-600 dark:text-zinc-400 mb-2">
+                  <span className="flex items-center justify-center lg:justify-start gap-2 text-[16px] font-light text-zinc-600 dark:text-zinc-400 mb-2">
                     {item.icon}
                     <p>{item.span}</p>
                   </span>
@@ -181,7 +181,7 @@ export default function Home() {
                     {item.description}
                   </p>
                 </div>
-                <div className="relative lg:absolute right-[7rem] w-full max-w-[500px] h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl bg-black">
+                <div className="relative lg:absolute lg:right-[7rem] w-full max-w-[500px] h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden rounded-2xl bg-black">
                   <Image
                     className="absolute inset-0 h-full w-full object-cover"
                     src={item.images}
@@ -206,10 +206,10 @@ export default function Home() {
           {exploreProjetos.map((item) => (
             <div key={item.id} className="w-full">
               <div className="relative w-full flex flex-col dark:bg-[hsl(0,0%,13%)] border border-[hsla(0,0%,17%,1)] dark:hover:bg-[hsl(0,0%,17%)] min-h-full cursor-pointer transition-all duration-200 group">
-                <div className="relative h-[240px] sm:h-[280px] lg:h-[320px] w-full overflow-hidden">
+                <div className="relative h-[180px] sm:h-[280px] lg:h-[320px] w-full overflow-hidden">
                   <Image
                     className="
-              w-full h-[680px] object-cover
+              w-full h-[370px] lg:h-[680px] object-cover
               transform transition-transform duration-700 ease-out
               group-hover:translate-y-[-180px]
               select-none pointer-events-none
@@ -291,7 +291,7 @@ export default function Home() {
         <CodeWorkspace />
       </section>
 
-      <section className="flex flex-col container mx-auto  w-full max-w-6xl items-center justify-center py-32 px-30   border-t dark:border-[hsla(0,0%,100%,0.1)]">
+      <section className="flex flex-col container mx-auto w-full max-w-6xl items-center justify-center py-32 px-30 border-t dark:border-[hsla(0,0%,100%,0.1)]">
         <Image
           className="dark:invert opacity-50 select-none pointer-events-none mb-5"
           src="/favicon.svg"
@@ -304,7 +304,7 @@ export default function Home() {
           Construa o que as pessoas usarão amanhã.
         </p>
         <Link
-          className="flex h-12 w-full items-center justify-center rounded-2xl border border-solid border-black/[0.08] px-5 transition-colors hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-[hsl(0,0%,13%)] md:w-[260px]"
+          className="flex h-12 w-[10rem] md:w-full items-center justify-center rounded-2xl border border-solid border-black/[0.08] px-5 transition-colors hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-[hsl(0,0%,13%)] md:w-[260px]"
           href="https://wa.me/5566996399303?text=Ol%C3%A1%2C%20olhei%20seu%20portf%C3%B3lio%20e%20notei%20um%20grande%20valor!"
           target="_blank"
           rel="noopener noreferrer"
