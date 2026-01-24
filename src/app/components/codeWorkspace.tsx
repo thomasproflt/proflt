@@ -71,7 +71,7 @@ export default function CodeWorkspace() {
           </button>
 
           {isOpen && (
-            <div className="absolute left-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl z-50 overflow-hidden">
+            <div className="absolute left-0 mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl z-10 overflow-hidden">
               {(Object.keys(FILES) as FileKey[]).map((file) => (
                 <button
                   key={file}
