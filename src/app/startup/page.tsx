@@ -13,7 +13,7 @@ export default function Startup() {
                         <Image
                             className="relative w-full max-w-full max-h-full object-cover select-none pointer-events-none -z-50"
                             src={ImgSwit}
-                            alt="Switzerland"
+                            alt="Desk"
                             width={1500}
                             height={10}
                             priority
