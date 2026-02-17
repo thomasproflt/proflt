@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import ImgSwit from "@/public/startup/workperch-m-jcgSZlLS0-unsplash.jpg";
+import ImgSwit from "@/public/startup/ayumi-kubo-XsvXI1v4gBQ-unsplash.jpg";
 
 export default function Consultancy() {
     useEffect(() => {
