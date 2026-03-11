@@ -8,19 +8,11 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed inset-x-0 z-50 bg-[hsla(0,0%,10%,0.8)] backdrop-blur-lg">
-      <div className="flex items-center justify-between px-4 sm:px-10 lg:px-20 py-4">
-        {/* Logo */}
-        <Image
-          className="select-none pointer-events-none"
-          src="/favicon.svg"
-          alt="Logo"
-          width={45}
-          height={16}
-        />
+    <nav className="fixed inset-x-0 z-50 bg-[#0D0D0D]">
+      <div className="flex items-center justify-center px-4 sm:px-10 lg:px-20 py-5">
 
         {/* Desktop menu */}
-        <div className="hidden md:flex items-center gap-5">
+        <div className="hidden md:flex items-center justify-center gap-10">
           <NavLinks />
         </div>
 
@@ -70,35 +62,57 @@ function NavLinks({ onClick }: { onClick?: () => void }) {
       <Link
         href="/#home"
         onClick={onClick}
-        className="text-[15px] text-zinc-300 hover:text-zinc-400 transition"
+        className="text-[15px] font-semibold text-zinc-300 hover:text-zinc-400 transition-all duration-500"
       >
         Início
       </Link>
 
       <Link
-        href="/#about"
+        href="/resume#home"
         onClick={onClick}
-        className="text-[15px] text-zinc-300 hover:text-zinc-400 transition"
+        className="text-[15px] font-semibold text-zinc-300 hover:text-zinc-400 transition-all duration-500"
       >
-        Sobre mim
+        Resumo
       </Link>
 
       <Link
-        href="/#recommendation"
+        href="/brand#home"
         onClick={onClick}
-        className="text-[15px] text-zinc-300 hover:text-zinc-400 transition"
+        className="text-[15px] font-semibold text-zinc-300 hover:text-zinc-400 transition-all duration-500"
       >
-        Recomendações
+        Marca
       </Link>
 
       <Link
-        href="https://wa.me/5566996399303?text=Ol%C3%A1%2C%20olhei%20seu%20portf%C3%B3lio%20e%20notei%20um%20grande%20valor!"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/right-choice#home"
         onClick={onClick}
-        className="mt-2 flex items-center justify-center text-[14px] border dark:border-[hsla(0,0%,100%,0.2)] dark:bg-[hsla(0,0%,14%,0.5)] dark:hover:bg-[hsl(0,0%,17%)] px-4 py-3 rounded-2xl transition"
+        className="text-[15px] font-semibold text-zinc-300 hover:text-zinc-400 transition-all duration-500"
       >
-        Comece agora
+        Escolha Certa
+      </Link>
+
+      <Link
+        href="/playbook#home"
+        onClick={onClick}
+        className="text-[15px] font-semibold text-zinc-300 hover:text-zinc-400 transition-all duration-500"
+      >
+        Playbook
+      </Link>
+
+      <Link
+        href="/contact#home"
+        onClick={onClick}
+        className="text-[15px] font-semibold text-zinc-300 hover:text-zinc-400 transition-all duration-500"
+      >
+        Contato
+      </Link>
+
+      <Link
+        href="/#work"
+        onClick={onClick}
+        className="text-[15px] font-semibold text-zinc-300 hover:text-zinc-400 transition-all duration-500"
+      >
+        Trabalho
       </Link>
     </>
   );

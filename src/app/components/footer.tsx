@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-50 font-sans dark:bg-[hsl(0,0%,10%)] px-4 sm:px-10 lg:px-40 py-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+    <footer className="bg-zinc-50 font-sans dark:bg-[#0D0D0D] px-4 sm:px-10 lg:px-[10rem] py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 justify-center justify-items-center mb-[5rem]">
         {/**
          * <div className="flex flex-col gap-1">
           <li className="list-none">
@@ -68,32 +68,6 @@ export default function Footer() {
               Marca
             </Link>
           </li>
-          <li className="list-none">
-            <Link
-              href="/startup"
-              className="text-[14px] text-zinc-400 hover:text-zinc-200 transition-all duration-300"
-            >
-              Startup
-            </Link>
-          </li>
-        </div>
-        <div className="flex flex-col gap-1">
-          <li className="list-none">
-            <a
-              href="#"
-              className="text-[14px] text-zinc-400 hover:text-zinc-200 transition-all duration-300"
-            >
-              Projetos
-            </a>
-          </li>
-          <li className="list-none">
-            <a
-              href="#"
-              className="text-[14px] text-zinc-400 hover:text-zinc-200 transition-all duration-300"
-            >
-              Desenvolvimentos
-            </a>
-          </li>
         </div>
         <div className="flex flex-col gap-1">
           <li className="list-none">
@@ -128,17 +102,17 @@ export default function Footer() {
           </li>
           <li className="list-none">
             <a
-              href="https://discord.gg/5cfkhPnfew"
+              href="https://discord.gg/T3YsS7twAn"
               target="_blank"
               rel="noopener"
               className="text-[14px] text-zinc-400 hover:text-zinc-200 transition-all duration-300"
             >
-              Comunidade
+              Discord (Brand)
             </a>
           </li>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <Image
           className="select-none pointer-events-none"
           src="/favicon.svg"
@@ -147,7 +121,7 @@ export default function Footer() {
           height={10}
           priority
         />
-        <p className="text-[14px] text-light text-zinc-400">2026 Thomas Inc.</p>
+        <p className="text-[14px] text-light text-zinc-400">© 2026 Thomas.</p>
       </div>
     </footer>
   );
