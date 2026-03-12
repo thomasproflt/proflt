@@ -521,7 +521,7 @@ export default function RightChoice() {
                         <div className="overflow-hidden rounded-2xl">
                             <Image
                                 className="select-none pointer-events-none mb-5 rounded-2xl object-cover"
-                                src="/AI2jb08Beyhgk5Jr943gg0Cn6As.avif"
+                                src="/AI2jb02.png"
                                 alt="AI"
                                 width={420}
                                 height={500}

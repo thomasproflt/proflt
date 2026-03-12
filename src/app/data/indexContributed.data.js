@@ -1,10 +1,10 @@
 export const indexContributed = [
     {
         id: 1,
-        title: "Bolt Pharma",
-        tag: "Líder Sênior de UX Design",
+        title: "Aetheris AE",
+        tag: "CEO Founder & Diretor UX",
         description:
-            "Aumento da adoção do faturamento PayPal",
+            "Estratégia de atração ao os usuários.",
     },
     {
         id: 2,

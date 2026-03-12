@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   title: "Projetos Dinâmicos — Portfólio",
   description: "I develop projetcs dinamics",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
 };
 

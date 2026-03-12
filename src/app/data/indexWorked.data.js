@@ -14,7 +14,7 @@ export const indexWorked = [
         description: (
             <>
                 Plataformas de <span className="highlight-text-black">streaming</span> em <span className="highlight-text-black">
-música, podcasts</span> e <span className="highlight-text-black">assinaturas de vídeo sob demanda.</span>
+                    filmes e séries.</span>
             </>
         ),
     },
@@ -22,8 +22,12 @@ música, podcasts</span> e <span className="highlight-text-black">assinaturas de
         id: 3,
         description: (
             <>
-                <span className="highlight-text-black">Soluções completas de checkout para web e aplicativos</span>,
+                <span className="highlight-text-black">Soluções completas de checkout para web</span>
+                {/**
                 combinadas com <span className="highlight-text-black">serviços de pagamento integrados em lojas físicas.</span>
+                 * 
+                 * 
+                */}
             </>
         ),
     },
