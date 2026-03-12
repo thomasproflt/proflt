@@ -260,7 +260,10 @@ export default function Resume() {
                         </h1>
 
                         <p className="text-center max-w-[45rem] font-semibold text-[18px] text-zinc-600 dark:text-zinc-700">
-                            Nascido e criado em Gotland, na Suécia, aprendi desde cedo o valor da adaptabilidade e da colaboração. Esses princípios ainda guiam minha forma de trabalhar: ouvir ativamente, fazer as perguntas certas e ajudar outras pessoas a alcançarem sucesso. Baseado em Estocolmo durante a maior parte da minha carreira, também trabalhei de perto com equipes em Oslo, Londres, Tel Aviv, Nova York, San Jose e Kuala Lumpur.
+                            Nascido em Sinop, no Brasil, aprendi desde cedo o valor da adaptabilidade, da colaboração e da construção de relações sólidas. Esses princípios ainda guiam minha forma de trabalhar: ouvir com atenção, fazer as perguntas certas e contribuir para que outras pessoas também alcancem sucesso.
+                            <br />
+                            <br />
+                            Ao longo da minha carreira, tive a oportunidade de contribuir com diferentes pessoas e profissionais em diversos contextos, compartilhando conhecimento, trocando experiências e fortalecendo conexões. Mais do que apenas desenvolver projetos, meu foco sempre foi criar networking e gerar valor para outras pessoas, ajudando profissionais e negócios a crescerem juntos.
                         </p>
                     </div>
 

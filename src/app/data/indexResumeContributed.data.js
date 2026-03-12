@@ -9,17 +9,17 @@ export const indexResumeContributed = [
         id: 1,
         svg: ChevronDown,
         title: "Aetheris AE",
-        tag: "Gerente de Design de Produto & UX",
+        tag: "CEO Founder & Diretor UX",
         date: "2026",
         description: (
             <>
-                Como Gerente de Design de Produto e UX na Podme, lidero a criação de experiências impactantes que entregam valor real tanto para os usuários quanto para o negócio. Ao promover uma abordagem orientada por pesquisa, ajudo a revelar insights que guiam a inovação, reduzem riscos e definem uma visão clara de UX alinhada aos objetivos da empresa.
+                A Aetheris AE é um projeto voltado à construção de presença digital sólida para empreendedores, marcas e profissionais. A proposta da empresa é estruturar a base digital dos negócios através de estratégia, design e desenvolvimento web.
                 <br />
                 <br />
-                Capacito equipes de design a evoluírem de uma atuação tática para uma influência estratégica, promovendo confiança, estrutura e colaboração entre produto, tecnologia e negócios. Meu foco está em construir operações de design sólidas e estabelecer práticas contínuas de pesquisa que nos mantenham à frente das mudanças.
+                Dentro da Aetheris AE, meu papel envolve liderar a criação de soluções digitais, definir direções estratégicas de UX e estruturar plataformas que representem de forma clara o posicionamento de cada marca na internet.
                 <br />
                 <br />
-                Minha missão é elevar o design como um parceiro estratégico dentro da Podme, impulsionando transformações, orientando equipes e ajudando líderes a utilizarem o design como uma ferramenta para decisões mais rápidas e inteligentes.
+                O foco está em ajudar clientes a profissionalizar sua presença online, transformar ideias em produtos digitais funcionais e construir uma base digital preparada para crescimento de longo prazo.
             </>
         ),
     },
@@ -31,13 +31,13 @@ export const indexResumeContributed = [
         date: "2026",
         description: (
             <>
-                Como Gerente de Design de Produto e UX na Podme, lidero a criação de experiências impactantes que entregam valor real tanto para os usuários quanto para o negócio. Ao promover uma abordagem orientada por pesquisa, ajudo a revelar insights que guiam a inovação, reduzem riscos e definem uma visão clara de UX alinhada aos objetivos da empresa.
+                Bolt Pharma foi um projeto desenvolvido para um cliente internacional no segmento de produtos farmacêuticos. O trabalho consistiu na criação e estruturação do site da marca, respeitando as diretrizes e preferências definidas pelo cliente.
                 <br />
                 <br />
-                Capacito equipes de design a evoluírem de uma atuação tática para uma influência estratégica, promovendo confiança, estrutura e colaboração entre produto, tecnologia e negócios. Meu foco está em construir operações de design sólidas e estabelecer práticas contínuas de pesquisa que nos mantenham à frente das mudanças.
+                Durante o desenvolvimento, atuei no design da interface e na aplicação de princípios de UX para organizar a navegação, melhorar a apresentação dos produtos e estruturar uma experiência digital clara e funcional.
                 <br />
                 <br />
-                Minha missão é elevar o design como um parceiro estratégico dentro da Podme, impulsionando transformações, orientando equipes e ajudando líderes a utilizarem o design como uma ferramenta para decisões mais rápidas e inteligentes.
+                O objetivo do projeto foi entregar uma plataforma alinhada à identidade desejada pelo cliente, garantindo uma experiência de uso consistente e uma apresentação profissional dos produtos dentro do ambiente web.
             </>
         ),
     },

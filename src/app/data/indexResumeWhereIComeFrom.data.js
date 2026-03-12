@@ -11,7 +11,7 @@ export const indexResumeWhereIComeFrom = [
         title: "Por que eu projeto",
         description: (
             <>
-                Sou apaixonado por transformar visão em resultados, alinhando design aos objetivos do negócio, às necessidades dos usuários e ao crescimento das equipes. Para mim, design não é apenas criar — é possibilitar mudanças significativas.
+                Eu projeto para transformar ideias em soluções estruturadas que geram resultados reais. Meu foco é alinhar estratégia, experiência e tecnologia para construir produtos digitais sólidos, claros e orientados ao crescimento de negócios e marcas.
             </>
         ),
     },
@@ -21,7 +21,7 @@ export const indexResumeWhereIComeFrom = [
         title: "O que eu trago",
         description: (
             <>
-                Por mais de 20 anos, foquei em criar experiências significativas para usuários — encontrando as pessoas onde elas estão e construindo entendimento compartilhado. Meu trabalho inclui orientar líderes e stakeholders na adoção de estratégias centradas em experiência, liderar equipes de design e atuar diretamente como designer de UX e produto.
+                Busco ativamente compartilhar com meus clientes estratégias e tendências que fortalecem sua presença digital e promovem suas marcas com um posicionamento sólido na web. Meu trabalho envolve orientar decisões, estruturar soluções digitais e apoiar negócios na construção de uma presença online mais estratégica e profissional.
             </>
         ),
     },

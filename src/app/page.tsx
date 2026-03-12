@@ -222,7 +222,7 @@ export default function Home() {
                 Recentemente trabalhei no desenvolvimento da <span className="highlight-text">Aetheris AE</span>, criando <span className="highlight-text">estrutura digital</span> e <span className="highlight-text">arquitetura de produtos.</span>
               </h1>
 
-              <div className="relative flex w-[23rem] h-[19.65rem] md:hidden lg:hidden">
+              <div className="relative flex w-[20rem] h-[17.3rem] md:hidden lg:hidden">
                 <Image
                   className="object-cover select-none pointer-events-none mb-[2rem]"
                   src={ImgTablet}
