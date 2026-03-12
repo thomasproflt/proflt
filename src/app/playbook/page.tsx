@@ -23,14 +23,14 @@ const ChevronDown = (
 
 export default function RightChoice() {
     const [opacity, setOpacity] = useState(1);
-    const whoAreOurUsersFade = useFadeOutOnScroll(2.0);
-    const currentExperienceFade = useFadeOutOnScroll(2.0);
-    const betterFutureFade = useFadeOutOnScroll(2.0);
-    const ourValuePropositionFade = useFadeOutOnScroll(2.0);
-    const valueInReturnFade = useFadeOutOnScroll(2.0);
-    const greatJobFade = useFadeOutOnScroll(2.0);
-    const havingTheExperienceFade = useFadeOutOnScroll(2.0);
-    const outcomeFade = useFadeOutOnScroll(2.0);
+    const whoAreOurUsersFade = useFadeOutOnScroll(4.0);
+    const currentExperienceFade = useFadeOutOnScroll(4.0);
+    const betterFutureFade = useFadeOutOnScroll(4.0);
+    const ourValuePropositionFade = useFadeOutOnScroll(4.0);
+    const valueInReturnFade = useFadeOutOnScroll(4.0);
+    const greatJobFade = useFadeOutOnScroll(4.0);
+    const havingTheExperienceFade = useFadeOutOnScroll(4.0);
+    const outcomeFade = useFadeOutOnScroll(4.0);
     const endPageFade = useFadeOutOnScroll(2.0);
 
     useEffect(() => {
@@ -63,10 +63,10 @@ export default function RightChoice() {
                     }}
                     className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-30 transition-all duration-300"
                 >
-                    <h1 className="max-w-full text-6xl text-zinc-600 dark:text-zinc-400">
+                    <h1 className="max-w-full text-3xl md:text-6xl text-zinc-600 dark:text-zinc-400">
                         Onde a Estratégia<br /><span className="highlight-text">Encontra a Experiência.</span>
                     </h1>
-                    <p className="max-w-[40rem] text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                    <p className="max-w-[40rem] text-[14px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
                         Vou ajudar você a criar clareza, reduzir riscos e responder perguntas estratégicas com confiança, fortalecendo tanto a experiência do usuário quanto os resultados do negócio.
                     </p>
 
@@ -99,7 +99,7 @@ export default function RightChoice() {
                         Vou ajudar você a definir...
                     </p>
 
-                    <div className="grid grid-cols-3 max-w-7xl w-full gap-5 mb-[5rem]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5 mb-[5rem]">
                         {indexWhoAreOurUsers.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -154,7 +154,7 @@ export default function RightChoice() {
                         Vou ajudar você a trazer clareza sobre...
                     </p>
 
-                    <div className="grid grid-cols-3 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
                         {indexCurrentExperience.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -209,7 +209,7 @@ export default function RightChoice() {
                         Vou trabalhar com você para identificar...
                     </p>
 
-                    <div className="grid grid-cols-3 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
                         {indexBetterFuture.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -264,7 +264,7 @@ export default function RightChoice() {
                         Vou guiar você na descoberta de...
                     </p>
 
-                    <div className="grid grid-cols-3 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
                         {indexOurValueProposition.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -319,7 +319,7 @@ export default function RightChoice() {
                         Vou trabalhar com você para...
                     </p>
 
-                    <div className="grid grid-cols-3 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
                         {indexValueInReturn.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -374,7 +374,7 @@ export default function RightChoice() {
                         Vou ajudar você a alcançar resultados que irão...
                     </p>
 
-                    <div className="grid grid-cols-2 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
                         {indexGreatJob.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -429,7 +429,7 @@ export default function RightChoice() {
                         Vou ajudar você a mapear...
                     </p>
 
-                    <div className="grid grid-cols-2 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
                         {indexHavingTheExperience.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -484,7 +484,7 @@ export default function RightChoice() {
                         Vou ajudar você a criar experiências projetadas que irão...
                     </p>
 
-                    <div className="grid grid-cols-3 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
                         {indexOutcome.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -517,7 +517,7 @@ export default function RightChoice() {
                     style={{ opacity: endPageFade.opacity }}
                     className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
                 >
-                    <div className="flex flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
+                    <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
                         <div className="overflow-hidden rounded-2xl">
                             <Image
                                 className="select-none pointer-events-none mb-5 rounded-2xl object-cover"
@@ -529,7 +529,7 @@ export default function RightChoice() {
                             />
                         </div>
                         <div className="flex flex-col items-start justify-center">
-                            <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                            <h1 className="text-left text-2xl md:text-center md:text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
                                 Portfólio
                             </h1>
                             <p className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
@@ -537,19 +537,19 @@ export default function RightChoice() {
                             </p>
                             <div className="flex items-center justify-center gap-5">
                                 <a
-                                    href={"/#work"}
+                                    href={"/right-choice"}
                                     className="flex items-center justify-center gap-2 bg-white border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-white/80 transition-all duration-200"
                                 >
-                                    <span className="text-[16px] text-black font-medium">Ver Projetos</span>
+                                    <span className="text-[11px] md:text-[16px] text-black font-medium">Ver trabalho</span>
                                 </a>
 
                                 <a
                                     href={
-                                        "#form"
+                                        "/playbook#home"
                                     }
                                     className="flex items-center justify-center gap-2 border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-[hsl(0,0%,13%)] transition-all duration-200"
                                 >
-                                    <span className="text-[16px] text-white">Ver Playbook</span>
+                                    <span className="text-[11px] md:text-[16px] text-white">Por que sou a escolha certa</span>
                                 </a>
                             </div>
                         </div>

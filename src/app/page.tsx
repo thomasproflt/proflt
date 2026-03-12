@@ -69,10 +69,10 @@ export default function Home() {
               priority
             />
           </div>
-          <h1 className="max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-400">
+          <h1 className="max-w-[35rem] text-3xl md:text-4xl text-zinc-600 dark:text-zinc-400">
             Eu sou Thomas, <span className="highlight-text">acelerando seu negócio</span> ao melhorar vidas.
           </h1>
-          <p className="max-w-full text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+          <p className="max-w-full text-[16px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             Liderar a estratégia de experiência do usuário, da concepção ao produto final.
           </p>
           <a
@@ -115,7 +115,7 @@ export default function Home() {
               Eu ajudo você a <span className="highlight-text-black">estruturar seu negócio digital</span> e <span className="highlight-text-black">construir resultados</span> que realmente importam.
             </h1>
           </div>
-          <div className="flex flex-row gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {indexValues.map((item) => (
               <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -150,7 +150,7 @@ export default function Home() {
               Atuo como <span className="highlight-text">consultor estratégico</span> e <span className="highlight-text">desenvolvedor de soluções digitais</span> para:
             </h1>
           </div>
-          <div className="grid grid-cols-2 max-w-7xl w-full gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-10">
             {indexContributed.map((item) => (
               <div key={item.id} className="bg-[#0D0D0D] p-5 rounded-2xl hover:bg-[#121111] transition-all duration-150 cursor-pointer">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -190,7 +190,7 @@ export default function Home() {
             </h1>
           </div>
 
-          <div className="flex flex-row gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {indexWorked.map((item) => (
               <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -209,18 +209,29 @@ export default function Home() {
 
       <section
         id="values"
-        className="flex container w-full max-w-full min-h-[0rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
+        className="flex flex-col container w-full max-w-full min-h-[0rem] bg-[#0D0D0D] items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
       >
         <div
           ref={recentlyWorkedFade.ref}
           style={{ opacity: recentlyWorkedFade.opacity }}
           className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
         >
-          <div className="relative z-20 flex flex-row max-w-9xl w-full justify-between gap-0 py-0 mb-10">
+          <div className="relative z-20 flex flex-col lg:flex-row max-w-7xl w-full justify-between gap-0 py-0 mb-10">
             <div className="flex flex-col">
               <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]">
                 Recentemente trabalhei no desenvolvimento da <span className="highlight-text">Aetheris AE</span>, criando <span className="highlight-text">estrutura digital</span> e <span className="highlight-text">arquitetura de produtos.</span>
               </h1>
+
+              <div className="relative flex w-[23rem] h-[19.65rem] md:hidden lg:hidden">
+                <Image
+                  className="object-cover select-none pointer-events-none mb-[2rem]"
+                  src={ImgTablet}
+                  alt="AI"
+                  width={600}
+                  height={600}
+                  priority
+                />
+              </div>
 
               <Image
                 className="select-none pointer-events-none mb-[2rem]"
@@ -239,9 +250,9 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="absolute -right-60">
+            <div className="hidden md:flex md:w-[20rem] md:h-[20rem] absolute md:-right-[15rem] lg:w-[40rem] lg:h-[30.7rem] lg:-right-60">
               <Image
-                className="select-none pointer-events-none mb-[2rem]"
+                className="object-cover select-none pointer-events-none mb-[2rem]"
                 src={ImgTablet}
                 alt="AI"
                 width={600}
@@ -316,7 +327,7 @@ export default function Home() {
           style={{ opacity: endPageFade.opacity }}
           className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
         >
-          <div className="flex flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
+          <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
             <div className="overflow-hidden rounded-2xl">
               <Image
                 className="select-none pointer-events-none mb-5 rounded-2xl object-cover"
@@ -328,7 +339,7 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-col items-start justify-center">
-              <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+              <h1 className="text-left text-2xl md:text-center md:text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
                 O Que Eu Trago
               </h1>
               <p className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
@@ -339,7 +350,7 @@ export default function Home() {
                   href={"/right-choice"}
                   className="flex items-center justify-center gap-2 bg-white border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-white/80 transition-all duration-200"
                 >
-                  <span className="text-[16px] text-black font-medium">Por que trabalhar comigo</span>
+                  <span className="text-[11px] md:text-[16px] text-black font-medium">Por que trabalhar comigo</span>
                 </a>
 
                 <a
@@ -348,7 +359,7 @@ export default function Home() {
                   }
                   className="flex items-center justify-center gap-2 border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-[hsl(0,0%,13%)] transition-all duration-200"
                 >
-                  <span className="text-[16px] text-white">Ver Playbook</span>
+                  <span className="text-[11px] md:text-[16px] text-white">Ver Playbook</span>
                 </a>
               </div>
             </div>

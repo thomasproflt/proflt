@@ -71,7 +71,7 @@ export default function Resume() {
                         opacity,
                         transform: `translateY(${(1 - opacity) * 80}px)`
                     }}
-                    className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-30 transition-all duration-300"
+                    className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-[10rem] mb-0 transition-all duration-300"
                 >
                     <Image
                         className="dark:invert select-none pointer-events-none mb-5"
@@ -81,10 +81,10 @@ export default function Resume() {
                         height={10}
                         priority
                     />
-                    <h1 className="max-w-[60rem] text-5xl text-zinc-600 dark:text-zinc-500">
+                    <h1 className="max-w-[60rem] text-3xl md:text-5xl text-zinc-600 dark:text-zinc-500">
                         Trago uma <span className="highlight-text-black">abordagem centrada no ser humano</span> para o <span className="highlight-text-black">crescimento de produtos</span> e <span className="highlight-text-black">para melhorar a vida das pessoas.</span>
                     </h1>
-                    <p className="max-w-full font-semibold text-lg leading-8 text-zinc-600 dark:text-zinc-600">
+                    <p className="max-w-full font-semibold text-[16px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-600">
                         Conectando necessidades humanas aos resultados de negócios.
                     </p>
                     <div className="flex items-center justify-center gap-5">
@@ -130,7 +130,7 @@ export default function Resume() {
                             Como <span className="highlight-text-black">eu trabalho.</span>
                         </h1>
                     </div>
-                    <div className="flex flex-row gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {indexTheWayIWork.map((item) => (
                             <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -165,7 +165,7 @@ export default function Resume() {
                         </h1>
                     </div>
 
-                    <div className="flex flex-row gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {indexWorked.map((item) => (
                             <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -196,7 +196,7 @@ export default function Resume() {
                         </h1>
                     </div>
 
-                    <div className="grid grid-cols-2 w-full max-w-full gap-10 items-start">
+                    <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-full gap-10 items-start">
                         {indexResumeContributed.map((item) => {
                             const isOpen = openItem === item.id;
 
@@ -264,7 +264,7 @@ export default function Resume() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 w-full max-w-full gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-full gap-10">
                         {indexResumeWhereIComeFrom.map((item) => (
                             <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -293,7 +293,7 @@ export default function Resume() {
                     style={{ opacity: endPageFade.opacity }}
                     className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
                 >
-                    <div className="flex flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
+                    <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
                         <div className="overflow-hidden rounded-2xl">
                             <Image
                                 className="select-none pointer-events-none mb-5 rounded-2xl object-cover"
@@ -305,7 +305,7 @@ export default function Resume() {
                             />
                         </div>
                         <div className="flex flex-col items-start justify-center">
-                            <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                            <h1 className="text-left text-2xl md:text-center md:text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
                                 Portfólio
                             </h1>
                             <p className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
@@ -313,19 +313,19 @@ export default function Resume() {
                             </p>
                             <div className="flex items-center justify-center gap-5">
                                 <a
-                                    href={"/#work"}
+                                    href={"/right-choice"}
                                     className="flex items-center justify-center gap-2 bg-white border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-white/80 transition-all duration-200"
                                 >
-                                    <span className="text-[16px] text-black font-medium">Ver trabalho</span>
+                                    <span className="text-[11px] md:text-[16px] text-black font-medium">Ver trabalho</span>
                                 </a>
 
                                 <a
                                     href={
-                                        "/right-choice"
+                                        "/playbook#home"
                                     }
                                     className="flex items-center justify-center gap-2 border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-[hsl(0,0%,13%)] transition-all duration-200"
                                 >
-                                    <span className="text-[16px] text-white">Por que sou a escolha certa</span>
+                                    <span className="text-[11px] md:text-[16px] text-white">Por que sou a escolha certa</span>
                                 </a>
                             </div>
                         </div>
@@ -333,7 +333,9 @@ export default function Resume() {
                 </div>
 
             </section>
+
             <Footer />
+
             <section
                 className="flex relative container w-full max-w-full min-h-[0rem]"
             >

@@ -20,11 +20,11 @@ const ChevronDown = (
 
 export default function RightChoice() {
     const [opacity, setOpacity] = useState(1);
-    const operationalFade = useFadeOutOnScroll(2.0);
+    const operationalFade = useFadeOutOnScroll(4.0);
     const buildingTeamsFade = useFadeOutOnScroll(2.0);
-    const strategicPartnerFade = useFadeOutOnScroll(2.0);
-    const visionDrivenFade = useFadeOutOnScroll(2.0);
-    const bringingDesignFade = useFadeOutOnScroll(2.0);
+    const strategicPartnerFade = useFadeOutOnScroll(4.0);
+    const visionDrivenFade = useFadeOutOnScroll(4.0);
+    const bringingDesignFade = useFadeOutOnScroll(4.0);
     const endPageFade = useFadeOutOnScroll(2.0);
 
     useEffect(() => {
@@ -57,10 +57,10 @@ export default function RightChoice() {
                     }}
                     className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-30 transition-all duration-300"
                 >
-                    <h1 className="max-w-full text-6xl text-zinc-600 dark:text-zinc-400">
+                    <h1 className="max-w-full text-3xl md:text-6xl text-zinc-600 dark:text-zinc-400">
                         Eu ajudo você<br /><span className="highlight-text">a estruturar sua presença digital.</span>
                     </h1>
-                    <p className="max-w-[50rem] text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                    <p className="max-w-[50rem] text-[14px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
                         Trabalho lado a lado com empreendedores e empresas para diagnosticar problemas estratégicos, estruturar soluções digitais e desenvolver plataformas que geram autoridade, eficiência e crescimento real.
                     </p>
 
@@ -98,7 +98,7 @@ export default function RightChoice() {
                         Veja como posso ajudar...
                     </p>
 
-                    <div className="grid grid-cols-2 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
                         {indexOperationalLeadership.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -139,16 +139,16 @@ export default function RightChoice() {
                         Building Strong Foundations.
                     </h1>
                     <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
-                        Grandes negócios são construídos sobre estruturas sólidas. Eu ajudo empreendedores a transformar 
-    ideias em arquiteturas digitais claras — combinando estratégia, posicionamento e tecnologia para 
-    criar presença digital profissional.
+                        Grandes negócios são construídos sobre estruturas sólidas. Eu ajudo empreendedores a transformar
+                        ideias em arquiteturas digitais claras — combinando estratégia, posicionamento e tecnologia para
+                        criar presença digital profissional.
                     </p>
 
                     <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
                         O que eu trago para a mesa...
                     </p>
 
-                    <div className="grid grid-cols-2 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
                         {indexBuildingTeams.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -189,15 +189,15 @@ export default function RightChoice() {
                         A Strategic Partner.
                     </h1>
                     <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
-                        Meu trabalho vai além de criar sites. Eu atuo como parceiro estratégico, ajudando empresas a 
-    transformar sua presença digital em uma estrutura capaz de gerar clientes, autoridade e vantagem competitiva.
+                        Meu trabalho vai além de criar sites. Eu atuo como parceiro estratégico, ajudando empresas a
+                        transformar sua presença digital em uma estrutura capaz de gerar clientes, autoridade e vantagem competitiva.
                     </p>
 
                     <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
                         Como posso contribuir...
                     </p>
 
-                    <div className="grid grid-cols-2 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
                         {indexStrategicPartner.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -238,15 +238,15 @@ export default function RightChoice() {
                         Vision-Driven.
                     </h1>
                     <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
-                        Negócios evoluem quando existe clareza de visão. Eu ajudo marcas e empreendedores a estruturar 
-    uma presença digital alinhada ao futuro — conectando identidade, tecnologia e estratégia de crescimento.
+                        Negócios evoluem quando existe clareza de visão. Eu ajudo marcas e empreendedores a estruturar
+                        uma presença digital alinhada ao futuro — conectando identidade, tecnologia e estratégia de crescimento.
                     </p>
 
                     <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
                         Veja como isso se traduz na prática...
                     </p>
 
-                    <div className="grid grid-cols-2 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
                         {indexVisionDriven.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -287,15 +287,15 @@ export default function RightChoice() {
                         Bringing Ideas to Life.
                     </h1>
                     <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
-                        Estratégia só tem valor quando se transforma em execução. Por isso, além da consultoria estratégica, 
-    também desenvolvo websites, landing pages e sistemas digitais que materializam a presença e o posicionamento das marcas.
+                        Estratégia só tem valor quando se transforma em execução. Por isso, além da consultoria estratégica,
+                        também desenvolvo websites, landing pages e sistemas digitais que materializam a presença e o posicionamento das marcas.
                     </p>
 
                     <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
                         Formas de apoiar seu projeto...
                     </p>
 
-                    <div className="grid grid-cols-2 max-w-7xl w-full gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
                         {indexBringingDesign.map((item) => (
                             <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
@@ -328,7 +328,7 @@ export default function RightChoice() {
                     style={{ opacity: endPageFade.opacity }}
                     className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
                 >
-                    <div className="flex flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
+                    <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
                         <div className="overflow-hidden rounded-2xl">
                             <Image
                                 className="select-none pointer-events-none mb-5 rounded-2xl object-cover"
@@ -340,27 +340,27 @@ export default function RightChoice() {
                             />
                         </div>
                         <div className="flex flex-col items-start justify-center">
-                            <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                            <h1 className="text-left text-2xl md:text-center md:text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
                                 Portfólio
                             </h1>
                             <p className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
-                                Explore como estratégia, tecnologia e posicionamento podem transformar a presença digital de um negócio.
+                                Explore como minha experiência pode apoiar suas necessidades.
                             </p>
                             <div className="flex items-center justify-center gap-5">
                                 <a
-                                    href={"/#work"}
+                                    href={"/right-choice"}
                                     className="flex items-center justify-center gap-2 bg-white border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-white/80 transition-all duration-200"
                                 >
-                                    <span className="text-[16px] text-black font-medium">Ver trabalho</span>
+                                    <span className="text-[11px] md:text-[16px] text-black font-medium">Ver trabalho</span>
                                 </a>
 
                                 <a
                                     href={
-                                        "#form"
+                                        "/playbook#home"
                                     }
                                     className="flex items-center justify-center gap-2 border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-[hsl(0,0%,13%)] transition-all duration-200"
                                 >
-                                    <span className="text-[16px] text-white">View Playbook</span>
+                                    <span className="text-[11px] md:text-[16px] text-white">Por que sou a escolha certa</span>
                                 </a>
                             </div>
                         </div>
