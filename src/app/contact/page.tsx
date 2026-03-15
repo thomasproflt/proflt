@@ -2,12 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import useFadeOutOnScroll from "../hooks/useFadeOutOnScroll";
-import Brands from "../components/brands";
-import { motion } from "framer-motion";
+import { motion, Variants, easeOut } from "framer-motion";
 
 const ChevronDown = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -15,7 +12,7 @@ const ChevronDown = (
     </svg>
 );
 
-const textLeft = {
+const textLeft: Variants = {
     hidden: {
         opacity: 0,
         x: -80
@@ -25,12 +22,12 @@ const textLeft = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: "easeOut"
+            ease: easeOut
         }
     }
 };
 
-const textRight = {
+const textRight: Variants = {
     hidden: {
         opacity: 0,
         x: 80
@@ -47,8 +44,6 @@ const textRight = {
 
 export default function Contact() {
     const [opacity, setOpacity] = useState(1);
-    const formFade = useFadeOutOnScroll(2.0);
-    const endPageFade = useFadeOutOnScroll(2.0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -133,11 +128,7 @@ export default function Contact() {
                 id="form"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-center sm:justify-center"
             >
-                <div
-                    ref={formFade.ref}
-                    style={{ opacity: formFade.opacity }}
-                    className="relative z-20 flex flex-col items-center justify-center gap-6 py-0 mb-10"
-                >
+                <div className="relative z-20 flex flex-col items-center justify-center gap-6 py-0 mb-10">
                     <motion.h1
                         variants={textLeft}
                         initial="hidden"

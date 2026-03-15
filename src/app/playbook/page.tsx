@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import { motion } from "framer-motion";
+import { motion, Variants, easeOut } from "framer-motion";
 import { indexWhoAreOurUsers } from "../data/indexWhoAreOurUsers.data";
 import { indexCurrentExperience } from "../data/indexCurrentExperience.data";
 import { indexBetterFuture } from "../data/indexBetterFuture.data";
@@ -14,7 +13,6 @@ import { indexValueInReturn } from "../data/indexValueInReturn.data";
 import { indexGreatJob } from "../data/indexGreatJob.data";
 import { indexHavingTheExperience } from "../data/indexHavingTheExperience.data";
 import { indexOutcome } from "../data/indexOutcome.data";
-import useFadeOutOnScroll from "../hooks/useFadeOutOnScroll";
 
 const ChevronDown = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -22,7 +20,7 @@ const ChevronDown = (
     </svg>
 );
 
-const textLeft = {
+const textLeft: Variants = {
     hidden: {
         opacity: 0,
         x: -80
@@ -32,12 +30,12 @@ const textLeft = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: "easeOut"
+            ease: easeOut
         }
     }
 };
 
-const textRight = {
+const textRight: Variants = {
     hidden: {
         opacity: 0,
         x: 80
@@ -52,7 +50,7 @@ const textRight = {
     }
 };
 
-const catalogContainer = {
+const catalogContainer: Variants = {
     hidden: {},
     visible: {
         transition: {
@@ -61,7 +59,7 @@ const catalogContainer = {
     }
 };
 
-const catalogItem = {
+const catalogItem: Variants = {
     hidden: {
         opacity: 0,
         y: 40
@@ -78,15 +76,6 @@ const catalogItem = {
 
 export default function RightChoice() {
     const [opacity, setOpacity] = useState(1);
-    const whoAreOurUsersFade = useFadeOutOnScroll(4.0);
-    const currentExperienceFade = useFadeOutOnScroll(4.0);
-    const betterFutureFade = useFadeOutOnScroll(4.0);
-    const ourValuePropositionFade = useFadeOutOnScroll(4.0);
-    const valueInReturnFade = useFadeOutOnScroll(4.0);
-    const greatJobFade = useFadeOutOnScroll(4.0);
-    const havingTheExperienceFade = useFadeOutOnScroll(4.0);
-    const outcomeFade = useFadeOutOnScroll(4.0);
-    const endPageFade = useFadeOutOnScroll(2.0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -150,11 +139,7 @@ export default function RightChoice() {
                 id="define"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={whoAreOurUsersFade.ref}
-                    style={{ opacity: whoAreOurUsersFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         DEFINE
                     </span>
@@ -226,11 +211,7 @@ export default function RightChoice() {
                 id="baseline"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={currentExperienceFade.ref}
-                    style={{ opacity: currentExperienceFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         BASELINE
                     </span>
@@ -303,11 +284,7 @@ export default function RightChoice() {
                 id="direction"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={betterFutureFade.ref}
-                    style={{ opacity: betterFutureFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         DIRECTION
                     </span>
@@ -379,11 +356,7 @@ export default function RightChoice() {
                 id="value"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={ourValuePropositionFade.ref}
-                    style={{ opacity: ourValuePropositionFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         VALUE
                     </span>
@@ -456,11 +429,7 @@ export default function RightChoice() {
                 id="business"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={valueInReturnFade.ref}
-                    style={{ opacity: valueInReturnFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         BUSINESS
                     </span>
@@ -533,11 +502,7 @@ export default function RightChoice() {
                 id="outcome"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={greatJobFade.ref}
-                    style={{ opacity: greatJobFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         UX OUTCOME
                     </span>
@@ -609,11 +574,7 @@ export default function RightChoice() {
                 id="problem"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={havingTheExperienceFade.ref}
-                    style={{ opacity: havingTheExperienceFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         PROBLEMS TO SOLVE
                     </span>
@@ -685,11 +646,7 @@ export default function RightChoice() {
                 id="solutions"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={outcomeFade.ref}
-                    style={{ opacity: outcomeFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         SOLUTIONS
                     </span>

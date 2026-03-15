@@ -2,18 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import useFadeOutOnScroll from "../hooks/useFadeOutOnScroll";
 import { indexBrandHelp } from "../data/indexBrandHelp.data";
-import { indexContributed } from "../data/indexContributed.data";
-import { indexWorked } from "../data/indexWorked.data";
-import ImgBrand from "@/public/brands/Subtract.png";
-import ImgTablet from "@/public/recently-worked/aetheris-tablet.png";
-import ImgPhone from "@/public/design-phone.png";
 import Brands from "../components/brands";
-import { motion } from "framer-motion";
+import { motion, Variants, easeOut } from "framer-motion";
 
 const ChevronDown = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -21,7 +14,7 @@ const ChevronDown = (
     </svg>
 );
 
-const textLeft = {
+const textLeft: Variants = {
     hidden: {
         opacity: 0,
         x: -80
@@ -31,12 +24,12 @@ const textLeft = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: "easeOut"
+            ease: easeOut
         }
     }
 };
 
-const textRight = {
+const textRight: Variants = {
     hidden: {
         opacity: 0,
         x: 80
@@ -51,7 +44,7 @@ const textRight = {
     }
 };
 
-const catalogContainer = {
+const catalogContainer: Variants = {
     hidden: {},
     visible: {
         transition: {
@@ -60,7 +53,7 @@ const catalogContainer = {
     }
 };
 
-const catalogItem = {
+const catalogItem: Variants = {
     hidden: {
         opacity: 0,
         y: 40
@@ -77,12 +70,6 @@ const catalogItem = {
 
 export default function Brand() {
     const [opacity, setOpacity] = useState(1);
-    const brandHelpFade = useFadeOutOnScroll(2.0);
-    const contributedFade = useFadeOutOnScroll(2.0);
-    const workedFade = useFadeOutOnScroll(2.0);
-    const recentlyWorkedFade = useFadeOutOnScroll(2.0);
-    const selectedWorkFade = useFadeOutOnScroll(4.0);
-    const endPageFade = useFadeOutOnScroll(2.0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -167,11 +154,7 @@ export default function Brand() {
                 id="brand-help"
                 className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={brandHelpFade.ref}
-                    style={{ opacity: brandHelpFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
                         <motion.h1
                             variants={textLeft}

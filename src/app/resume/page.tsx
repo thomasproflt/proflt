@@ -2,19 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants, easeOut } from "framer-motion";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import useFadeOutOnScroll from "../hooks/useFadeOutOnScroll";
 import { indexTheWayIWork } from "../data/indexTheWayIWork.data";
 import { indexResumeContributed } from "../data/indexResumeContributed.data";
 import { indexWorked } from "../data/indexWorked.data";
 import { indexResumeWhereIComeFrom } from "../data/indexResumeWhereIComeFrom.data";
-import ImgBrand from "@/public/brands/Subtract.png";
-import ImgTablet from "@/public/recently-worked/aetheris-tablet.png";
-import ImgPhone from "@/public/design-phone.png";
-import CodeWorkspace from "../components/codeWorkspace";
 import Brands from "../components/brands";
 
 const ChevronDown = (
@@ -29,7 +23,7 @@ const PlusIcon = (
     </svg>
 );
 
-const textLeft = {
+const textLeft: Variants = {
     hidden: {
         opacity: 0,
         x: -80
@@ -39,12 +33,12 @@ const textLeft = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: "easeOut"
+            ease: easeOut
         }
     }
 };
 
-const textRight = {
+const textRight: Variants = {
     hidden: {
         opacity: 0,
         x: 80
@@ -59,7 +53,7 @@ const textRight = {
     }
 };
 
-const catalogContainer = {
+const catalogContainer: Variants = {
     hidden: {},
     visible: {
         transition: {
@@ -68,7 +62,7 @@ const catalogContainer = {
     }
 };
 
-const catalogItem = {
+const catalogItem: Variants = {
     hidden: {
         opacity: 0,
         y: 40
@@ -85,12 +79,6 @@ const catalogItem = {
 
 export default function Resume() {
     const [opacity, setOpacity] = useState(1);
-    const valuesFade = useFadeOutOnScroll(2.0);
-    const contributedFade = useFadeOutOnScroll(2.0);
-    const workedFade = useFadeOutOnScroll(2.0);
-    const whereIComeFromFade = useFadeOutOnScroll(4.0);
-    const selectedWorkFade = useFadeOutOnScroll(4.0);
-    const endPageFade = useFadeOutOnScroll(2.0);
 
     const [openItem, setOpenItem] = useState<number | null>(null);
 
@@ -187,11 +175,7 @@ export default function Resume() {
                 id="the-way-i-work"
                 className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={valuesFade.ref}
-                    style={{ opacity: valuesFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
                         <motion.h1
                             variants={textLeft}
@@ -238,11 +222,7 @@ export default function Resume() {
             <section
                 className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[0rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center mb-[10rem]"
             >
-                <div
-                    ref={workedFade.ref}
-                    style={{ opacity: workedFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
                         <motion.h1
                             variants={textLeft}
@@ -284,11 +264,7 @@ export default function Resume() {
             <section
                 className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[0rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center mb-[10rem]"
             >
-                <div
-                    ref={contributedFade.ref}
-                    style={{ opacity: contributedFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
                         <motion.h1
                             variants={textLeft}
@@ -363,11 +339,7 @@ export default function Resume() {
             <section
                 className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[0rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center mb-[10rem]"
             >
-                <div
-                    ref={whereIComeFromFade.ref}
-                    style={{ opacity: whereIComeFromFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-center justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-center justify-center gap-6 transition-all duration-300">
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10 items-center justify-center">
                         <motion.h1
                             variants={textLeft}

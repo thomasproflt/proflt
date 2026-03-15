@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { indexOperationalLeadership } from "../data/indexOperationalLeadership.data";
@@ -10,8 +9,7 @@ import { indexBuildingTeams } from "../data/indexBuildingTeams.data";
 import { indexStrategicPartner } from "../data/indexStrategicPartner.data";
 import { indexVisionDriven } from "../data/indexVisionDriven.data";
 import { indexBringingDesign } from "../data/indexBringingDesign.data";
-import useFadeOutOnScroll from "../hooks/useFadeOutOnScroll";
-import { motion } from "framer-motion";
+import { motion, Variants, easeOut } from "framer-motion";
 
 const ChevronDown = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -19,7 +17,7 @@ const ChevronDown = (
     </svg>
 );
 
-const textLeft = {
+const textLeft: Variants = {
     hidden: {
         opacity: 0,
         x: -80
@@ -29,12 +27,12 @@ const textLeft = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: "easeOut"
+            ease: easeOut
         }
     }
 };
 
-const textRight = {
+const textRight: Variants = {
     hidden: {
         opacity: 0,
         x: 80
@@ -49,7 +47,7 @@ const textRight = {
     }
 };
 
-const catalogContainer = {
+const catalogContainer: Variants = {
     hidden: {},
     visible: {
         transition: {
@@ -58,7 +56,7 @@ const catalogContainer = {
     }
 };
 
-const catalogItem = {
+const catalogItem: Variants = {
     hidden: {
         opacity: 0,
         y: 40
@@ -75,12 +73,6 @@ const catalogItem = {
 
 export default function RightChoice() {
     const [opacity, setOpacity] = useState(1);
-    const operationalFade = useFadeOutOnScroll(4.0);
-    const buildingTeamsFade = useFadeOutOnScroll(2.0);
-    const strategicPartnerFade = useFadeOutOnScroll(4.0);
-    const visionDrivenFade = useFadeOutOnScroll(4.0);
-    const bringingDesignFade = useFadeOutOnScroll(4.0);
-    const endPageFade = useFadeOutOnScroll(2.0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -144,11 +136,7 @@ export default function RightChoice() {
                 id="operational-leadership"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={operationalFade.ref}
-                    style={{ opacity: operationalFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         ENTREGANDO RESULTADOS
                     </span>
@@ -222,11 +210,7 @@ export default function RightChoice() {
                 id="building-teams"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={buildingTeamsFade.ref}
-                    style={{ opacity: buildingTeamsFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         NEGÓCIOS ESTRUTURADOS
                     </span>
@@ -301,11 +285,7 @@ export default function RightChoice() {
                 id="strategic-partner"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={strategicPartnerFade.ref}
-                    style={{ opacity: strategicPartnerFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         CRESCIMENTO DE NEGÓCIOS
                     </span>
@@ -380,11 +360,7 @@ export default function RightChoice() {
                 id="vision-driven"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={visionDrivenFade.ref}
-                    style={{ opacity: visionDrivenFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         VISÃO DE FUTURO
                     </span>
@@ -459,11 +435,7 @@ export default function RightChoice() {
                 id="bringing-design"
                 className="flex container w-full max-w-full min-h-[51rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={bringingDesignFade.ref}
-                    style={{ opacity: bringingDesignFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         EXECUÇÃO DIGITAL
                     </span>
