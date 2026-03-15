@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
+import { motion } from "framer-motion";
 import { indexWhoAreOurUsers } from "../data/indexWhoAreOurUsers.data";
 import { indexCurrentExperience } from "../data/indexCurrentExperience.data";
 import { indexBetterFuture } from "../data/indexBetterFuture.data";
@@ -20,6 +21,60 @@ const ChevronDown = (
         <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
     </svg>
 );
+
+const textLeft = {
+    hidden: {
+        opacity: 0,
+        x: -80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const textRight = {
+    hidden: {
+        opacity: 0,
+        x: 80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const catalogContainer = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.15
+        }
+    }
+};
+
+const catalogItem = {
+    hidden: {
+        opacity: 0,
+        y: 40
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: "easeOut"
+        }
+    }
+};
 
 export default function RightChoice() {
     const [opacity, setOpacity] = useState(1);
@@ -63,12 +118,24 @@ export default function RightChoice() {
                     }}
                     className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-30 transition-all duration-300"
                 >
-                    <h1 className="max-w-full text-3xl md:text-6xl text-zinc-600 dark:text-zinc-400">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-full text-3xl md:text-6xl text-zinc-600 dark:text-zinc-400"
+                    >
                         Onde a Estratégia<br /><span className="highlight-text">Encontra a Experiência.</span>
-                    </h1>
-                    <p className="max-w-[40rem] text-[14px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                    </motion.h1>
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[40rem] text-[14px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400"
+                    >
                         Vou ajudar você a criar clareza, reduzir riscos e responder perguntas estratégicas com confiança, fortalecendo tanto a experiência do usuário quanto os resultados do negócio.
-                    </p>
+                    </motion.p>
 
                     <a
                         href={"#define"}
@@ -91,17 +158,39 @@ export default function RightChoice() {
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         DEFINE
                     </span>
-                    <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Quem são nossos usuários?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Vou ajudar você a definir...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5 mb-[5rem]">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5 mb-[5rem]"
+                    >
                         {indexWhoAreOurUsers.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -117,9 +206,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
                     <div className="flex items-center justify-center mx-auto">
                         <a
@@ -146,17 +235,39 @@ export default function RightChoice() {
                         BASELINE
                     </span>
 
-                    <h1 className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         O que sabemos sobre a experiência atual?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Vou ajudar você a trazer clareza sobre...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5"
+                    >
                         {indexCurrentExperience.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -172,9 +283,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
                     <div className="flex items-center justify-center mx-auto">
                         <a
@@ -201,17 +312,38 @@ export default function RightChoice() {
                         DIRECTION
                     </span>
 
-                    <h1 className="text-left max-w-[35rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }} className="text-left max-w-[35rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Como poderia ser um futuro melhor?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Vou trabalhar com você para identificar...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5"
+                    >
                         {indexBetterFuture.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -227,9 +359,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
                     <div className="flex items-center justify-center mx-auto">
                         <a
@@ -256,17 +388,39 @@ export default function RightChoice() {
                         VALUE
                     </span>
 
-                    <h1 className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Qual é a nossa proposta de valor para os usuários?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Vou guiar você na descoberta de...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5"
+                    >
                         {indexOurValueProposition.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -282,9 +436,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
                     <div className="flex items-center justify-center mx-auto">
                         <a
@@ -311,17 +465,39 @@ export default function RightChoice() {
                         BUSINESS
                     </span>
 
-                    <h1 className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Como isso irá gerar valor para o negócio?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Vou trabalhar com você para...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5"
+                    >
                         {indexValueInReturn.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -337,9 +513,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
                     <div className="flex items-center justify-center mx-auto">
                         <a
@@ -366,17 +542,38 @@ export default function RightChoice() {
                         UX OUTCOME
                     </span>
 
-                    <h1 className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Como vamos melhorar a vida dos usuários se fizermos um ótimo trabalho?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }} className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Vou ajudar você a alcançar resultados que irão...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5"
+                    >
                         {indexGreatJob.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -392,9 +589,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
                     <div className="flex items-center justify-center mx-auto">
                         <a
@@ -421,17 +618,38 @@ export default function RightChoice() {
                         PROBLEMS TO SOLVE
                     </span>
 
-                    <h1 className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         O que impede os usuários de terem a experiência que buscamos?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }} className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Vou ajudar você a mapear...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5"
+                    >
                         {indexHavingTheExperience.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -447,9 +665,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
 
                     <div className="flex items-center justify-center mx-auto">
                         <a
@@ -476,17 +694,38 @@ export default function RightChoice() {
                         SOLUTIONS
                     </span>
 
-                    <h1 className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-left max-w-[40rem] text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Qual solução vai nos ajudar a alcançar o resultado de experiência desejado?
-                    </h1>
+                    </motion.h1>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }} className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Vou ajudar você a criar experiências projetadas que irão...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full gap-5"
+                    >
                         {indexOutcome.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -502,21 +741,15 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
 
-            <section
-                className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
-            >
-                <div
-                    ref={endPageFade.ref}
-                    style={{ opacity: endPageFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+            <section className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center">
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
                         <div className="overflow-hidden rounded-2xl">
                             <Image

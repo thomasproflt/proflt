@@ -13,12 +13,67 @@ import ImgBrand from "@/public/brands/Subtract.png";
 import ImgTablet from "@/public/recently-worked/aetheris-tablet.png";
 import ImgPhone from "@/public/design-phone.png";
 import Brands from "../components/brands";
+import { motion } from "framer-motion";
 
 const ChevronDown = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
         <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
     </svg>
 );
+
+const textLeft = {
+    hidden: {
+        opacity: 0,
+        x: -80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const textRight = {
+    hidden: {
+        opacity: 0,
+        x: 80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const catalogContainer = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.15
+        }
+    }
+};
+
+const catalogItem = {
+    hidden: {
+        opacity: 0,
+        y: 40
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: "easeOut"
+        }
+    }
+};
 
 export default function Brand() {
     const [opacity, setOpacity] = useState(1);
@@ -69,13 +124,25 @@ export default function Brand() {
                             priority
                         />
                     </div>
-                    <h1 className="max-w-[40rem] text-4xl text-zinc-600 dark:text-zinc-400">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[40rem] text-4xl text-zinc-600 dark:text-zinc-400"
+                    >
                         Aetheris AE, <span className="highlight-text">construindo a infraestrutura digital</span> de negócios modernos.
-                    </h1>
+                    </motion.h1>
 
-                    <p className="max-w-[40rem] text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[40rem] text-lg leading-8 text-zinc-600 dark:text-zinc-400"
+                    >
                         Arquitetando websites, landing pages e sistemas digitais projetados para posicionar empresas e acelerar resultados.
-                    </p>
+                    </motion.p>
                     <a
                         href={
                             "https://wa.me/5566996399303?text=Ol%C3%A1%2C%20olhei%20seu%20portf%C3%B3lio%20e%20notei%20um%20grande%20valor!"
@@ -106,13 +173,30 @@ export default function Brand() {
                     className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
                 >
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-                        <h1 className="text-left max-w-[40rem] text-4xl text-zinc-600 dark:text-zinc-500">
+                        <motion.h1
+                            variants={textLeft}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="text-left max-w-[40rem] text-4xl text-zinc-600 dark:text-zinc-500"
+                        >
                             Ajudamos empresas a <span className="highlight-text-black">resolver problemas digitais</span> e <span className="highlight-text-black">criar soluções web</span> que realmente geram resultados.
-                        </h1>
+                        </motion.h1>
                     </div>
-                    <div className="flex flex-row gap-10">
+
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="flex flex-row gap-10"
+                    >
                         {indexBrandHelp.map((item) => (
-                            <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-zinc-100 p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="max-w-xs text-[25px] font-normal text-black dark:text-black mb-2">
@@ -124,193 +208,15 @@ export default function Brand() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
 
-            <section
-                id="values"
-                className="flex container w-full max-w-full min-h-[0rem] bg-gradient-to-t from-[#0D0D0D] to-[#0F1D25] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
-            >
-                <div
-                    ref={contributedFade.ref}
-                    style={{ opacity: contributedFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
-                    <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-                        <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
-                            I’ve contributed as a <span className="highlight-text">hands-on designer</span> and <span className="highlight-text">design leader</span> for:
-                        </h1>
-                    </div>
-                    <div className="grid grid-cols-2 max-w-7xl w-full gap-10">
-                        {indexContributed.map((item) => (
-                            <div key={item.id} className="bg-[#0D0D0D] p-5 rounded-2xl hover:bg-[#121111] transition-all duration-150 cursor-pointer">
-                                <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
-                                    <div className="flex flex-col">
-                                        <h1 className="max-w-xs text-[25px] font-normal text-black dark:text-zinc-200 mb-5">
-                                            {item.title}
-                                        </h1>
-
-                                        <span className="font-semibold max-w-[20rem] text-[16px] text-zinc-600 dark:text-zinc-200">
-                                            {item.tag}
-                                        </span>
-
-                                        <p className="max-w-[20rem] text-[16px] text-zinc-600 dark:text-zinc-400">
-                                            {item.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-            </section>
-
-            <section
-                id="values"
-                className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
-            >
-                <div
-                    ref={workedFade.ref}
-                    style={{ opacity: workedFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
-                    <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-                        <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
-                            I’ve worked with <span className="highlight-text-black">design across various industries</span> and domains.
-                        </h1>
-                    </div>
-
-                    <div className="flex flex-row gap-10">
-                        {indexWorked.map((item) => (
-                            <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
-                                <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
-                                    <div className="flex flex-col">
-                                        <p className="max-w-[20rem] text-[18px] text-zinc-600 dark:text-zinc-500">
-                                            {item.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-            </section>
-
-            <section
-                id="values"
-                className="flex container w-full max-w-full min-h-[0rem] bg-[#0D0D0D] flex-col items-center justify-center py-[10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
-            >
-                <div
-                    ref={recentlyWorkedFade.ref}
-                    style={{ opacity: recentlyWorkedFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
-                    <div className="relative z-20 flex flex-row max-w-9xl w-full justify-between gap-0 py-0 mb-10">
-                        <div className="flex flex-col">
-                            <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]">
-                                I recently <span className="highlight-text">worked at PayPal,</span> driving <span className="highlight-text">improvements</span> to the <span className="highlight-text">Invoicing experience.</span>
-                            </h1>
-
-                            <Image
-                                className="select-none pointer-events-none mb-[2rem]"
-                                src={ImgBrand}
-                                alt="AI"
-                                width={40}
-                                height={10}
-                                priority
-                            />
-
-                            <span className="font-semibold text-left max-w-[35rem] text-[18px] text-zinc-600 dark:text-zinc-200 mb-1">
-                                Senior UX Design Lead
-                            </span>
-                            <p className="text-left max-w-[35rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-400 mb-5">
-                                At PayPal, I led the Invoicing Design Pod, enhancing the end-to-end platform to drive adoption, flexibility, and more efficient payment experiences — strengthening PayPal’s competitive edge.
-                            </p>
-                        </div>
-
-                        <div className="absolute -right-60">
-                            <Image
-                                className="select-none pointer-events-none mb-[2rem]"
-                                src={ImgTablet}
-                                alt="AI"
-                                width={600}
-                                height={400}
-                                priority
-                            />
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
-            <section
-                id="work"
-                className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[4rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
-            >
-                <div
-                    ref={selectedWorkFade.ref}
-                    style={{ opacity: selectedWorkFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
-                    <div className="relative z-20 flex flex-col max-w-9xl w-full gap-0 py-0 mb-10">
-                        <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]">
-                            <span className="highlight-text-black">Selected work</span> that makes <span className="highlight-text-black">lives better</span> and <span className="highlight-text-black">businesses stronger.</span>
-                        </h1>
-
-                        <div className="flex flex-col items-center justify-center">
-                            <Image
-                                className="select-none pointer-events-none mb-[3rem] -rotate-12"
-                                src={ImgPhone}
-                                alt="AI"
-                                width={240}
-                                height={240}
-                                priority
-                            />
-
-                            <Image
-                                className="dark:invert select-none pointer-events-none mb-[1rem]"
-                                src={ImgBrand}
-                                alt="AI"
-                                width={30}
-                                height={10}
-                                priority
-                            />
-                            <span className="font-semibold text-center max-w-[35rem] text-[18px] text-zinc-600 dark:text-zinc-600 mb-1">
-                                Director of Product Design
-                            </span>
-                            <p className="text-center max-w-[40rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-600 mb-5">
-                                Led the product design team at Aetheris AE, building and scaling a thriving design organization that attracted top-tier designers and researchers, fostered a healthy culture, and elevated design as a driver of product and business success.
-                            </p>
-                            <a
-                                href={
-                                    "https://wa.me/5566996399303?text=Ol%C3%A1%2C%20olhei%20seu%20portf%C3%B3lio%20e%20notei%20um%20grande%20valor!"
-                                }
-                                target="_blank"
-                                rel="noopener nooreferrer"
-                                className="flex items-center justify-center gap-2 border border-solid border-zinc-300 px-5 py-3 rounded-full group transition-all duration-200"
-                            >
-                                <span className="text-[16px] text-black group-hover:text-zinc-400 transition-all duration-150">View Case Story</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
-            <section
-                className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
-            >
-                <div
-                    ref={endPageFade.ref}
-                    style={{ opacity: endPageFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+            <section className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center">
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="flex flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
                         <div className="overflow-hidden rounded-2xl">
                             <Image
@@ -324,17 +230,17 @@ export default function Brand() {
                         </div>
                         <div className="flex flex-col items-start justify-center">
                             <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
-                                What I Bring
+                                O que eu trago
                             </h1>
                             <p className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
-                                See how my background and approach align with your needs.
+                                Veja como minha experiência e abordagem se alinham às suas necessidades.
                             </p>
                             <div className="flex items-center justify-center gap-5">
                                 <a
                                     href={"/right-choice"}
                                     className="flex items-center justify-center gap-2 bg-white border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-white/80 transition-all duration-200"
                                 >
-                                    <span className="text-[16px] text-black font-medium">Escolha Certa</span>
+                                    <span className="text-[16px] text-black font-medium">Por que sou a escolha certa</span>
                                 </a>
 
                                 <a
@@ -343,7 +249,7 @@ export default function Brand() {
                                     }
                                     className="flex items-center justify-center gap-2 border border-solid border-black/[0.08] px-5 py-3 rounded-full hover:bg-black/[0.04] dark:border-white/[0.145] dark:hover:bg-[hsl(0,0%,13%)] transition-all duration-200"
                                 >
-                                    <span className="text-[16px] text-white">View Playbook</span>
+                                    <span className="text-[16px] text-white">Ver Playbook</span>
                                 </a>
                             </div>
                         </div>

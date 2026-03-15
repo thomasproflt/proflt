@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import useFadeOutOnScroll from "../hooks/useFadeOutOnScroll";
@@ -27,6 +28,60 @@ const PlusIcon = (
         <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
     </svg>
 );
+
+const textLeft = {
+    hidden: {
+        opacity: 0,
+        x: -80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const textRight = {
+    hidden: {
+        opacity: 0,
+        x: 80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const catalogContainer = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.15
+        }
+    }
+};
+
+const catalogItem = {
+    hidden: {
+        opacity: 0,
+        y: 40
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: "easeOut"
+        }
+    }
+};
 
 export default function Resume() {
     const [opacity, setOpacity] = useState(1);
@@ -81,12 +136,24 @@ export default function Resume() {
                         height={10}
                         priority
                     />
-                    <h1 className="max-w-[60rem] text-3xl md:text-5xl text-zinc-600 dark:text-zinc-500">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[60rem] text-3xl md:text-5xl text-zinc-600 dark:text-zinc-500"
+                    >
                         Trago uma <span className="highlight-text-black">abordagem centrada no ser humano</span> para o <span className="highlight-text-black">crescimento de produtos</span> e <span className="highlight-text-black">para melhorar a vida das pessoas.</span>
-                    </h1>
-                    <p className="max-w-full font-semibold text-[16px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-600">
+                    </motion.h1>
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-full font-semibold text-[16px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-600"
+                    >
                         Conectando necessidades humanas aos resultados de negócios.
-                    </p>
+                    </motion.p>
                     <div className="flex items-center justify-center gap-5">
                         <a
                             href={"/"}
@@ -126,13 +193,30 @@ export default function Resume() {
                     className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
                 >
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-                        <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
+                        <motion.h1
+                            variants={textLeft}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
+                        >
                             Como <span className="highlight-text-black">eu trabalho.</span>
-                        </h1>
+                        </motion.h1>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+                    >
                         {indexTheWayIWork.map((item) => (
-                            <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-zinc-100 p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="max-w-xs text-[25px] font-normal text-black dark:text-black mb-2">
@@ -144,9 +228,9 @@ export default function Resume() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -160,14 +244,29 @@ export default function Resume() {
                     className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
                 >
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-                        <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
+                        <motion.h1
+                            variants={textLeft}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
+                        >
                             Trabalhei com <span className="highlight-text-black">design em diversos setores</span> e áreas de atuação.
-                        </h1>
+                        </motion.h1>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {indexWorked.map((item) => (
-                            <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-zinc-100 p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <p className="max-w-[20rem] text-[18px] text-zinc-600 dark:text-zinc-500">
@@ -175,9 +274,9 @@ export default function Resume() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -191,17 +290,32 @@ export default function Resume() {
                     className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
                 >
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-                        <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
+                        <motion.h1
+                            variants={textLeft}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
+                        >
                             Contribuí como <span className="highlight-text-black">designer prático</span> e <span className="highlight-text-black">líder de design</span> para:
-                        </h1>
+                        </motion.h1>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-full gap-10 items-start">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-start">
                         {indexResumeContributed.map((item) => {
                             const isOpen = openItem === item.id;
 
                             return (
-                                <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
+                                <motion.div
+                                    key={item.id}
+                                    variants={catalogItem}
+                                    className="bg-zinc-100 p-5 rounded-2xl"
+                                >
                                     <div className="flex flex-col w-full">
 
                                         <div className="flex justify-between items-start w-full">
@@ -238,10 +352,10 @@ export default function Resume() {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
                             );
                         })}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -255,21 +369,42 @@ export default function Resume() {
                     className="relative z-30 flex flex-col w-full max-w-full items-center justify-center gap-6 transition-all duration-300"
                 >
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10 items-center justify-center">
-                        <h1 className="text-center max-w-[35rem] text-4xl text-zinc-600 dark:text-black">
+                        <motion.h1
+                            variants={textLeft}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="text-center max-w-[35rem] text-4xl text-zinc-600 dark:text-black"
+                        >
                             De onde eu venho.
-                        </h1>
+                        </motion.h1>
 
-                        <p className="text-center max-w-[45rem] font-semibold text-[18px] text-zinc-600 dark:text-zinc-700">
+                        <motion.p
+                            variants={textRight}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="text-center max-w-[45rem] font-semibold text-[18px] text-zinc-600 dark:text-zinc-700"
+                        >
                             Nascido em Sinop, no Brasil, aprendi desde cedo o valor da adaptabilidade, da colaboração e da construção de relações sólidas. Esses princípios ainda guiam minha forma de trabalhar: ouvir com atenção, fazer as perguntas certas e contribuir para que outras pessoas também alcancem sucesso.
                             <br />
                             <br />
                             Ao longo da minha carreira, tive a oportunidade de contribuir com diferentes pessoas e profissionais em diversos contextos, compartilhando conhecimento, trocando experiências e fortalecendo conexões. Mais do que apenas desenvolver projetos, meu foco sempre foi criar networking e gerar valor para outras pessoas, ajudando profissionais e negócios a crescerem juntos.
-                        </p>
+                        </motion.p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 w-full max-w-full gap-10">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {indexResumeWhereIComeFrom.map((item) => (
-                            <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-zinc-100 p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="max-w-[20rem] text-3xl text-zinc-600 dark:text-black mb-[1rem]">
@@ -281,9 +416,9 @@ export default function Resume() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -291,11 +426,7 @@ export default function Resume() {
             <section
                 className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={endPageFade.ref}
-                    style={{ opacity: endPageFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
                         <div className="overflow-hidden rounded-2xl">
                             <Image

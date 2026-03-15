@@ -11,12 +11,67 @@ import { indexStrategicPartner } from "../data/indexStrategicPartner.data";
 import { indexVisionDriven } from "../data/indexVisionDriven.data";
 import { indexBringingDesign } from "../data/indexBringingDesign.data";
 import useFadeOutOnScroll from "../hooks/useFadeOutOnScroll";
+import { motion } from "framer-motion";
 
 const ChevronDown = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
         <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
     </svg>
 );
+
+const textLeft = {
+    hidden: {
+        opacity: 0,
+        x: -80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const textRight = {
+    hidden: {
+        opacity: 0,
+        x: 80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const catalogContainer = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.15
+        }
+    }
+};
+
+const catalogItem = {
+    hidden: {
+        opacity: 0,
+        y: 40
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: "easeOut"
+        }
+    }
+};
 
 export default function RightChoice() {
     const [opacity, setOpacity] = useState(1);
@@ -57,12 +112,24 @@ export default function RightChoice() {
                     }}
                     className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-30 transition-all duration-300"
                 >
-                    <h1 className="max-w-full text-3xl md:text-6xl text-zinc-600 dark:text-zinc-400">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-full text-3xl md:text-6xl text-zinc-600 dark:text-zinc-400"
+                    >
                         Eu ajudo você<br /><span className="highlight-text">a estruturar sua presença digital.</span>
-                    </h1>
-                    <p className="max-w-[50rem] text-[14px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                    </motion.h1>
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[50rem] text-[14px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400"
+                    >
                         Trabalho lado a lado com empreendedores e empresas para diagnosticar problemas estratégicos, estruturar soluções digitais e desenvolver plataformas que geram autoridade, eficiência e crescimento real.
-                    </p>
+                    </motion.p>
 
                     <a
                         href={"#operational-leadership"}
@@ -85,22 +152,50 @@ export default function RightChoice() {
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         ENTREGANDO RESULTADOS
                     </span>
-                    <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Operational Leadership.
-                    </h1>
-                    <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
+                    </motion.h1>
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]"
+                    >
                         Desde o diagnóstico estratégico até a execução técnica, eu estruturo sistemas digitais que transformam
                         presença online em ativo de negócios. O objetivo é simples: alinhar tecnologia, marca e estratégia
                         para gerar crescimento sustentável.
-                    </p>
+                    </motion.p>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Veja como posso ajudar...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5"
+                    >
                         {indexOperationalLeadership.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -116,9 +211,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -135,22 +230,51 @@ export default function RightChoice() {
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         NEGÓCIOS ESTRUTURADOS
                     </span>
-                    <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Building Strong Foundations.
-                    </h1>
-                    <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
+                    </motion.h1>
+
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]"
+                    >
                         Grandes negócios são construídos sobre estruturas sólidas. Eu ajudo empreendedores a transformar
                         ideias em arquiteturas digitais claras — combinando estratégia, posicionamento e tecnologia para
                         criar presença digital profissional.
-                    </p>
+                    </motion.p>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         O que eu trago para a mesa...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5"
+                    >
                         {indexBuildingTeams.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -166,9 +290,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -185,21 +309,51 @@ export default function RightChoice() {
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         CRESCIMENTO DE NEGÓCIOS
                     </span>
-                    <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         A Strategic Partner.
-                    </h1>
-                    <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
+                    </motion.h1>
+
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]"
+                    >
                         Meu trabalho vai além de criar sites. Eu atuo como parceiro estratégico, ajudando empresas a
                         transformar sua presença digital em uma estrutura capaz de gerar clientes, autoridade e vantagem competitiva.
-                    </p>
+                    </motion.p>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Como posso contribuir...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5"
+                    >
                         {indexStrategicPartner.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -215,9 +369,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -234,21 +388,51 @@ export default function RightChoice() {
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         VISÃO DE FUTURO
                     </span>
-                    <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Vision-Driven.
-                    </h1>
-                    <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
+                    </motion.h1>
+
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]"
+                    >
                         Negócios evoluem quando existe clareza de visão. Eu ajudo marcas e empreendedores a estruturar
                         uma presença digital alinhada ao futuro — conectando identidade, tecnologia e estratégia de crescimento.
-                    </p>
+                    </motion.p>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Veja como isso se traduz na prática...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5"
+                    >
                         {indexVisionDriven.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -264,9 +448,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -283,21 +467,51 @@ export default function RightChoice() {
                     <span className="bg-[#191919] px-4 py-2 rounded-full text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[2rem]">
                         EXECUÇÃO DIGITAL
                     </span>
-                    <h1 className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-center text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+                    >
                         Bringing Ideas to Life.
-                    </h1>
-                    <p className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
+                    </motion.h1>
+
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[30rem] text-left text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]"
+                    >
                         Estratégia só tem valor quando se transforma em execução. Por isso, além da consultoria estratégica,
                         também desenvolvo websites, landing pages e sistemas digitais que materializam a presença e o posicionamento das marcas.
-                    </p>
+                    </motion.p>
 
-                    <p className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90">
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="font-bold text-left text-[18px] text-zinc-600 dark:text-zinc-300 mb-[20px] opacity-90"
+                    >
                         Formas de apoiar seu projeto...
-                    </p>
+                    </motion.p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5">
+                    <motion.div
+                        variants={catalogContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-5"
+                    >
                         {indexBringingDesign.map((item) => (
-                            <div key={item.id} className="bg-[#161617] p-5 rounded-2xl">
+                            <motion.div
+                                key={item.id}
+                                variants={catalogItem}
+                                className="bg-[#161617] p-5 rounded-2xl"
+                            >
                                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                                     <div className="flex flex-col">
                                         <h1 className="text-black dark:text-zinc-200 mb-5">
@@ -313,9 +527,9 @@ export default function RightChoice() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
 
             </section>
@@ -323,11 +537,7 @@ export default function RightChoice() {
             <section
                 className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={endPageFade.ref}
-                    style={{ opacity: endPageFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
                         <div className="overflow-hidden rounded-2xl">
                             <Image

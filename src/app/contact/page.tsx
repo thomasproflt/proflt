@@ -7,12 +7,43 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import useFadeOutOnScroll from "../hooks/useFadeOutOnScroll";
 import Brands from "../components/brands";
+import { motion } from "framer-motion";
 
 const ChevronDown = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
         <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
     </svg>
 );
+
+const textLeft = {
+    hidden: {
+        opacity: 0,
+        x: -80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
+
+const textRight = {
+    hidden: {
+        opacity: 0,
+        x: 80
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut"
+        }
+    }
+};
 
 export default function Contact() {
     const [opacity, setOpacity] = useState(1);
@@ -49,12 +80,24 @@ export default function Contact() {
                     }}
                     className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-30 transition-all duration-300"
                 >
-                    <h1 className="max-w-[30rem] text-3xl md:text-6xl text-zinc-600 dark:text-zinc-400">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[30rem] text-3xl md:text-6xl text-zinc-600 dark:text-zinc-400"
+                    >
                         Vamos nos conectar.
-                    </h1>
-                    <p className="max-w-[35rem] text-[14px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+                    </motion.h1>
+                    <motion.p
+                        variants={textRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="max-w-[35rem] text-[14px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400"
+                    >
                         Será um prazer ouvir você. Seja para colaborar, discutir novas oportunidades ou iniciar a construção da sua marca e presença digital.
-                    </p>
+                    </motion.p>
                     <div className="flex items-center justify-center gap-5">
                         <a
                             href={
@@ -95,9 +138,15 @@ export default function Contact() {
                     style={{ opacity: formFade.opacity }}
                     className="relative z-20 flex flex-col items-center justify-center gap-6 py-0 mb-10"
                 >
-                    <h1 className="text-center text-4xl text-zinc-600 dark:text-zinc-500">
+                    <motion.h1
+                        variants={textLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-center text-4xl text-zinc-600 dark:text-zinc-500"
+                    >
                         Enviar mensagem
-                    </h1>
+                    </motion.h1>
                 </div>
 
                 <div className="w-full max-w-lg max-md:mx-auto backdrop-blur-sm border border-white/10 rounded-xl p-8">
@@ -160,11 +209,7 @@ export default function Contact() {
             <section
                 className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
             >
-                <div
-                    ref={endPageFade.ref}
-                    style={{ opacity: endPageFade.opacity }}
-                    className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-                >
+                <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
                         <div className="overflow-hidden rounded-2xl">
                             <Image

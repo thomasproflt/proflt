@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import useFadeOutOnScroll from "./hooks/useFadeOutOnScroll";
@@ -19,6 +20,60 @@ const ChevronDown = (
     <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
   </svg>
 );
+
+const textLeft = {
+  hidden: {
+    opacity: 0,
+    x: -80
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const textRight = {
+  hidden: {
+    opacity: 0,
+    x: 80
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const catalogContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const catalogItem = {
+  hidden: {
+    opacity: 0,
+    y: 40
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
 export default function Home() {
   const [opacity, setOpacity] = useState(1);
@@ -69,12 +124,24 @@ export default function Home() {
               priority
             />
           </div>
-          <h1 className="max-w-[35rem] text-3xl md:text-4xl text-zinc-600 dark:text-zinc-400">
+          <motion.h1
+            variants={textLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="max-w-[35rem] text-3xl md:text-4xl text-zinc-600 dark:text-zinc-400"
+          >
             Eu sou Thomas, <span className="highlight-text">acelerando seu negócio</span> ao melhorar vidas.
-          </h1>
-          <p className="max-w-full text-[16px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+          </motion.h1>
+          <motion.p
+            variants={textRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="max-w-full text-[16px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400"
+          >
             Liderar a estratégia de experiência do usuário, da concepção ao produto final.
-          </p>
+          </motion.p>
           <a
             href={
               "https://wa.me/5566996399303?text=Ol%C3%A1%2C%20olhei%20seu%20portf%C3%B3lio%20e%20notei%20um%20grande%20valor!"
@@ -111,13 +178,27 @@ export default function Home() {
           className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
         >
           <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-            <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
+            <motion.h1
+              variants={textLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
+            >
               Eu ajudo você a <span className="highlight-text-black">estruturar seu negócio digital</span> e <span className="highlight-text-black">construir resultados</span> que realmente importam.
-            </h1>
+            </motion.h1>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <motion.div
+            variants={catalogContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {indexValues.map((item) => (
-              <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
+              <motion.div
+                key={item.id}
+                variants={catalogItem}
+                className="bg-zinc-100 p-5 rounded-2xl">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                   <div className="flex flex-col">
                     <h1 className="max-w-xs text-[25px] font-normal text-black dark:text-black mb-2">
@@ -129,9 +210,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
       </section>
@@ -146,13 +227,27 @@ export default function Home() {
           className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
         >
           <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-            <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
+            <motion.h1
+              variants={textLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
+            >
               Atuo como <span className="highlight-text">consultor estratégico</span> e <span className="highlight-text">desenvolvedor de soluções digitais</span> para:
-            </h1>
+            </motion.h1>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 max-w-7xl w-full gap-10">
+          <motion.div
+            variants={catalogContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {indexContributed.map((item) => (
-              <div key={item.id} className="bg-[#0D0D0D] p-5 rounded-2xl hover:bg-[#121111] transition-all duration-150 cursor-pointer">
+              <motion.div
+                key={item.id}
+                variants={catalogItem}
+                className="bg-[#0D0D0D] p-5 rounded-2xl hover:bg-[#121111] transition-all duration-150 cursor-pointer">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                   <div className="flex flex-col">
                     <h1 className="max-w-xs text-[25px] font-normal text-black dark:text-zinc-200 mb-5">
@@ -168,9 +263,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
       </section>
@@ -185,14 +280,28 @@ export default function Home() {
           className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
         >
           <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-            <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
+            <motion.h1
+              variants={textLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
+            >
               Já trabalhei com <span className="highlight-text-black">estratégia digital e desenvolvimento</span> em diferentes tipos de negócios e segmentos.
-            </h1>
+            </motion.h1>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <motion.div
+            variants={catalogContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {indexWorked.map((item) => (
-              <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
+              <motion.div
+                key={item.id}
+                variants={catalogItem}
+                className="bg-zinc-100 p-5 rounded-2xl">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                   <div className="flex flex-col">
                     <p className="max-w-[20rem] text-[18px] text-zinc-600 dark:text-zinc-500">
@@ -200,9 +309,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
       </section>
@@ -218,9 +327,15 @@ export default function Home() {
         >
           <div className="relative z-20 flex flex-col lg:flex-row max-w-7xl w-full justify-between gap-0 py-0 mb-10">
             <div className="flex flex-col">
-              <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]">
+              <motion.h1
+                variants={textLeft}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]"
+              >
                 Recentemente trabalhei no desenvolvimento da <span className="highlight-text">Aetheris AE</span>, criando <span className="highlight-text">estrutura digital</span> e <span className="highlight-text">arquitetura de produtos.</span>
-              </h1>
+              </motion.h1>
 
               <div className="relative flex w-[20rem] h-[17.3rem] md:hidden lg:hidden">
                 <Image
@@ -245,9 +360,15 @@ export default function Home() {
               <span className="font-semibold text-left max-w-[35rem] text-[18px] text-zinc-600 dark:text-zinc-200 mb-1">
                 Digital Strategy & Web Development
               </span>
-              <p className="text-left max-w-[35rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-400 mb-5">
+              <motion.p
+                variants={textRight}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-left max-w-[35rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-400 mb-5"
+              >
                 Na Aetheris AE, estou estruturando a presença digital da marca, desenvolvendo websites, landing pages e sistemas que transformam posicionamento estratégico em plataformas digitais reais.
-              </p>
+              </motion.p>
             </div>
 
             <div className="hidden md:flex md:w-[20rem] md:h-[20rem] absolute md:-right-[15rem] lg:w-[40rem] lg:h-[30.7rem] lg:-right-60">
@@ -275,9 +396,15 @@ export default function Home() {
           className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
         >
           <div className="relative z-20 flex flex-col max-w-9xl w-full gap-0 py-0 mb-10">
-            <h1 className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]">
+            <motion.h1
+              variants={textLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]"
+            >
               <span className="highlight-text-black">Projetos selecionados</span> que tornam <span className="highlight-text-black">negócios mais fortes</span> e <span className="highlight-text-black">presenças digitais mais profissionais.</span>
-            </h1>
+            </motion.h1>
 
             <div className="flex flex-col items-center justify-center">
               <Image
@@ -300,9 +427,15 @@ export default function Home() {
               <span className="font-semibold text-center max-w-[35rem] text-[18px] text-zinc-600 dark:text-zinc-600 mb-1">
                 Arquiteto de Presença Digital
               </span>
-              <p className="text-center max-w-[40rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-600 mb-5">
+              <motion.p
+                variants={textRight}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-center max-w-[40rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-600 mb-5"
+              >
                 Desenvolvo estratégias digitais, websites e estruturas online que ajudam empresas, empreendedores e marcas pessoais a construir autoridade, atrair clientes e crescer de forma sustentável.
-              </p>
+              </motion.p>
               <a
                 href={
                   "https://wa.me/5566996399303?text=Ol%C3%A1%2C%20olhei%20seu%20portf%C3%B3lio%20e%20notei%20um%20grande%20valor!"
@@ -322,11 +455,7 @@ export default function Home() {
       <section
         className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
       >
-        <div
-          ref={endPageFade.ref}
-          style={{ opacity: endPageFade.opacity }}
-          className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300"
-        >
+        <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
           <div className="flex flex-col md:flex-row max-w-full w-full bg-[#161617] p-5 gap-10 rounded-2xl">
             <div className="overflow-hidden rounded-2xl">
               <Image
@@ -339,12 +468,24 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-col items-start justify-center">
-              <h1 className="text-left text-2xl md:text-center md:text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
+              <motion.h1
+                variants={textLeft}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-left text-2xl md:text-center md:text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
+              >
                 O Que Eu Trago
-              </h1>
-              <p className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
+              </motion.h1>
+              <motion.p
+                variants={textRight}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]"
+              >
                 Descubra como estratégia, tecnologia e desenvolvimento web podem transformar sua presença digital em um verdadeiro ativo de negócios.
-              </p>
+              </motion.p>
               <div className="flex items-center justify-center gap-5">
                 <a
                   href={"/right-choice"}
