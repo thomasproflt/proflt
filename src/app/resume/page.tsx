@@ -220,7 +220,7 @@ export default function Resume() {
             </section>
 
             <section
-                className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[0rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center mb-[10rem]"
+                className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center py-[10.10rem]"
             >
                 <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
@@ -262,7 +262,7 @@ export default function Resume() {
             </section>
 
             <section
-                className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[0rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center mb-[10rem]"
+                className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center py-[10.10rem]"
             >
                 <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
@@ -320,7 +320,7 @@ export default function Resume() {
 
                                         </div>
                                         <div
-                                            className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${isOpen ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
+                                            className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 mt-4" : "max-h-0 opacity-0"
                                                 }`}
                                         >
                                             <p className="font-semibold max-w-[35rem] text-[18px] text-zinc-600">
@@ -337,7 +337,7 @@ export default function Resume() {
             </section>
 
             <section
-                className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[0rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center mb-[10rem]"
+                className="flex container w-full max-w-full min-h-[0rem] bg-white flex-col items-center justify-center py-[10.10rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center mb-[10rem]"
             >
                 <div className="relative z-30 flex flex-col w-full max-w-full items-center justify-center gap-6 transition-all duration-300">
                     <div className="relative z-20 flex flex-col gap-6 py-0 mb-10 items-center justify-center">
