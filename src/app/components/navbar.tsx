@@ -114,6 +114,14 @@ function NavLinks({ onClick }: { onClick?: () => void }) {
       >
         Trabalho
       </Link>
+
+      <Link
+        href="/projects"
+        onClick={onClick}
+        className="text-[15px] font-semibold text-zinc-300 hover:text-zinc-400 transition-all duration-500"
+      >
+        Projetos
+      </Link>
     </>
   );
 }

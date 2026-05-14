@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, Variants, easeOut } from "framer-motion";
 import Image from "next/image";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import { motion, Variants, easeOut } from "framer-motion";
+import Notification from "../components/notification";
+import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ChevronDown = (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -45,6 +48,19 @@ const textRight: Variants = {
 export default function Contact() {
     const [opacity, setOpacity] = useState(1);
 
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+    const [loading, setLoading] = useState(false);
+
+    const [notification, setNotification] = useState({
+        show: false,
+        type: "success" as "success" | "error",
+        message: ""
+    });
+
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY
@@ -60,9 +76,93 @@ export default function Contact() {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
+    const handleSubmit = async (
+        e: React.FormEvent
+    ) => {
+
+        e.preventDefault();
+
+        if (!captchaToken) {
+            setNotification({
+                show: true,
+                type: "error",
+                message: "Confirme o captcha."
+            });
+
+            setTimeout(() => {
+                setNotification((prev) => ({
+                    ...prev,
+                    show: false
+                }));
+            }, 4000);
+
+            return;
+        }
+
+        try {
+
+            setLoading(true);
+
+            await emailjs.send(
+
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+
+                {
+                    name,
+                    email,
+                    message,
+                    "g-recaptcha-response": captchaToken
+                },
+
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+            );
+
+            setNotification({
+                show: true,
+                type: "success",
+                message: "Mensagem enviada com sucesso."
+            });
+
+            setTimeout(() => {
+                setNotification((prev) => ({
+                    ...prev,
+                    show: false
+                }));
+            }, 4000);
+
+            setName("");
+            setEmail("");
+            setMessage("");
+
+        } catch (err) {
+
+            console.error(err);
+
+            setNotification({
+                show: true,
+                type: "error",
+                message: "Erro ao enviar mensagem."
+            });
+
+            setTimeout(() => {
+                setNotification((prev) => ({
+                    ...prev,
+                    show: false
+                }));
+            }, 4000);
+
+        } finally {
+
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen items-center justify-start font-sans">
             <Navbar />
+            <Notification show={notification.show} type={notification.type} message={notification.message} />
 
             <section
                 id="home"
@@ -142,7 +242,10 @@ export default function Contact() {
 
                 <div className="w-full max-w-lg max-md:mx-auto backdrop-blur-sm border border-white/10 rounded-xl p-8">
 
-                    <form className="space-y-6">
+                    <form
+                        onSubmit={handleSubmit}
+                        className="space-y-6"
+                    >
 
                         <div>
                             <label className="block text-white text-sm mb-2">Nome</label>
@@ -150,8 +253,12 @@ export default function Contact() {
                             <input
                                 type="text"
                                 required
-                                placeholder="Eden Johnson"
-                                className="w-full bg-[#00A63E]/5 border border-white/20 rounded-lg px-4 py-3 text-white/40 placeholder:text-white/40 placeholder:text-sm focus:outline-none focus:border-green-600 transition"
+                                value={name}
+                                onChange={(e) =>
+                                    setName(e.target.value)
+                                }
+                                placeholder="Seu nome"
+                                className="w-full bg-[#00A63E]/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 placeholder:text-sm focus:outline-none focus:border-green-600 transition"
                             />
                         </div>
 
@@ -161,8 +268,12 @@ export default function Contact() {
                             <input
                                 type="email"
                                 required
-                                placeholder="Eden@example.com"
-                                className="w-full bg-[#00A63E]/5 border border-white/20 rounded-lg px-4 py-3 text-white/40 placeholder:text-white/40 placeholder:text-sm focus:outline-none focus:border-green-600 transition"
+                                value={email}
+                                onChange={(e) =>
+                                    setEmail(e.target.value)
+                                }
+                                placeholder="Seu email"
+                                className="w-full bg-[#00A63E]/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 placeholder:text-sm focus:outline-none focus:border-green-600 transition"
                             />
                         </div>
 
@@ -172,24 +283,40 @@ export default function Contact() {
                             <textarea
                                 rows={4}
                                 required
-                                placeholder="Escreva sua mensagem aqui..."
-                                className="w-full bg-[#00A63E]/5 border border-white/20 rounded-lg px-4 py-3 text-white/40 placeholder:text-white/40 placeholder:text-sm focus:outline-none focus:border-green-600 transition resize-none"
+                                value={message}
+                                onChange={(e) =>
+                                    setMessage(e.target.value)
+                                }
+                                placeholder="Escreva sua mensagem..."
+                                className="w-full bg-[#00A63E]/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 placeholder:text-sm focus:outline-none focus:border-green-600 transition resize-none"
                             />
                         </div>
 
-                        <div className="flex items-center justify-between gap-6">
+                        <div className="flex flex-col items-center justify-between gap-6">
 
-                            {/**<p className="text-xs md:text-sm text-white/60 max-w-[200px]">
-                                    Ao enviar, você concorda com nossos <span className="text-white">Termos</span> e <span className="text-white">Política de Privacidade</span>.
-                                </p> */}
+                            <p className="text-center text-xs md:text-sm text-white/60 max-w-[400px]">
+                                Vamos transformar sua ideia em uma experiência digital única.
+                            </p>
+
+                            <ReCAPTCHA
+                                sitekey={
+                                    process.env
+                                        .NEXT_PUBLIC_RECAPTCHA_SITE_KEY!
+                                }
+                                onChange={(token) =>
+                                    setCaptchaToken(token)
+                                }
+                            />
 
                             <button
                                 type="submit"
+                                disabled={loading}
                                 className="bg-gradient-to-r from-green-950 to-green-600 hover:from-green-600 hover:to-green-950 text-white text-sm px-8 md:px-16 py-3 rounded-full transition duration-300"
                             >
-                                Enviar
+                                {loading
+                                    ? "Enviando..."
+                                    : "Enviar"}
                             </button>
-
                         </div>
 
                     </form>

@@ -109,7 +109,7 @@ export default function Home() {
           <div className="overflow-hidden rounded-full bg-transparent w-20 h-20">
             <Image
               className="w-full h-full object-cover pointer-events-none select-none"
-              src="/person.jpg"
+              src="/person.webp"
               alt="person"
               width={600}
               height={600}

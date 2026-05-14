@@ -116,14 +116,16 @@ export default function Resume() {
                     }}
                     className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-[10rem] mb-0 transition-all duration-300"
                 >
-                    <Image
-                        className="select-none pointer-events-none mb-5"
-                        src="/favicon.svg"
-                        alt="AI"
-                        width={100}
-                        height={10}
-                        priority
-                    />
+                    <div className="overflow-hidden rounded-full bg-transparent w-20 h-20">
+                        <Image
+                            className="w-full h-full object-cover pointer-events-none select-none"
+                            src="/person.webp"
+                            alt="person"
+                            width={600}
+                            height={600}
+                            priority
+                        />
+                    </div>
                     <motion.h1
                         variants={textLeft}
                         initial="hidden"
@@ -144,12 +146,15 @@ export default function Resume() {
                     </motion.p>
                     <div className="flex items-center justify-center gap-5">
                         <a
-                            href={"/"}
+                            href="/curriculo-thomas.pdf"
+                            download="curriculo-thomas.pdf"
                             target="_blank"
-                            rel="noopener nooreferrer"
-                            className="flex items-center justify-center gap-2 bg-black px-5 py-3 rounded-full group transition-all duration-200"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 bg-black px-5 py-3 rounded-full group transition-all duration-200 hover:scale-[1.02]"
                         >
-                            <span className="text-[16px] text-white font-medium group-hover:opacity-60 transition-all duration-500">Baixar currículo</span>
+                            <span className="text-[16px] text-white font-medium group-hover:opacity-60 transition-all duration-500">
+                                Baixar currículo
+                            </span>
                         </a>
 
                         <a
