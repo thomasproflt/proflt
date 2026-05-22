@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { motion, Variants, easeOut } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { indexValues } from "./data/indexValues.data";
@@ -19,77 +20,168 @@ const ChevronDown = (
   </svg>
 );
 
-const textLeft: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -80
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: easeOut
-    }
-  }
-};
-
-const textRight: Variants = {
-  hidden: {
-    opacity: 0,
-    x: 80
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut"
-    }
-  }
-};
-
-const catalogContainer: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15
-    }
-  }
-};
-
-const catalogItem: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 40
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut"
-    }
-  }
-};
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const [opacity, setOpacity] = useState(1);
+  const heroContainerRef = useRef<HTMLDivElement>(null);
+
+  // Refs para elementos animados
+  const heroTitleRef = useRef<HTMLHeadingElement>(null);
+  const heroParagraphRef = useRef<HTMLParagraphElement>(null);
+  const valuesTitleRef = useRef<HTMLHeadingElement>(null);
+  const valuesContainerRef = useRef<HTMLDivElement>(null);
+  const contributedTitleRef = useRef<HTMLHeadingElement>(null);
+  const contributedContainerRef = useRef<HTMLDivElement>(null);
+  const workedTitleRef = useRef<HTMLHeadingElement>(null);
+  const workedContainerRef = useRef<HTMLDivElement>(null);
+  const recentTitleRef = useRef<HTMLHeadingElement>(null);
+  const recentParagraphRef = useRef<HTMLParagraphElement>(null);
+  const workTitleRef = useRef<HTMLHeadingElement>(null);
+  const workParagraphRef = useRef<HTMLParagraphElement>(null);
+  const bringTitleRef = useRef<HTMLHeadingElement>(null);
+  const bringParagraphRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY
-      const fadeEnd = 400
+    // Garantir que os elementos estejam com opacidade 0 no início
+    gsap.set([heroTitleRef.current, heroParagraphRef.current, valuesTitleRef.current, contributedTitleRef.current, workedTitleRef.current, recentTitleRef.current, recentParagraphRef.current, workTitleRef.current, workParagraphRef.current, bringTitleRef.current, bringParagraphRef.current], { opacity: 0 });
 
-      const progress = Math.min(scrollY / fadeEnd, 1)
-
-      setOpacity(1 - progress)
+    if (valuesContainerRef.current) {
+      gsap.set(valuesContainerRef.current.children, { opacity: 0, y: 40 });
+    }
+    if (contributedContainerRef.current) {
+      gsap.set(contributedContainerRef.current.children, { opacity: 0, y: 40 });
+    }
+    if (workedContainerRef.current) {
+      gsap.set(workedContainerRef.current.children, { opacity: 0, y: 40 });
     }
 
-    window.addEventListener("scroll", handleScroll)
+    // Hero animations - usa a própria seção home como trigger
+    const homeSection = document.querySelector("#home");
+    if (homeSection && heroTitleRef.current) {
+      gsap.to(heroTitleRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: homeSection, start: "top 70%", once: false }
+      });
+    }
+    if (homeSection && heroParagraphRef.current) {
+      gsap.to(heroParagraphRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: homeSection, start: "top 70%", once: false }
+      });
+    }
 
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    // Values section - trigger na seção #values
+    const valuesSection = document.querySelector("#values");
+    if (valuesSection && valuesTitleRef.current) {
+      gsap.to(valuesTitleRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: valuesSection, start: "top 70%", once: false }
+      });
+    }
+    if (valuesSection && valuesContainerRef.current) {
+      gsap.to(valuesContainerRef.current.children, {
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power2.out",
+        scrollTrigger: { trigger: valuesSection, start: "top 70%", once: false }
+      });
+    }
+
+    // Contributed section - trigger na seção #contributed
+    const contributedSection = document.querySelector("#contributed");
+    if (contributedSection && contributedTitleRef.current) {
+      gsap.to(contributedTitleRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: contributedSection, start: "top 70%", once: false }
+      });
+    }
+    if (contributedSection && contributedContainerRef.current) {
+      gsap.to(contributedContainerRef.current.children, {
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power2.out",
+        scrollTrigger: { trigger: contributedSection, start: "top 70%", once: false }
+      });
+    }
+
+    // Worked section - trigger na seção #worked
+    const workedSection = document.querySelector("#worked");
+    if (workedSection && workedTitleRef.current) {
+      gsap.to(workedTitleRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: workedSection, start: "top 70%", once: false }
+      });
+    }
+    if (workedSection && workedContainerRef.current) {
+      gsap.to(workedContainerRef.current.children, {
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power2.out",
+        scrollTrigger: { trigger: workedSection, start: "top 70%", once: false }
+      });
+    }
+
+    // Recent section - trigger na seção #recent
+    const recentSection = document.querySelector("#recent");
+    if (recentSection && recentTitleRef.current) {
+      gsap.to(recentTitleRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: recentSection, start: "top 70%", once: false }
+      });
+    }
+    if (recentSection && recentParagraphRef.current) {
+      gsap.to(recentParagraphRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: recentSection, start: "top 70%", once: false }
+      });
+    }
+
+    // Work section - trigger na seção #work
+    const workSection = document.querySelector("#work");
+    if (workSection && workTitleRef.current) {
+      gsap.to(workTitleRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: workSection, start: "top 70%", once: false }
+      });
+    }
+    if (workSection && workParagraphRef.current) {
+      gsap.to(workParagraphRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: workSection, start: "top 70%", once: false }
+      });
+    }
+
+    // Bring section - usa a última seção
+    const bringSection = document.querySelector("#bring");
+    if (bringSection && bringTitleRef.current) {
+      gsap.to(bringTitleRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: bringSection, start: "top 70%", once: false }
+      });
+    }
+    if (bringSection && bringParagraphRef.current) {
+      gsap.to(bringParagraphRef.current, {
+        opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+        scrollTrigger: { trigger: bringSection, start: "top 70%", once: false }
+      });
+    }
+
+    // Hero fade effect on scroll
+    const heroContainer = heroContainerRef.current;
+    if (heroContainer) {
+      gsap.to(heroContainer, {
+        opacity: 0,
+        y: -80,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroContainer,
+          start: "top top",
+          end: "top 800px",
+          scrub: true,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   return (
     <div className="min-h-screen items-center justify-start font-sans">
@@ -100,10 +192,7 @@ export default function Home() {
         className="-z-10 flex min-h-screen bg-[#0D0D0D] w-full max-w-full items-center justify-center" /**sticky top-0  */
       >
         <div
-          style={{
-            opacity,
-            transform: `translateY(${(1 - opacity) * 80}px)`
-          }}
+          ref={heroContainerRef}
           className="relative z-30 flex flex-col items-center justify-center gap-6 text-center py-30 transition-all duration-300"
         >
           <div className="overflow-hidden rounded-full bg-transparent w-20 h-20">
@@ -116,24 +205,12 @@ export default function Home() {
               priority
             />
           </div>
-          <motion.h1
-            variants={textLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="max-w-[35rem] text-3xl md:text-4xl text-zinc-600 dark:text-zinc-400"
-          >
+          <h1 ref={heroTitleRef} className="max-w-[35rem] text-3xl md:text-4xl text-zinc-600 dark:text-zinc-400">
             Eu sou Thomas, <span className="highlight-text">acelerando seu negócio</span> ao melhorar vidas.
-          </motion.h1>
-          <motion.p
-            variants={textRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="max-w-full text-[16px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400"
-          >
+          </h1>
+          <p ref={heroParagraphRef} className="max-w-full text-[16px] md:text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             Liderar a estratégia de experiência do usuário, da concepção ao produto final.
-          </motion.p>
+          </p>
           <a
             href={
               "https://wa.me/5566996399303?text=Ol%C3%A1%2C%20olhei%20seu%20portf%C3%B3lio%20e%20notei%20um%20grande%20valor!"
@@ -166,27 +243,13 @@ export default function Home() {
       >
         <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
           <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-            <motion.h1
-              variants={textLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
-            >
+            <h1 ref={valuesTitleRef} className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
               Eu ajudo você a <span className="highlight-text-black">estruturar seu negócio digital</span> e <span className="highlight-text-black">construir resultados</span> que realmente importam.
-            </motion.h1>
+            </h1>
           </div>
-          <motion.div
-            variants={catalogContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div ref={valuesContainerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {indexValues.map((item) => (
-              <motion.div
-                key={item.id}
-                variants={catalogItem}
-                className="bg-zinc-100 p-5 rounded-2xl">
+              <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                   <div className="flex flex-col">
                     <h1 className="max-w-xs text-[25px] font-normal text-black dark:text-black mb-2">
@@ -198,9 +261,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
       </section>
@@ -211,27 +274,13 @@ export default function Home() {
       >
         <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
           <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-            <motion.h1
-              variants={textLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
-            >
+            <h1 ref={contributedTitleRef} className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
               Atuo como <span className="highlight-text">consultor estratégico</span> e <span className="highlight-text">desenvolvedor de soluções digitais</span> para:
-            </motion.h1>
+            </h1>
           </div>
-          <motion.div
-            variants={catalogContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div ref={contributedContainerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {indexContributed.map((item) => (
-              <motion.div
-                key={item.id}
-                variants={catalogItem}
-                className="bg-[#0D0D0D] p-5 rounded-2xl hover:bg-[#121111] transition-all duration-150 cursor-pointer">
+              <div key={item.id} className="bg-[#0D0D0D] p-5 rounded-2xl hover:bg-[#121111] transition-all duration-150 cursor-pointer">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                   <div className="flex flex-col">
                     <h1 className="max-w-xs text-[25px] font-normal text-black dark:text-zinc-200 mb-5">
@@ -247,9 +296,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
       </section>
@@ -260,28 +309,14 @@ export default function Home() {
       >
         <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
           <div className="relative z-20 flex flex-col gap-6 py-0 mb-10">
-            <motion.h1
-              variants={textLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500"
-            >
+            <h1 ref={workedTitleRef} className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500">
               Já trabalhei com <span className="highlight-text-black">estratégia digital e desenvolvimento</span> em diferentes tipos de negócios e segmentos.
-            </motion.h1>
+            </h1>
           </div>
 
-          <motion.div
-            variants={catalogContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div ref={workedContainerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {indexWorked.map((item) => (
-              <motion.div
-                key={item.id}
-                variants={catalogItem}
-                className="bg-zinc-100 p-5 rounded-2xl">
+              <div key={item.id} className="bg-zinc-100 p-5 rounded-2xl">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10 text-center lg:text-left w-full">
                   <div className="flex flex-col">
                     <p className="max-w-[20rem] text-[18px] text-zinc-600 dark:text-zinc-500">
@@ -289,9 +324,9 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
       </section>
@@ -303,15 +338,9 @@ export default function Home() {
         <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
           <div className="relative z-20 flex flex-col lg:flex-row max-w-7xl w-full justify-between gap-0 py-0 mb-10">
             <div className="flex flex-col">
-              <motion.h1
-                variants={textLeft}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]"
-              >
+              <h1 ref={recentTitleRef} className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]">
                 Recentemente trabalhei no desenvolvimento da <span className="highlight-text">Aetheris AE</span>, criando <span className="highlight-text">estrutura digital</span> e <span className="highlight-text">arquitetura de produtos.</span>
-              </motion.h1>
+              </h1>
 
               <div className="relative flex w-[20rem] h-[17.3rem] md:hidden lg:hidden">
                 <Image
@@ -336,15 +365,9 @@ export default function Home() {
               <span className="font-semibold text-left max-w-[35rem] text-[18px] text-zinc-600 dark:text-zinc-200 mb-1">
                 Digital Strategy & Web Development
               </span>
-              <motion.p
-                variants={textRight}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="text-left max-w-[35rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-400 mb-5"
-              >
+              <p ref={recentParagraphRef} className="text-left max-w-[35rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-400 mb-5">
                 Na Aetheris AE, estou estruturando a presença digital da marca, desenvolvendo websites, landing pages e sistemas que transformam posicionamento estratégico em plataformas digitais reais.
-              </motion.p>
+              </p>
             </div>
 
             <div className="hidden md:flex md:w-[20rem] md:h-[20rem] absolute md:-right-[15rem] lg:w-[40rem] lg:h-[30.7rem] lg:-right-60">
@@ -368,15 +391,9 @@ export default function Home() {
       >
         <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
           <div className="relative z-20 flex flex-col max-w-9xl w-full gap-0 py-0 mb-10">
-            <motion.h1
-              variants={textLeft}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]"
-            >
+            <h1 ref={workTitleRef} className="text-left max-w-[35rem] text-4xl text-zinc-600 dark:text-zinc-500 mb-[4rem]">
               <span className="highlight-text-black">Projetos selecionados</span> que tornam <span className="highlight-text-black">negócios mais fortes</span> e <span className="highlight-text-black">presenças digitais mais profissionais.</span>
-            </motion.h1>
+            </h1>
 
             <div className="flex flex-col items-center justify-center">
               <Image
@@ -399,15 +416,9 @@ export default function Home() {
               <span className="font-semibold text-center max-w-[35rem] text-[18px] text-zinc-600 dark:text-zinc-600 mb-1">
                 Arquiteto de Presença Digital
               </span>
-              <motion.p
-                variants={textRight}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="text-center max-w-[40rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-600 mb-5"
-              >
+              <p ref={workParagraphRef} className="text-center max-w-[40rem] font-medium text-[16px] text-zinc-600 dark:text-zinc-600 mb-5">
                 Desenvolvo estratégias digitais, websites e estruturas online que ajudam empresas, empreendedores e marcas pessoais a construir autoridade, atrair clientes e crescer de forma sustentável.
-              </motion.p>
+              </p>
               <a
                 href={
                   "https://wa.me/5566996399303?text=Ol%C3%A1%2C%20olhei%20seu%20portf%C3%B3lio%20e%20notei%20um%20grande%20valor!"
@@ -425,6 +436,7 @@ export default function Home() {
       </section>
 
       <section
+        id="bring"
         className="flex container w-full max-w-full min-h-auto bg-[#0D0D0D] flex-col items-center justify-center py-[5rem] px-4 sm:px-6 md:px-[7rem] sm:items-start sm:justify-center"
       >
         <div className="relative z-30 flex flex-col w-full max-w-full items-start justify-center gap-6 transition-all duration-300">
@@ -440,24 +452,12 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-col items-start justify-center">
-              <motion.h1
-                variants={textLeft}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="text-left text-2xl md:text-center md:text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]"
-              >
+              <h1 ref={bringTitleRef} className="text-left text-2xl md:text-center md:text-5xl text-zinc-600 dark:text-zinc-100 mb-[1rem]">
                 O Que Eu Trago
-              </motion.h1>
-              <motion.p
-                variants={textRight}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]"
-              >
+              </h1>
+              <p ref={bringParagraphRef} className="max-w-[30rem] text-left font-semibold text-[16px] text-zinc-600 dark:text-zinc-400 mb-[3rem]">
                 Descubra como estratégia, tecnologia e desenvolvimento web podem transformar sua presença digital em um verdadeiro ativo de negócios.
-              </motion.p>
+              </p>
               <div className="flex items-center justify-center gap-5">
                 <a
                   href={"/right-choice"}
