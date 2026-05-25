@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import ImgBrand1 from "@/public/brands/Subtract.png";
 import ImgBrand2 from "@/public/brands/Bolt-Pharma-brand.svg";
@@ -26,17 +28,19 @@ export default function Brands() {
                     {/* gradient left */}
                     <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-zinc-100 dark:from-zinc-900 to-transparent" />
 
-                    {/* logos */}
-                    <div className="flex marquee-inner will-change-transform">
-                        {[...companiesLogo, ...companiesLogo].map((company, index) => (
-                            <Image
-                                key={index}
-                                src={company.logo}
-                                alt={company.name}
-                                width={60}
-                                height={30}
-                                className="mx-11 opacity-70"
-                            />
+                    {/* logos - animação CSS pura */}
+                    <div className="flex marquee-infinite">
+                        {[...companiesLogo, ...companiesLogo, ...companiesLogo].map((company, index) => (
+                            <div key={index} className="flex-shrink-0 mx-11 items-center justify-center flex">
+                                <Image
+                                    src={company.logo}
+                                    alt={company.name}
+                                    width={80}
+                                    height={80}
+                                    className="opacity-70 pointer-events-none"
+                                    draggable={false}
+                                />
+                            </div>
                         ))}
                     </div>
 
@@ -45,6 +49,26 @@ export default function Brands() {
 
                 </div>
             </div>
+
+            <style jsx>{`
+                @keyframes marquee {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(-33.33%);
+                    }
+                }
+                
+                .marquee-infinite {
+                    animation: marquee 30s linear infinite;
+                    width: fit-content;
+                }
+                
+                .marquee-infinite:hover {
+                    animation-play-state: paused;
+                }
+            `}</style>
         </section>
     );
 }
